@@ -5,6 +5,7 @@
  */
 package com.mycompany.hauntedhauses.entity;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -12,7 +13,7 @@ import javax.persistence.Id;
  *
  * @author Markéta Kružliaková
  */
-
+@Entity
 public class Resident {
     
     @Id
@@ -23,7 +24,7 @@ public class Resident {
     
     private String lastName;
     
-//  private House house;
+    private House house;
     
     private int age;
 
