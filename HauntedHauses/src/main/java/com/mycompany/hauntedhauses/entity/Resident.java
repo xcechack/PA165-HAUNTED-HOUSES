@@ -1,24 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.hauntedhauses.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Markéta Kružliaková
  */
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 @Entity
 public class Resident {
     
     @Id
-    @GeneratedValue
-    private long id = -1;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id = 0;
     
     private String firstName;
     
@@ -29,6 +30,23 @@ public class Resident {
     private int age;
 
     
+    public Resident(){
+    }
+    
+    public Resident(String firstName, String lastName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+    
+    
+    public long getId(){
+        return id;
+    }
+   
+    public void setId(long id){
+        this.id = id;
+    }
     
     public String getFirstName(){
         return firstName;
@@ -39,18 +57,18 @@ public class Resident {
     }
     
     public String getLastName(){
-        return firstName;
+        return lastName;
     }
    
     public void setLastName(String lastName){
         this.lastName = lastName;
     }
     
-    public int age(){
+    public int getAge(){
         return age;
     }
    
-    public void age(int age){
+    public void setAge(int age){
         this.age = age;
     }
     
