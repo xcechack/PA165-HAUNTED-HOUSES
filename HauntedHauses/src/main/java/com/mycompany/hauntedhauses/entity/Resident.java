@@ -10,10 +10,7 @@ import javax.persistence.Table;
  *
  * @author Markéta Kružliaková
  */
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 @Entity
 public class Resident {
     
@@ -25,7 +22,7 @@ public class Resident {
     
     private String lastName;
     
-    private House house;
+//  private House house;
     
     private int age;
 
