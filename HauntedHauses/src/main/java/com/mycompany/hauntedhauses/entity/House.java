@@ -8,6 +8,7 @@ package com.mycompany.hauntedhauses.entity;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.annotation.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
