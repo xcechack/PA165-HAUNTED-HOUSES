@@ -6,7 +6,7 @@
 package com.mycompany.hauntedhauses.entity;
 
 import com.mycompany.hauntedhauses.entity.field.Address;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -171,7 +171,7 @@ public class House {
             return false;
         }
         House other = (House) obj;
-        if (getId() != other.getId() || name.equals(other.name) || history.equals(other.history) || address.equals(other.address) || hauntedFrom.equals(other.hauntedFrom)) {
+        if (getId() != other.getId() || !name.equals(other.name) || !history.equals(other.history) || !address.equals(other.address) || !hauntedFrom.equals(other.hauntedFrom)) {
             return false;
         }
         return true;

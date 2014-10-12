@@ -26,7 +26,7 @@ public class Power {
     private String name; 
     private String description;
 
-    @ManyToMany(mappedBy="powers")
+    @ManyToMany//(mappedBy="powers")
     private Set<Ghost> ghosts = new HashSet<Ghost>();
     
     public String getName(){

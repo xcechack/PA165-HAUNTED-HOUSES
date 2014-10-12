@@ -123,9 +123,14 @@ public class Ghost {
             return false;
         }
         Ghost other = (Ghost) obj;
-        if (getId() != other.getId() || name.equals(other.name) || scaryTimeStart.equals(other.scaryTimeStart) || scaryTimeEnd.equals(other.scaryTimeEnd) || info.equals(other.info)) {
+        if (getId() != other.getId() || !name.equals(other.name) || !scaryTimeStart.equals(other.scaryTimeStart) || !scaryTimeEnd.equals(other.scaryTimeEnd) || !info.equals(other.info)) {
             return false;
         }
         return true;
+    }
+    
+    @Override
+    public String toString() {
+        return "Ghost [id=" + id + ", name=" + name + ", scaryTimeStart=" + scaryTimeStart + ", scaryTimeEnd=" + scaryTimeEnd + ",info" + info + "]";
     }
 }

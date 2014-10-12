@@ -29,10 +29,10 @@ public class DAODemo {
         
         //testing house
         EntityManagerFactory emfHouse = Persistence.createEntityManagerFactory("GhostDB");
-        Address address = new Address("Ruzova", 7, "Brno", 63000);
+        //Address address = new Address("Ruzova", 7, "Brno", 63000);
         Date date = new Date(System.currentTimeMillis());
         House house = new House();
-        house.setAddress(address);
+        //house.setAddress(address);
         house.setHistory("history");
         house.setName("name");
         house.setHauntedFrom(date);
