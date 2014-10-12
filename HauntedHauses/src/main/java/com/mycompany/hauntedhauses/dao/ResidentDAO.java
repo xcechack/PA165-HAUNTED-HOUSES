@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface ResidentDAO {
 
+
     /**
      * Adds a new resident into the database.
      *
@@ -44,5 +45,5 @@ public interface ResidentDAO {
      * @return resident with the id from parame
      */
     public Resident getResidentByID(long id);
-
 }
+

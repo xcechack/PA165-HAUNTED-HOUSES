@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.annotation.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -47,10 +48,10 @@ public class House {
     @Column(nullable=false)
     private String history;
     
-    @OneToMany(mappedBy="house")
+    @OneToMany(mappedBy="house", cascade=CascadeType.PERSIST)
     private Set<Ghost> ghosts = new HashSet<Ghost>();
     
-    @OneToMany(mappedBy="house", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy="house", cascade=CascadeType.PERSIST)
     private Set<Resident> residents = new HashSet<Resident>();
 
     /**

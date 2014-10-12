@@ -55,7 +55,6 @@ public class ResidentDAOImpl implements ResidentDAO {
         }
     }
 
-
     public void deleteResident(Resident resident) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         
@@ -93,7 +92,6 @@ public class ResidentDAOImpl implements ResidentDAO {
         return residents;
         
     }
-
 
     public Resident getResidentByID(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
