@@ -13,9 +13,9 @@ import java.util.List;
  * @author Michal Zbranek
  */
 public interface PowerDAO {
-   public void addPower(Power power);
-   public void updatePower(Power power);
-   public void deletePower(Power power);
+   public boolean addPower(Power power);
+   public boolean updatePower(Power power);
+   public boolean deletePower(Power power);
    public List<Power> getAllPowers();
    public Power getPowerByID(long id );
 }

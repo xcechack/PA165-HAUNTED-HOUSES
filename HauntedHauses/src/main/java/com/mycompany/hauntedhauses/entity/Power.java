@@ -79,4 +79,30 @@ public class Power {
         this.ghosts = ghosts;
     }
     
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash = (int)(hash * 17 + id);
+        hash = hash * 31 + name.hashCode();
+        hash = hash * 13 + description.hashCode();
+        return hash;
+    }
+    
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Power power = (Power) obj;
+        return id == power.id
+                && (name == power.name
+                     || (name != null && name.equals(power.getName())))
+                && (description == power.description
+                     || (description != null && description .equals(power.getDescription())));
+    }
 }
