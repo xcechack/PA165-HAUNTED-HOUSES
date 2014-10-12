@@ -5,11 +5,13 @@
  */
 package com.mycompany.hauntedhauses;
 
+import com.mycompany.hauntedhauses.entity.Ghost;
 import com.mycompany.hauntedhauses.entity.Power;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,43 +19,61 @@ import javax.persistence.PersistenceException;
  */
 public class PowerDAOImpl implements PowerDAO{
 
-    EntityManagerFactory entityManagerFactory;
-
-    public PowerDAOImpl(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
-    }
+    private EntityManagerFactory entityManagerFactory;
+    private EntityManager manager;
     
-    public void addPower(Power power) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+    public PowerDAOImpl(EntityManagerFactory entityManagerFactory){
+        this.entityManagerFactory = entityManagerFactory;
+        manager = this.entityManagerFactory.createEntityManager();
+    }
 
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(power);
-            entityManager.getTransaction().commit();
+    public boolean addPower(Power power) {
+      
+       try{
+           manager.getTransaction().begin();
+           manager.persist(power);
+           manager.getTransaction().commit();
+           
+       }
+       catch(Exception ex){
+           throw new PersistenceException("Transaction failed.\n" + ex.getMessage(), ex);       
+       }
+       
+       return true;
+    }
 
-        } catch (Exception ex) {
-            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (entityManager != null) {
-                entityManager.close();
-            }
+    public boolean updatePower(Power power) {
+        try{
+            manager.getTransaction().begin();
+            manager.merge(power);
+            manager.getTransaction().commit();
         }
+        catch (Exception ex){
+            throw new PersistenceException("Transaction failed.\n" + ex.getMessage(),ex);
+        }
+        return true;
     }
 
-    public void updatePower(Power power) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void deletePower(Power power) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean deletePower(Power power) {
+        try{
+            manager.getTransaction().begin();
+            manager.remove(power);
+            manager.getTransaction().commit();
+        }
+        catch(Exception ex){
+            throw new PersistenceException("Transaction failed.\n"+ex.getMessage(), ex);
+        }
+        return true;
     }
 
     public List<Power> getAllPowers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        Query query = manager.createQuery("select a from Power a");
+        return query.getResultList();
+        
+           }
 
     public Power getPowerByID(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        return manager.find (Power.class, id);   
+        }
     
 }
