@@ -64,6 +64,14 @@ public class Resident {
         this.age = age;
     }
     
+    public House getHouse(){
+        return house;
+    }
+   
+    public void setHouse(House house){
+        this.house = house;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 1;

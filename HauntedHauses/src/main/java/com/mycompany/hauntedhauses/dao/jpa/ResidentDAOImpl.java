@@ -23,7 +23,8 @@ public class ResidentDAOImpl implements ResidentDAO {
     }
 
     /**
-     *
+     * Adds a new resident into the database.
+     * 
      * @param resident to be inserted to the database
      */
     @Override
@@ -44,6 +45,7 @@ public class ResidentDAOImpl implements ResidentDAO {
     }
     
     /**
+     * Updates given resident in the database.
      *
      * @param resident to be updated
      */
@@ -64,7 +66,8 @@ public class ResidentDAOImpl implements ResidentDAO {
     }
 
     /**
-     *
+     * Deletes given resident from the database.
+     * 
      * @param resident to be deleted
      */
     public void deleteResident(Resident resident) {
@@ -87,7 +90,8 @@ public class ResidentDAOImpl implements ResidentDAO {
     }
 
     /**
-     *
+     * Returns all residents from the database.
+     * 
      * @return List of all residents in the database
      */
     public List<Resident> getAllResidents() {
@@ -109,7 +113,8 @@ public class ResidentDAOImpl implements ResidentDAO {
     }
 
     /**
-     *
+     * Returns a resident with the given id from the database.
+     * 
      * @param id of resident
      * @return resident with the id from parame
      */

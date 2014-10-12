@@ -16,7 +16,7 @@ import javax.persistence.Persistence;
 public class DAODemo {
 
     public static void main(String[] args) {
-        /*
+        
         //test funkčnosti metody addResident(Resident resident)
         EntityManagerFactory entityManagerFactoryGhost = Persistence.createEntityManagerFactory("GhostDB");
         Resident resident = new Resident();
@@ -25,7 +25,7 @@ public class DAODemo {
         resident.setLastName("Dvorak");
         ResidentDAOImpl residentDAO = new ResidentDAOImpl(entityManagerFactoryGhost);
         residentDAO.addResident(resident);
-<<<<<<< HEAD
+
         
         //testing house
         EntityManagerFactory emfHouse = Persistence.createEntityManagerFactory("GhostDB");
@@ -38,8 +38,8 @@ public class DAODemo {
         house.setHauntedFrom(date);
         HouseDAOImpl houseManagerImpl = new HouseDAOImpl(emfHouse);
         houseManagerImpl.addHouse(house);
-=======
-                */
+
+                
 
     }
 }
