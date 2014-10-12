@@ -35,7 +35,7 @@ public class ResidentDAOImplTest {
     @BeforeClass
     public static void setup() {
         try {
-            emf = Persistence.createEntityManagerFactory("ResidentDB");
+            emf = Persistence.createEntityManagerFactory("GhostDB");
         } catch (Exception e) {
             e.printStackTrace();
             fail("Could not initialize Persistence.");
