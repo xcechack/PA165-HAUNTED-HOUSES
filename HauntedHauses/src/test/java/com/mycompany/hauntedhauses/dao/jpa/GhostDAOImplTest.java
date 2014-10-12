@@ -17,6 +17,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
@@ -33,6 +34,8 @@ public class GhostDAOImplTest {
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static Ghost ghost1;
+    private static House house;
+    private static Power power;
     
     
     @BeforeClass
@@ -56,7 +59,7 @@ public class GhostDAOImplTest {
         ghost1.setEndTime(endTime);
         ghost1.setInfo("Old man is haunting because he is lonely.");
         
-        House house = new House();
+        house = new House();
         house.setName("House name");
         Address address = new Address();
         address.setStreet("Ruzova");
@@ -71,7 +74,7 @@ public class GhostDAOImplTest {
         
         ghost1.setHouse(house);
         
-        Power power = new Power();
+        power = new Power();
         power.setName("Fire");
         power.setDescription("Mortal");
         em.persist(power);
@@ -89,6 +92,17 @@ public class GhostDAOImplTest {
         }
 	em.close();
     }
+    
+    @AfterClass
+    public static void tearDown() {
+        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
+        em = emf.createEntityManager();
+        House toBeRemoved = em.merge(house);
+        em.remove(toBeRemoved);
+        Power toBeRemovedPower = em.merge(power);
+        em.remove(toBeRemovedPower);
+        ghostManager.deleteGhost(ghost1);
+    }
 
     @Test
     public void testAddGhost() {
@@ -102,29 +116,32 @@ public class GhostDAOImplTest {
     @Test
     public void testUpdateGhost() {
         GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
-        ghost1.setName("Old women");
+        ghost1.setName("Old woman");
         ghostManager.updateGhost(ghost1);
-        //Assert.assertEquals(ghost1, ghost2);
+        Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
+        Assert.assertTrue(ghost1.equals(ghost2));
     }
     
     @Test
     public void testDeleteGhost() {
         GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
         ghostManager.deleteGhost(ghost1);
-        ghostManager.getGhostByID(ghost1.getId());
+        Assert.assertNull(ghostManager.getGhostByID(ghost1.getId()));
+        ghostManager.addGhost(ghost1);
     }
     
     @Test
     public void testGetAllGhosts() {
-        EntityManager em = emf.createEntityManager();
-	List<Ghost> ghosts = em.createQuery("FROM Ghost",Ghost.class).getResultList();
-	Assert.assertEquals(ghosts.size(), 1);
-	em.close();
+        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
+	List<Ghost> ghosts = ghostManager.getAllGhosts();
+	Assert.assertEquals(1, ghosts.size());
     }
     
     @Test
     public void testGetGhostById() {
-        
+        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
+        Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
+        Assert.assertTrue(ghost1.equals(ghost2));
     }
 
 }

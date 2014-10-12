@@ -49,7 +49,8 @@ public class HouseDAOImpl implements HouseDAO{
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.remove(house);
+            House toBeRemoved = em.merge(house);
+            em.remove(toBeRemoved);
             em.getTransaction().commit();
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
@@ -62,12 +63,12 @@ public class HouseDAOImpl implements HouseDAO{
     
     public void updateHouse(House house) {
         EntityManager em = emf.createEntityManager();
-        House h;
+        /*House h;
         try {
             h = em.find(House.class, house.getId());
         } catch (IllegalArgumentException ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        }
+        }*/
         try {
             em.getTransaction().begin();
             //h.setAddress(house.getAddress());
@@ -99,11 +100,7 @@ public class HouseDAOImpl implements HouseDAO{
     public House getHouseById(long id) {
         EntityManager em = emf.createEntityManager();
         House house;
-        try {
-            house = em.find(House.class, id);
-        } catch (IllegalArgumentException ex) {
-            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        }
+        house = em.find(House.class, id);
         return house;
     }
 }

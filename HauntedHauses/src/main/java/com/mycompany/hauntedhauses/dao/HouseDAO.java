@@ -46,7 +46,7 @@ public interface HouseDAO {
      * Gives the house with the given id from the database.
      * 
      * @param id The id of house that is returned.
-     * @return the house with the given id.
+     * @return the found entity instance or null if the entity does not exist.
      */
     public House getHouseById(long id);
 }

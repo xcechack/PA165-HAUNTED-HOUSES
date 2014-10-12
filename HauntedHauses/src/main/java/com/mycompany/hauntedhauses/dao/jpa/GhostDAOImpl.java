@@ -55,7 +55,8 @@ public class GhostDAOImpl implements GhostDAO{
     public void deleteGhost(Ghost ghost) {
         try{
             manager.getTransaction().begin();
-            manager.remove(ghost);
+            Ghost toBeRemoved = manager.merge(ghost);         
+            manager.remove(toBeRemoved);
             manager.getTransaction().commit();
         }
         catch(Exception ex){
