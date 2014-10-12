@@ -11,11 +11,12 @@ import javax.persistence.Persistence;
 public class DAODemo {
 
     public static void main(String[] args) {
-      
+        /*
         //test funkčnosti metody addResident(Resident resident)
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("GhostDB");
         Resident resident = new Resident("Jan", "Novák", 30);
         ResidentDAOImpl residentDAO = new ResidentDAOImpl(entityManagerFactory);
         residentDAO.addResident(resident);
+                */
     }
 }

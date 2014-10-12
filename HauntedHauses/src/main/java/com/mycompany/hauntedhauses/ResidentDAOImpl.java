@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 
 /**
 *
@@ -13,13 +14,17 @@ import javax.persistence.PersistenceException;
 */
 
 public class ResidentDAOImpl implements ResidentDAO {
-    
+   
     EntityManagerFactory entityManagerFactory;
 
     public ResidentDAOImpl(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
     }
 
+    /**
+     *
+     * @param resident to be inserted to the database
+     */
     @Override
     public void addResident(Resident resident) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -28,9 +33,8 @@ public class ResidentDAOImpl implements ResidentDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(resident);
             entityManager.getTransaction().commit();
-
-        } catch (Exception ex) {
-            throw new PersistenceException("Transaction failed." + ex.getMessage(), ex);
+        } catch (Exception e) {
+            throw new PersistenceException("Transaction failed." + e.getMessage(), e);
         } finally {
             if (entityManager != null) {
                 entityManager.close();
@@ -38,20 +42,90 @@ public class ResidentDAOImpl implements ResidentDAO {
         }
     }
     
+    /**
+     *
+     * @param resident to be updated
+     */
     public void updateResident(Resident resident) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(resident);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            throw new PersistenceException("Transaction failed." + e.getMessage(), e);
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
     }
 
+    /**
+     *
+     * @param resident to be deleted
+     */
     public void deleteResident(Resident resident) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        
+        if (entityManager.contains(resident) == true) {  
+            try {
+                entityManager.getTransaction().begin();
+                entityManager.remove(resident);
+                entityManager.getTransaction().commit();
+            } catch (Exception e) {
+                throw new PersistenceException("Transaction failed." + e.getMessage(), e);
+            } finally {
+                    entityManager.close();
+            }
+        }
+        else {
+            System.out.println("Resident with ID:" +resident.getId() + "is not in the database.");
+        }
     }
 
+    /**
+     *
+     * @return List of all residents in the database
+     */
     public List<Resident> getAllResidents() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        
+        List<Resident> residents;
+         try {
+                entityManager.getTransaction().begin();
+                Query query = entityManager.createQuery("SELECT r FROM Resident r");
+                residents = query.getResultList();
+                entityManager.getTransaction().commit();
+            } catch (Exception e) {
+                throw new PersistenceException("Transaction failed." + e.getMessage(), e);
+            } finally {
+                entityManager.close();
+            }  
+        return residents;
+        
     }
 
+    /**
+     *
+     * @param id of resident
+     * @return resident with the id from parame
+     */
     public Resident getResidentByID(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }   
-    
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Resident r;
+        
+            try {
+                entityManager.getTransaction().begin();
+                r = entityManager.find(Resident.class, id);
+                entityManager.getTransaction().commit();
+            } catch (Exception e) {
+                throw new PersistenceException("Transaction failed." + e.getMessage(), e);
+            } finally {
+                entityManager.close();
+            }  
+        return r;
+    }           
+
 }
