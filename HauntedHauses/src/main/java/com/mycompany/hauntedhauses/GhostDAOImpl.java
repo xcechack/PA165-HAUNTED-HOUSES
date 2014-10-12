@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,19 +18,20 @@ import javax.persistence.PersistenceException;
  */
 public class GhostDAOImpl implements GhostDAO{
     
-    EntityManagerFactory entityManagerFactory;
+    private EntityManagerFactory entityManagerFactory;
+    private EntityManager manager;
     
     public GhostDAOImpl(EntityManagerFactory entityManagerFactory){
         this.entityManagerFactory = entityManagerFactory;
+        manager = this.entityManagerFactory.createEntityManager();
     }
 
     public boolean addGhost(Ghost ghost) {
-       EntityManager entityManager = entityManagerFactory.createEntityManager();
-       
+      
        try{
-           entityManager.getTransaction().begin();
-           entityManager.persist(ghost);
-           entityManager.getTransaction().commit();
+           manager.getTransaction().begin();
+           manager.persist(ghost);
+           manager.getTransaction().commit();
            
        }
        catch(Exception ex){
@@ -41,19 +43,38 @@ public class GhostDAOImpl implements GhostDAO{
     }
 
     public boolean updateGhost(Ghost ghost) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            manager.getTransaction().begin();
+            manager.merge(ghost);
+            manager.getTransaction().commit();
+        }
+        catch (Exception ex){
+            throw new PersistenceException("Transaction failed.\n" + ex.getMessage(),ex);
+        }
+        return true;
     }
 
     public boolean deleteGhost(Ghost ghost) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            manager.getTransaction().begin();
+            manager.remove(ghost);
+            manager.getTransaction().commit();
+        }
+        catch(Exception ex){
+            throw new PersistenceException("Transaction failed.\n"+ex.getMessage(), ex);
+        }
+        return true;
     }
 
     public List<Ghost> getAllGhosts() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        Query query = manager.createQuery("select a from Ghost a");
+        return query.getResultList();
+        
+           }
 
     public Ghost getGhostByID(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        return manager.find (Ghost.class, id);
+            
+        }
     
 }

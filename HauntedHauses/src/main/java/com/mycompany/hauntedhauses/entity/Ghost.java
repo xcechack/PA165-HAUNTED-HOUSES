@@ -26,8 +26,7 @@ private Time scaryTimeStart;
 private Time scaryTimeEnd;
 private String info;
 
-// "Kazde strasidlo muze strasit pouze v jednom dome." Muze byt v jednom dome vice strasidel??
-@OneToOne(mappedBy="house")
+@ManyToOne(fetch = FetchType.LAZY)
 private House house;
 
 public long getId(){
