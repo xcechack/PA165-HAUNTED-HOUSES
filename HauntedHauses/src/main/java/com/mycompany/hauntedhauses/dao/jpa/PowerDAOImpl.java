@@ -1,32 +1,35 @@
-package com.mycompany.hauntedhauses;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mycompany.hauntedhauses.dao.jpa;
 
-import com.mycompany.hauntedhauses.entity.Resident;
+import com.mycompany.hauntedhauses.dao.PowerDAO;
+import com.mycompany.hauntedhauses.entity.Power;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 
 /**
-*
-+ * @author Markéta Kružliaková
-*
-*/
+ *
+ * @author Michal Zbranek
+ */
+public class PowerDAOImpl implements PowerDAO{
 
-public class ResidentDAOImpl implements ResidentDAO {
-    
     EntityManagerFactory entityManagerFactory;
 
-    public ResidentDAOImpl(EntityManagerFactory entityManagerFactory) {
+    public PowerDAOImpl(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
     }
-
-    @Override
-    public void addResident(Resident resident) {
+    
+    public void addPower(Power power) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(resident);
+            entityManager.persist(power);
             entityManager.getTransaction().commit();
 
         } catch (Exception ex) {
@@ -37,21 +40,21 @@ public class ResidentDAOImpl implements ResidentDAO {
             }
         }
     }
-    
-    public void updateResident(Resident resident) {
+
+    public void updatePower(Power power) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void deleteResident(Resident resident) {
+    public void deletePower(Power power) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Resident> getAllResidents() {
+    public List<Power> getAllPowers() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Resident getResidentByID(long id) {
+    public Power getPowerByID(long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }   
+    }
     
 }

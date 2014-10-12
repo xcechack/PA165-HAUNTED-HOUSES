@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Gabriela Podolnikova
  */
-public interface HouseManager {
+public interface HouseDAO {
     
     /**
     * This method adds new house into the database.

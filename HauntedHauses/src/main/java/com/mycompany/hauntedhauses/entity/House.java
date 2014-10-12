@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.annotation.*;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,38 +26,31 @@ import javax.persistence.TemporalType;
  * Entity House is haunted by multiple ghost and can have multiple Residents.
  * @author Gabrila Podolnikova
  */
-@NamedQuery(name="getAllHouses",query="SELECT h FROM House h")
+//@NamedQuery(name="getAllHouses",query="SELECT h FROM House h")
 @Entity
 public class House {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue//(strategy=GenerationType.AUTO)
     private long id = 0;
     
-    @Column(nullable=false)
+    //@Column(nullable=false)
     private String name;
     
-    @Column(nullable=false)
+    //@Column(nullable=false)
     @Embedded
     private Address address;
     
     @Temporal(TemporalType.DATE)
     private Date hauntedFrom;
     
-    @Column(nullable=false)
+    //@Column(nullable=false)
     private String history;
     
-    public House(String name, Address address, Date hauntedFrom, String history) {
-        this.name=name;
-        this.address=address;
-        this.hauntedFrom=hauntedFrom;
-        this.history=history;
-    }
+    @OneToMany(mappedBy="house")
+    private Set<Ghost> ghosts = new HashSet<Ghost>();
     
-    //@OneToMany(mappedBy="house")
-    //private Set<Ghost> ghosts = new HashSet<Ghost>();
-    
-    @OneToMany(mappedBy="house", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="house", fetch=FetchType.LAZY)
     private Set<Resident> residents = new HashSet<Resident>();
 
     /**
@@ -146,22 +140,22 @@ public class House {
     /**
      * @return the ghosts
      */
-    /*public Set<Ghost> getGhosts() {
+    public Set<Ghost> getGhosts() {
         return ghosts;
     }
 
     /**
      * @param ghosts the ghosts to set
      */
-    /*public void setGhosts(Set<Ghost> ghosts) {
+    public void setGhosts(Set<Ghost> ghosts) {
         this.ghosts = ghosts;
-    }*/
+    }
     
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (id ^ (id >>> 32));
+        result = prime * result + (int) (getId() ^ (getId() >>> 32));
         return result;
     }
 
@@ -177,7 +171,7 @@ public class House {
             return false;
         }
         House other = (House) obj;
-        if (id != other.id) {
+        if (getId() != other.getId() || name.equals(other.name) || history.equals(other.history) || address.equals(other.address) || hauntedFrom.equals(other.hauntedFrom)) {
             return false;
         }
         return true;

@@ -1,4 +1,4 @@
-package com.mycompany.hauntedhauses;
+package com.mycompany.hauntedhauses.dao;
 
 import com.mycompany.hauntedhauses.entity.Resident;
 import java.util.List;

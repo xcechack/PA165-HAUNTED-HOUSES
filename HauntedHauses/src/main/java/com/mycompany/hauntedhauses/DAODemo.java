@@ -1,6 +1,7 @@
 package com.mycompany.hauntedhauses;
 
-import com.mycompany.hauntedhauses.dao.jpa.HouseManagerImpl;
+import com.mycompany.hauntedhauses.dao.jpa.ResidentDAOImpl;
+import com.mycompany.hauntedhauses.dao.jpa.HouseDAOImpl;
 import com.mycompany.hauntedhauses.entity.House;
 import com.mycompany.hauntedhauses.entity.Resident;
 import com.mycompany.hauntedhauses.entity.field.Address;
@@ -18,16 +19,23 @@ public class DAODemo {
       
         //test funkčnosti metody addResident(Resident resident)
         EntityManagerFactory entityManagerFactoryGhost = Persistence.createEntityManagerFactory("GhostDB");
-        Resident resident = new Resident("Jan", "Novák", 30);
+        Resident resident = new Resident();
+        resident.setAge(50);
+        resident.setFirstName("Pepa");
+        resident.setLastName("Dvorak");
         ResidentDAOImpl residentDAO = new ResidentDAOImpl(entityManagerFactoryGhost);
         residentDAO.addResident(resident);
         
-        //testing houseDB
-        EntityManagerFactory emfHouse = Persistence.createEntityManagerFactory("HouseDB");
-        Address address = new Address("Otiskova", 7, "Brno", 62800);
+        //testing house
+        EntityManagerFactory emfHouse = Persistence.createEntityManagerFactory("GhostDB");
+        Address address = new Address("Ruzova", 7, "Brno", 63000);
         Date date = new Date();
-        House house = new House("house", address, date, "history");
-        HouseManagerImpl houseManagerImpl = new HouseManagerImpl(emfHouse);
+        House house = new House();
+        house.setAddress(address);
+        house.setHistory("history");
+        house.setName("name");
+        house.setHauntedFrom(date);
+        HouseDAOImpl houseManagerImpl = new HouseDAOImpl(emfHouse);
         houseManagerImpl.addHouse(house);
     }
 }

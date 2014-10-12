@@ -6,19 +6,20 @@
 package com.mycompany.hauntedhauses.dao.jpa;
 
 import com.mycompany.hauntedhauses.entity.House;
-import com.mycompany.hauntedhauses.dao.HouseManager;
+import com.mycompany.hauntedhauses.dao.HouseDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 
 /**
  *
  * @author Gabriela Podolnikova
  */
 
-public class HouseManagerImpl implements HouseManager{
+public class HouseDAOImpl implements HouseDAO{
     
     //private EntityManagerFactory emf =
     //        Persistence.createEntityManagerFactory("HouseDB");
@@ -26,7 +27,7 @@ public class HouseManagerImpl implements HouseManager{
     
     private final EntityManagerFactory emf;
 
-    public HouseManagerImpl(EntityManagerFactory emf) {
+    public HouseDAOImpl(EntityManagerFactory emf) {
         this.emf = emf;
     }
     
@@ -89,8 +90,10 @@ public class HouseManagerImpl implements HouseManager{
     
     public List<House> getAllHouses() {
         EntityManager em = emf.createEntityManager();
-        List<House> houses = em.createNamedQuery("getAllHouses",House.class).getResultList();
-        return houses;
+        //List<House> houses = em.createNamedQuery("getAllHouses",House.class).getResultList();
+        Query query = em.createQuery("select h from House h");
+        return query.getResultList();
+        //return houses;
     }
     
     public House getHouseById(long id) {
