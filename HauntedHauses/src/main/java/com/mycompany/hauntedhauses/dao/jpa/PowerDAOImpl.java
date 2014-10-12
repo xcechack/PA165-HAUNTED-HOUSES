@@ -84,7 +84,7 @@ public class PowerDAOImpl implements PowerDAO{
             }
         }
         else {
-            System.out.println("Power with ID:" +power.getId() + "is not in the database.");
+            System.out.println("Power with ID:" + power.getId() + "is not in the database.");
         }
     }
 
