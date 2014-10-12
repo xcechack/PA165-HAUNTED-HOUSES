@@ -30,7 +30,7 @@ public class ResidentDAOImpl implements ResidentDAO {
             entityManager.getTransaction().commit();
 
         } catch (Exception ex) {
-            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+            throw new PersistenceException("Transaction failed." + ex.getMessage(), ex);
         } finally {
             if (entityManager != null) {
                 entityManager.close();
