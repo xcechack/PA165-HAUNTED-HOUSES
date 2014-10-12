@@ -64,6 +64,7 @@ public class ResidentDAOImpl implements ResidentDAO {
         if (entityManager.contains(resident) == true) {  
             try {
                 entityManager.getTransaction().begin();
+                Resident toBeRemoved = entityManager.merge(resident);         
                 entityManager.remove(resident);
                 entityManager.getTransaction().commit();
             } catch (Exception e) {
