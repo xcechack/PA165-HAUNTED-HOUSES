@@ -7,6 +7,7 @@ package com.mycompany.hauntedhauses.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,7 +24,10 @@ public class Power {
     @GeneratedValue
     private long id = 0;
     
+    @Column(nullable=false)
     private String name; 
+    
+    @Column(nullable=false)
     private String description;
 
     @ManyToMany//(mappedBy="powers")

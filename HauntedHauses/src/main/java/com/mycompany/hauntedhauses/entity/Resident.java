@@ -4,11 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  * Resident can live in one house.
@@ -27,7 +24,6 @@ public class Resident {
     
     @Column(nullable=false)
     private String lastName;
-    
 
     @ManyToOne(fetch = FetchType.LAZY)
     private House house;
