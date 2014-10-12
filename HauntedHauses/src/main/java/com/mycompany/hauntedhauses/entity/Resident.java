@@ -68,6 +68,14 @@ public class Resident {
         this.age = age;
     }
     
+    public House getHouse(){
+        return house;
+    }
+   
+    public void setHouse(House house){
+        this.house = house;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 1;
@@ -94,20 +102,6 @@ public class Resident {
                 && (lastName == guest.lastName
                      || (lastName != null && lastName .equals(guest.getLastName())))
                 && (age == guest.age);
-    }
-
-    /**
-     * @return the house
-     */
-    public House getHouse() {
-        return house;
-    }
-
-    /**
-     * @param house the house to set
-     */
-    public void setHouse(House house) {
-        this.house = house;
     }
 
 }

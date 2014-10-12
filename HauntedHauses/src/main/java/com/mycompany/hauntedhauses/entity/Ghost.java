@@ -5,7 +5,7 @@
  */
 package com.mycompany.hauntedhauses.entity;
 
-import java.sql.Time;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +99,7 @@ public class Ghost {
      */
     public void setPowers(List<Power> powers) {
         this.powers = powers;
-    }
+    }   
 
     @Override
     public int hashCode() {

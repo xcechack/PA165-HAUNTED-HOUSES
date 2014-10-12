@@ -3,6 +3,9 @@
   <persistence-unit name="GhostDB" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.mycompany.hauntedhauses.entity.Resident</class>
+    <class>com.mycompany.hauntedhauses.entity.House</class>
+    <class>com.mycompany.hauntedhauses.entity.Ghost</class>
+    <class>com.mycompany.hauntedhauses.entity.Power</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/GhostDB"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
