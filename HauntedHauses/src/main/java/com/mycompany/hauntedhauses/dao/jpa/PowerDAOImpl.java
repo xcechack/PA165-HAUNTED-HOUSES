@@ -5,9 +5,7 @@
  */
 package com.mycompany.hauntedhauses.dao.jpa;
 
-
 import com.mycompany.hauntedhauses.dao.PowerDAO;
-import com.mycompany.hauntedhauses.entity.Ghost;
 import com.mycompany.hauntedhauses.entity.Power;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,61 +19,116 @@ import javax.persistence.Query;
  */
 public class PowerDAOImpl implements PowerDAO{
 
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager manager;
-    
-    public PowerDAOImpl(EntityManagerFactory entityManagerFactory){
+    EntityManagerFactory entityManagerFactory;
+
+    public PowerDAOImpl(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
-        manager = this.entityManagerFactory.createEntityManager();
     }
 
-    public boolean addPower(Power power) {
-      
-       try{
-           manager.getTransaction().begin();
-           manager.persist(power);
-           manager.getTransaction().commit();
-           
-       }
-       catch(Exception ex){
-           throw new PersistenceException("Transaction failed.\n" + ex.getMessage(), ex);       
-       }
-       
-       return true;
-    }
+    /**
+     *
+     * @param power to be inserted to the database
+     */
+    public void addPower(Power power) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    public boolean updatePower(Power power) {
-        try{
-            manager.getTransaction().begin();
-            manager.merge(power);
-            manager.getTransaction().commit();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(power);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            throw new PersistenceException("Transaction failed." + e.getMessage(), e);
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
         }
-        catch (Exception ex){
-            throw new PersistenceException("Transaction failed.\n" + ex.getMessage(),ex);
-        }
-        return true;
     }
-
-    public boolean deletePower(Power power) {
-        try{
-            manager.getTransaction().begin();
-            manager.remove(power);
-            manager.getTransaction().commit();
-        }
-        catch(Exception ex){
-            throw new PersistenceException("Transaction failed.\n"+ex.getMessage(), ex);
-        }
-        return true;
-    }
-
-    public List<Power> getAllPowers() {
-        Query query = manager.createQuery("select a from Power a");
-        return query.getResultList();
+    
+    /**
+     *
+     * @param power to be updated
+     */
+    public void updatePower(Power power) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         
-           }
-
-    public Power getPowerByID(long id) {
-        return manager.find (Power.class, id);   
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(power);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            throw new PersistenceException("Transaction failed." + e.getMessage(), e);
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
         }
+    }
+
+    /**
+     *
+     * @param power to be deleted
+     */
+    public void deletePower(Power power) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        
+        if (entityManager.contains(power) == true) {  
+            try {
+                entityManager.getTransaction().begin();
+                entityManager.remove(power);
+                entityManager.getTransaction().commit();
+            } catch (Exception e) {
+                throw new PersistenceException("Transaction failed." + e.getMessage(), e);
+            } finally {
+                    entityManager.close();
+            }
+        }
+        else {
+            System.out.println("Power with ID:" +power.getId() + "is not in the database.");
+        }
+    }
+
+    /**
+     *
+     * @return List of all powers in the database
+     */
+    public List<Power> getAllPowers() {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        
+        List<Power> powers;
+         try {
+                entityManager.getTransaction().begin();
+                Query query = entityManager.createQuery("SELECT p FROM Power p");
+                powers = query.getResultList();
+                entityManager.getTransaction().commit();
+            } catch (Exception e) {
+                throw new PersistenceException("Transaction failed." + e.getMessage(), e);
+            } finally {
+                entityManager.close();
+            }  
+        return powers;
+        
+    }
+
+    /**
+     *
+     * @param id of power
+     * @return power with the id from parameter
+     */
+    public Power getPowerByID(long id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Power r;
+        
+            try {
+                entityManager.getTransaction().begin();
+                r = entityManager.find(Power.class, id);
+                entityManager.getTransaction().commit();
+            } catch (Exception e) {
+                throw new PersistenceException("Transaction failed." + e.getMessage(), e);
+            } finally {
+                entityManager.close();
+            }  
+        return r;
+    }
     
 }
