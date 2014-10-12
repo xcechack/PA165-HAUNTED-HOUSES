@@ -6,7 +6,7 @@
 package com.mycompany.hauntedhauses.entity;
 
 import com.mycompany.hauntedhauses.entity.field.Address;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -34,17 +34,17 @@ public class House {
     @GeneratedValue//(strategy=GenerationType.AUTO)
     private long id = 0;
     
-    //@Column(nullable=false)
+    @Column(nullable=false)
     private String name;
     
-    //@Column(nullable=false)
+    @Column(nullable=false)
     @Embedded
     private Address address;
     
     @Temporal(TemporalType.DATE)
     private Date hauntedFrom;
     
-    //@Column(nullable=false)
+    @Column(nullable=false)
     private String history;
     
     @OneToMany(mappedBy="house")

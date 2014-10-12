@@ -71,11 +71,12 @@ public class HouseDAOImpl implements HouseDAO{
         }
         try {
             em.getTransaction().begin();
-            h.setAddress(house.getAddress());
-            h.setHauntedFrom(house.getHauntedFrom());
-            h.setHistory(house.getHistory());
-            h.setName(house.getName());
-            h.setResidents(house.getResidents());
+            //h.setAddress(house.getAddress());
+            //h.setHauntedFrom(house.getHauntedFrom());
+            //h.setHistory(house.getHistory());
+            //h.setName(house.getName());
+            //h.setResidents(house.getResidents());
+            em.merge(house);
             em.getTransaction().commit();
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);

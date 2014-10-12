@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.hauntedhauses.entity;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
-
 
 /**
  *
@@ -18,61 +17,61 @@ import javax.persistence.*;
  */
 @Entity
 public class Ghost {
-    
-@Id
-@GeneratedValue
-private long id = 0;
 
-private String name;
-private Time scaryTimeStart;
-private Time scaryTimeEnd;
-private String info;
+    @Id
+    @GeneratedValue
+    private long id = 0;
 
-@ManyToOne(fetch = FetchType.LAZY)
-private House house;
+    private String name;
+    private Timestamp scaryTimeStart;
+    private Timestamp scaryTimeEnd;
+    private String info;
 
-@ManyToMany(mappedBy="ghosts", fetch = FetchType.LAZY)
-private List<Power> powers = new ArrayList<Power>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    private House house;
 
-public long getId(){
-    return id;
+    @ManyToMany(mappedBy = "ghosts", fetch = FetchType.LAZY)
+    private List<Power> powers = new ArrayList<Power>();
+
+    public long getId() {
+        return id;
     }
 
-public void setId(long newId){
-    this.id = newId;
-}
+    public void setId(long newId) {
+        this.id = newId;
+    }
 
-public void setName(String name){
-    this.name = name;
-}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-public String getName(){
-    return name;
-}
+    public String getName() {
+        return name;
+    }
 
-public void setStartTime(Time time){
-    this.scaryTimeStart = time;
-}
+    public void setStartTime(Timestamp time) {
+        this.scaryTimeStart = time;
+    }
 
-public Time getStartTime(){
-    return scaryTimeStart;
-}
+    public Timestamp getStartTime() {
+        return scaryTimeStart;
+    }
 
-public void setEndTime(Time time){
-    this.scaryTimeEnd = time;
-}
+    public void setEndTime(Timestamp time) {
+        this.scaryTimeEnd = time;
+    }
 
-public Time getEndTime(){
-    return scaryTimeEnd;
-}
+    public Timestamp getEndTime() {
+        return scaryTimeEnd;
+    }
 
-public String getInfo(){
-    return info;
-}
+    public String getInfo() {
+        return info;
+    }
 
-public void setInfo(String info){
-    this.info = info;
-}
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
     /**
      * @return the house
@@ -102,5 +101,31 @@ public void setInfo(String info){
         this.powers = powers;
     }
 
-
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash = (int)(hash * 17 + id);
+        hash = hash * 31 + name.hashCode();
+        hash = hash * 13 + info.hashCode();
+        return hash;
+    }
+    
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Ghost other = (Ghost) obj;
+        if (getId() != other.getId() || name.equals(other.name) || scaryTimeStart.equals(other.scaryTimeStart) || scaryTimeEnd.equals(other.scaryTimeEnd) || info.equals(other.info)) {
+            return false;
+        }
+        return true;
+    }
 }

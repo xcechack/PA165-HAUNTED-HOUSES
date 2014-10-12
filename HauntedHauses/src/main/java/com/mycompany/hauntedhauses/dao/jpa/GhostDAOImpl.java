@@ -27,7 +27,7 @@ public class GhostDAOImpl implements GhostDAO{
         manager = this.entityManagerFactory.createEntityManager();
     }
 
-    public boolean addGhost(Ghost ghost) {
+    public void addGhost(Ghost ghost) {
       
        try{
            manager.getTransaction().begin();
@@ -39,11 +39,9 @@ public class GhostDAOImpl implements GhostDAO{
            throw new PersistenceException("Transaction failed.\n" + ex.getMessage(), ex);
            
        }
-       
-       return true;
     }
 
-    public boolean updateGhost(Ghost ghost) {
+    public void updateGhost(Ghost ghost) {
         try{
             manager.getTransaction().begin();
             manager.merge(ghost);
@@ -52,10 +50,9 @@ public class GhostDAOImpl implements GhostDAO{
         catch (Exception ex){
             throw new PersistenceException("Transaction failed.\n" + ex.getMessage(),ex);
         }
-        return true;
     }
 
-    public boolean deleteGhost(Ghost ghost) {
+    public void deleteGhost(Ghost ghost) {
         try{
             manager.getTransaction().begin();
             manager.remove(ghost);
@@ -64,14 +61,13 @@ public class GhostDAOImpl implements GhostDAO{
         catch(Exception ex){
             throw new PersistenceException("Transaction failed.\n"+ex.getMessage(), ex);
         }
-        return true;
     }
 
     public List<Ghost> getAllGhosts() {
         Query query = manager.createQuery("select a from Ghost a");
         return query.getResultList();
         
-           }
+        }
 
     public Ghost getGhostByID(long id) {
         return manager.find (Ghost.class, id);

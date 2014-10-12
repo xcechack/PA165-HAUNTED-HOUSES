@@ -13,9 +13,9 @@ import java.util.List;
  * @author Jana Cechackova
  */
 public interface GhostDAO {
-    public boolean addGhost(Ghost ghost);
-    public boolean updateGhost(Ghost ghost);
-    public boolean deleteGhost(Ghost ghost);
+    public void addGhost(Ghost ghost);
+    public void updateGhost(Ghost ghost);
+    public void deleteGhost(Ghost ghost);
     public List<Ghost> getAllGhosts();
     public Ghost getGhostByID(long id);
 }

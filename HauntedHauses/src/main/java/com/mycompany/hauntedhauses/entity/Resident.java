@@ -1,5 +1,6 @@
 package com.mycompany.hauntedhauses.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,14 +22,17 @@ public class Resident {
     @GeneratedValue//(strategy=GenerationType.AUTO)
     private long id = 0;
     
+    @Column(nullable=false)
     private String firstName;
     
+    @Column(nullable=false)
     private String lastName;
     
 
     @ManyToOne(fetch = FetchType.LAZY)
     private House house;
     
+    @Column(nullable=true)
     private Integer age;
     
     
@@ -90,6 +94,20 @@ public class Resident {
                 && (lastName == guest.lastName
                      || (lastName != null && lastName .equals(guest.getLastName())))
                 && (age == guest.age);
+    }
+
+    /**
+     * @return the house
+     */
+    public House getHouse() {
+        return house;
+    }
+
+    /**
+     * @param house the house to set
+     */
+    public void setHouse(House house) {
+        this.house = house;
     }
 
 }

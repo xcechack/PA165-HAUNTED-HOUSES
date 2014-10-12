@@ -29,7 +29,7 @@ public class PowerDAOImpl implements PowerDAO{
         manager = this.entityManagerFactory.createEntityManager();
     }
 
-    public boolean addPower(Power power) {
+    public void addPower(Power power) {
       
        try{
            manager.getTransaction().begin();
@@ -40,11 +40,9 @@ public class PowerDAOImpl implements PowerDAO{
        catch(Exception ex){
            throw new PersistenceException("Transaction failed.\n" + ex.getMessage(), ex);       
        }
-       
-       return true;
     }
 
-    public boolean updatePower(Power power) {
+    public void updatePower(Power power) {
         try{
             manager.getTransaction().begin();
             manager.merge(power);
@@ -53,10 +51,9 @@ public class PowerDAOImpl implements PowerDAO{
         catch (Exception ex){
             throw new PersistenceException("Transaction failed.\n" + ex.getMessage(),ex);
         }
-        return true;
     }
 
-    public boolean deletePower(Power power) {
+    public void deletePower(Power power) {
         try{
             manager.getTransaction().begin();
             manager.remove(power);
@@ -65,7 +62,6 @@ public class PowerDAOImpl implements PowerDAO{
         catch(Exception ex){
             throw new PersistenceException("Transaction failed.\n"+ex.getMessage(), ex);
         }
-        return true;
     }
 
     public List<Power> getAllPowers() {
