@@ -115,7 +115,7 @@ public class HouseDAOImplTest {
     }
     
     @Test
-    public void testUpdateGhost() {
+    public void testUpdateHouse() {
         HouseDAOImpl houseManager = new HouseDAOImpl(emf);
         house.setName("Cool House");
         houseManager.updateHouse(house);
@@ -124,7 +124,7 @@ public class HouseDAOImplTest {
     }
     
     @Test
-    public void testDeleteGhost() {
+    public void testDeleteHouse() {
         HouseDAOImpl houseManager = new HouseDAOImpl(emf);
         houseManager.deleteHouse(house);
         Assert.assertNull(houseManager.getHouseById(house.getId()));
@@ -132,7 +132,7 @@ public class HouseDAOImplTest {
     }
     
     @Test
-    public void testGetAllGhosts() {
+    public void testGetAllHouses() {
         HouseDAOImpl houseManager = new HouseDAOImpl(emf);
         List<House> houses = houseManager.getAllHouses();
 	Assert.assertEquals(1, houses.size());
