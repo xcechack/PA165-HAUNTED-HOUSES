@@ -6,7 +6,7 @@
 
 package com.mycompany.hauntedhauses.entity;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -24,8 +24,8 @@ public class Ghost {
 private long id = 0;
 
 private String name;
-private Time scaryTimeStart;
-private Time scaryTimeEnd;
+private Timestamp scaryTimeStart;
+private Timestamp scaryTimeEnd;
 private String info;
 
 @ManyToOne(fetch = FetchType.LAZY)
@@ -33,6 +33,16 @@ private House house;
 
 @ManyToMany(mappedBy="ghosts", fetch = FetchType.LAZY)
 private List<Power> powers = new ArrayList<Power>();
+
+public Ghost(String name, Timestamp scaryTimeStart, Timestamp scaryTimeEnd, String info, House house){
+    
+    this.name = name;
+    this.scaryTimeStart = scaryTimeStart;
+    this.scaryTimeEnd = scaryTimeEnd;
+    this.info = info;
+    this.house = house;
+
+}
 
 public long getId(){
     return id;
@@ -50,19 +60,19 @@ public String getName(){
     return name;
 }
 
-public void setStartTime(Time time){
+public void setStartTime(Timestamp time){
     this.scaryTimeStart = time;
 }
 
-public Time getStartTime(){
+public Timestamp getStartTime(){
     return scaryTimeStart;
 }
 
-public void setEndTime(Time time){
+public void setEndTime(Timestamp time){
     this.scaryTimeEnd = time;
 }
 
-public Time getEndTime(){
+public Timestamp getEndTime(){
     return scaryTimeEnd;
 }
 
@@ -101,6 +111,27 @@ public void setInfo(String info){
     public void setPowers(List<Power> powers) {
         this.powers = powers;
     }
+    
+@Override
+    public boolean equals(Object obj){
+        if(obj.getClass() != this.getClass()) return false;
+        
+        Ghost ghost = (Ghost) obj;
+        return id == ghost.getId();
+    
+    }
+    
+@Override
+    public int hashCode(){
+        int hash = 1;
+        hash = (int)(hash*17 + id);
+        hash = hash*31 + name.hashCode();
+        
+        return hash;
+    
+    }
+    
+    
 
 
 }
