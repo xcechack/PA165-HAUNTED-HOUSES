@@ -5,13 +5,17 @@
  */
 package com.mycompany.hauntedhauses.dao.jpa;
 
+import com.mycompany.hauntedhauses.entity.Ghost;
 import com.mycompany.hauntedhauses.entity.House;
+import com.mycompany.hauntedhauses.entity.Power;
 import com.mycompany.hauntedhauses.entity.Resident;
 import com.mycompany.hauntedhauses.entity.field.Address;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
@@ -26,12 +30,12 @@ public class ResidentDAOImplTest {
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static Resident resident;
-    
+    private static House house;
     
     @BeforeClass
     public static void setup() {
         try {
-            emf = Persistence.createEntityManagerFactory("ResidentDB");
+            emf = Persistence.createEntityManagerFactory("GhostDB");
         } catch (Exception e) {
             e.printStackTrace();
             fail("Could not initialize Persistence.");
@@ -46,7 +50,7 @@ public class ResidentDAOImplTest {
         resident.setAge(22);
         long timeL = System.currentTimeMillis();
         
-        House house = new House();
+        house = new House();
         house.setName("House name");
         Address address = new Address();
         address.setStreet("Vranovska");
@@ -71,6 +75,15 @@ public class ResidentDAOImplTest {
 	em.close();
     }
 
+    @AfterClass
+    public static void tearDown() {
+        ResidentDAOImpl residentManager = new ResidentDAOImpl(emf);
+        em = emf.createEntityManager();
+        House toBeRemoved = em.merge(house);
+        em.remove(toBeRemoved);
+        residentManager.deleteResident(resident);
+    }
+    
     @Test
     public void testAddResident() {
         ResidentDAOImpl residentManager = new ResidentDAOImpl(emf);
@@ -80,32 +93,35 @@ public class ResidentDAOImplTest {
         Assert.assertTrue(resident.equals(resident1));
     }
     
-    /*@Test
-    public void testUpdateGhost() {
-        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
-        ghost1.setName("Old women");
-        ghostManager.updateGhost(ghost1);
-        //Assert.assertEquals(ghost1, ghost2);
+    @Test
+    public void testUpdateResident() {
+        ResidentDAOImpl residentManager = new ResidentDAOImpl(emf);
+        resident.setFirstName("David");
+        residentManager.updateResident(resident);
+        Resident resident1 = residentManager.getResidentByID(resident.getId());
+        Assert.assertTrue(resident.equals(resident1));
     }
     
     @Test
-    public void testDeleteGhost() {
-        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
-        ghostManager.deleteGhost(ghost1);
-        ghostManager.getGhostByID(ghost1.getId());
+    public void testDeleteResident() {
+        ResidentDAOImpl residentManager = new ResidentDAOImpl(emf);
+        residentManager.deleteResident(resident);
+        Assert.assertNull(residentManager.getResidentByID(resident.getId()));
+        residentManager.addResident(resident);
     }
     
     @Test
-    public void testGetAllGhosts() {
-        EntityManager em = emf.createEntityManager();
-	List<Ghost> ghosts = em.createQuery("FROM Ghost",Ghost.class).getResultList();
-	Assert.assertEquals(ghosts.size(), 1);
-	em.close();
+    public void testGetAllResidents() {
+        ResidentDAOImpl residentManager = new ResidentDAOImpl(emf);
+	List<Resident> residents = residentManager.getAllResidents();
+	Assert.assertEquals(1, residents.size());
     }
     
     @Test
-    public void testGetGhostById() {
-        
-    }*/
+    public void testGetResidentById() {
+        ResidentDAOImpl residentManager = new ResidentDAOImpl(emf);
+        Resident resident1 = residentManager.getResidentByID(resident.getId());
+        Assert.assertTrue(resident.equals(resident1));
+    }
 
 }
