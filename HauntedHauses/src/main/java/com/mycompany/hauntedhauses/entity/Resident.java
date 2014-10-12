@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,7 +23,8 @@ public class Resident {
     
     private String lastName;
     
-//  private House house;
+    @OneToOne
+    private House house;
     
     private int age;
 
