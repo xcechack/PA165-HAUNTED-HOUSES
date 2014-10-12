@@ -17,6 +17,7 @@ public class DAODemo {
 
     public static void main(String[] args) {
         
+        /*
         //test funkčnosti metody addResident(Resident resident)
         EntityManagerFactory entityManagerFactoryGhost = Persistence.createEntityManagerFactory("GhostDB");
         Resident resident = new Resident();
@@ -38,7 +39,7 @@ public class DAODemo {
         house.setHauntedFrom(date);
         HouseDAOImpl houseManagerImpl = new HouseDAOImpl(emfHouse);
         houseManagerImpl.addHouse(house);
-
+        */
                 
 
     }

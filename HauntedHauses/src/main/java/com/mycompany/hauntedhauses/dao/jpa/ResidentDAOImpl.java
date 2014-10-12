@@ -22,11 +22,7 @@ public class ResidentDAOImpl implements ResidentDAO {
         this.entityManagerFactory = entityManagerFactory;
     }
 
-    /**
-     * Adds a new resident into the database.
-     * 
-     * @param resident to be inserted to the database
-     */
+    
     @Override
     public void addResident(Resident resident) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -44,11 +40,7 @@ public class ResidentDAOImpl implements ResidentDAO {
         }
     }
     
-    /**
-     * Updates given resident in the database.
-     *
-     * @param resident to be updated
-     */
+
     public void updateResident(Resident resident) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         
@@ -65,11 +57,7 @@ public class ResidentDAOImpl implements ResidentDAO {
         }
     }
 
-    /**
-     * Deletes given resident from the database.
-     * 
-     * @param resident to be deleted
-     */
+    
     public void deleteResident(Resident resident) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         
@@ -89,11 +77,7 @@ public class ResidentDAOImpl implements ResidentDAO {
         }
     }
 
-    /**
-     * Returns all residents from the database.
-     * 
-     * @return List of all residents in the database
-     */
+    
     public List<Resident> getAllResidents() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         
@@ -112,12 +96,7 @@ public class ResidentDAOImpl implements ResidentDAO {
         
     }
 
-    /**
-     * Returns a resident with the given id from the database.
-     * 
-     * @param id of resident
-     * @return resident with the id from parame
-     */
+    
     public Resident getResidentByID(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Resident r;
