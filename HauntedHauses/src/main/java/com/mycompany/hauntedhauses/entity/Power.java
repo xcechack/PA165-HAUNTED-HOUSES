@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 /**
- *
+ * Entity Power can be used by many ghosts and ghosts can have many powers
  * @author Michal Zbranek
  */
 @Entity
@@ -29,18 +29,34 @@ public class Power {
     @ManyToMany//(mappedBy="powers")
     private Set<Ghost> ghosts = new HashSet<Ghost>();
     
+    /**
+     * 
+     * @return the name
+     */
     public String getName(){
         return name;
     }
    
+    /**
+     * 
+     * @param name to set 
+     */
     public void setName(String name){
         this.name = name;
     }
     
+    /**
+     * 
+     * @return the description 
+     */
     public String getDescription(){
         return description;
     }
-   
+    
+    /**
+     * 
+     * @param description to set 
+     */
     public void setDescription(String description){
         this.description = description;
     }
@@ -51,7 +67,6 @@ public class Power {
     public Set<Ghost> getGhosts() {
         return ghosts;
     }
-
 
 
     /**
