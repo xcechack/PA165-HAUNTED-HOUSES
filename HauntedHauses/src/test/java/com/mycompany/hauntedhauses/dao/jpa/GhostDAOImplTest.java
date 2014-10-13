@@ -41,7 +41,7 @@ public class GhostDAOImplTest {
     @BeforeClass
     public static void setup() {
         try {
-            emf = Persistence.createEntityManagerFactory("GhostDB");
+            emf = Persistence.createEntityManagerFactory("TestDB");
         } catch (Exception e) {
             e.printStackTrace();
             fail("Could not initialize Persistence.");

@@ -21,6 +21,7 @@ import org.junit.Test;
  * @author Jana Cechackova
  */
 public class PowerDAOImplTest {
+    
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static PowerDAOImpl powerManager;
@@ -38,7 +39,7 @@ public class PowerDAOImplTest {
     @BeforeClass
     public static void setup() {
         try {
-            emf = Persistence.createEntityManagerFactory("GhostDB");
+            emf = Persistence.createEntityManagerFactory("TestDB");
         } catch (Exception e) {
             e.printStackTrace();
             fail("Could not initialize Persistence.");
@@ -189,4 +190,5 @@ public class PowerDAOImplTest {
             powerManager.deletePower(powers.get(i));
         }
     }
+    
 }
