@@ -62,7 +62,7 @@ public class ResidentDAOImpl implements ResidentDAO {
             try {
                 entityManager.getTransaction().begin();
                 Resident toBeRemoved = entityManager.merge(resident);         
-                entityManager.remove(resident);
+                entityManager.remove(toBeRemoved);
                 entityManager.getTransaction().commit();
             } catch (Exception e) {
                 throw new PersistenceException("Transaction failed." + e.getMessage(), e);

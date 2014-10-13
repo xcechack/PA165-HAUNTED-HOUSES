@@ -107,6 +107,8 @@ public class GhostDAOImplTest {
     @Test
     public void testAddGhost() {
         GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
+        ghostManager.deleteGhost(ghost1);
+        ghostManager.addGhost(ghost1);
         Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
         System.out.println("Ghost 1: " + ghost1.toString());
         System.out.println("Ghost 2: " + ghost2.toString());
