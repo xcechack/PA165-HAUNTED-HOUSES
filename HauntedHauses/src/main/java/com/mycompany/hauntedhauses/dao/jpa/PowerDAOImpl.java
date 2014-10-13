@@ -72,10 +72,11 @@ public class PowerDAOImpl implements PowerDAO{
     public void deletePower(Power power) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         
-        if (entityManager.contains(power) == true) {  
+        if (entityManager.find(Power.class, power.getId()) != null) {  
             try {
                 entityManager.getTransaction().begin();
-                entityManager.remove(power);
+                Power toBeRemoved = entityManager.merge(power);
+                entityManager.remove(toBeRemoved);
                 entityManager.getTransaction().commit();
             } catch (Exception e) {
                 throw new PersistenceException("Transaction failed." + e.getMessage(), e);
