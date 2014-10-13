@@ -5,9 +5,7 @@
  */
 package com.mycompany.hauntedhauses.dao.jpa;
 
-import com.mycompany.hauntedhauses.entity.Ghost;
 import com.mycompany.hauntedhauses.entity.House;
-import com.mycompany.hauntedhauses.entity.Power;
 import com.mycompany.hauntedhauses.entity.Resident;
 import com.mycompany.hauntedhauses.entity.field.Address;
 import java.util.Date;
@@ -104,7 +102,7 @@ public class ResidentDAOImplTest {
     
     @Test
     public void testDeleteResident() {
-        ResidentDAOImpl residentManager = new ResidentDAOImpl(emf);
+        ResidentDAOImpl residentManager = new ResidentDAOImpl(emf); 
         residentManager.deleteResident(resident);
         Assert.assertNull(residentManager.getResidentByID(resident.getId()));
         residentManager.addResident(resident);

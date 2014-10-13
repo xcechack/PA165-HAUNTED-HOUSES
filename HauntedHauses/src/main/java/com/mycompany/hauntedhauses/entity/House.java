@@ -48,10 +48,10 @@ public class House {
     @Column(nullable=false)
     private String history;
     
-    @OneToMany(mappedBy="house", cascade=CascadeType.PERSIST)
+    @OneToMany(mappedBy="house")
     private Set<Ghost> ghosts = new HashSet<Ghost>();
     
-    @OneToMany(mappedBy="house", cascade=CascadeType.PERSIST)
+    @OneToMany(mappedBy="house")
     private Set<Resident> residents = new HashSet<Resident>();
 
     /**

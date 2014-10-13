@@ -24,6 +24,7 @@ public class HouseDAOImpl implements HouseDAO{
     //        Persistence.createEntityManagerFactory("HouseDB");
     //private EntityManager em = emf.createEntityManager();
     
+    
     private final EntityManagerFactory emf;
 
     public HouseDAOImpl(EntityManagerFactory emf) {

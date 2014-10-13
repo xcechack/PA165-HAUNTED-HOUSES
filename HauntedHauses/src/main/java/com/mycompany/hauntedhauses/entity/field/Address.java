@@ -75,4 +75,31 @@ public class Address {
         this.postalCode = postalCode;
     }
     
+    @Override
+    public int hashCode() {
+        int result = 1;
+        result = result*31 + street.hashCode();
+        result = result*31 + houseNumber;
+        result = result*31 + city.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Address other = (Address) obj;
+        if (houseNumber != other.getHouseNumber() || !street.equals(other.street) || !city.equals(other.city) || postalCode != (other.postalCode)) {
+            return false;
+        }
+        return true;
+    }
+    
 }
