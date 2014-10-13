@@ -33,7 +33,7 @@ public class ResidentDAOImplTest {
     @BeforeClass
     public static void setup() {
         try {
-            emf = Persistence.createEntityManagerFactory("TestDB");
+            emf = Persistence.createEntityManagerFactory("GhostDB");
         } catch (Exception e) {
             e.printStackTrace();
             fail("Could not initialize Persistence.");
@@ -77,9 +77,11 @@ public class ResidentDAOImplTest {
     public static void tearDown() {
         ResidentDAOImpl residentManager = new ResidentDAOImpl(emf);
         em = emf.createEntityManager();
+        em.getTransaction().begin();
         House toBeRemoved = em.merge(house);
         em.remove(toBeRemoved);
         residentManager.deleteResident(resident);
+        em.getTransaction().commit();
     }
     
     @Test

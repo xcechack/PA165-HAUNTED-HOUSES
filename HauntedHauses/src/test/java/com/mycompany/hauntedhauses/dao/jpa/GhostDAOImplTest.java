@@ -41,7 +41,7 @@ public class GhostDAOImplTest {
     @BeforeClass
     public static void setup() {
         try {
-            emf = Persistence.createEntityManagerFactory("TestDB");
+            emf = Persistence.createEntityManagerFactory("GhostDB");
         } catch (Exception e) {
             e.printStackTrace();
             fail("Could not initialize Persistence.");
@@ -97,11 +97,13 @@ public class GhostDAOImplTest {
     public static void tearDown() {
         GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
         em = emf.createEntityManager();
+        em.getTransaction().begin();
         House toBeRemoved = em.merge(house);
         em.remove(toBeRemoved);
         Power toBeRemovedPower = em.merge(power);
         em.remove(toBeRemovedPower);
         ghostManager.deleteGhost(ghost1);
+        em.getTransaction().commit();
     }
 
     @Test
