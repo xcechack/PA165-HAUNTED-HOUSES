@@ -58,21 +58,20 @@ public class ResidentDAOImpl implements ResidentDAO {
     public void deleteResident(Resident resident) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         
-        if (entityManager.contains(resident) == true) {  
             try {
-                entityManager.getTransaction().begin();
+                /*entityManager.getTransaction().begin();
                 Resident toBeRemoved = entityManager.merge(resident);         
                 entityManager.remove(resident);
+                entityManager.getTransaction().commit();*/
+                entityManager.getTransaction().begin();
+                Resident toBeRemoved = entityManager.merge(resident);         
+                entityManager.remove(toBeRemoved);
                 entityManager.getTransaction().commit();
             } catch (Exception e) {
                 throw new PersistenceException("Transaction failed." + e.getMessage(), e);
             } finally {
                     entityManager.close();
             }
-        }
-        else {
-            System.out.println("Resident with ID:" +resident.getId() + "is not in the database.");
-        }
     }
 
 
