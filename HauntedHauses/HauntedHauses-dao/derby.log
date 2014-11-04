@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Sun Nov 02 12:43:28 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0149-7051-2cc7-000008589c98 
-on database directory memory:C:\Users\Market\Documents\GitHub\PA165-HAUNTED-HOUSES\HauntedHauses\HauntedHauses-dao\GhostDB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
-Loaded from file:/C:/Users/Market/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+Tue Nov 04 13:19:04 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0149-7abe-7aeb-0000028e2c80 
+on database directory memory:/home/janca/Desktop/haunted-houses/PA165-HAUNTED-HOUSES/HauntedHauses/HauntedHauses-dao/GhostDB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/home/janca/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_20-b26
-user.dir=C:\Users\Market\Documents\GitHub\PA165-HAUNTED-HOUSES\HauntedHauses\HauntedHauses-dao
-os.name=Windows 8.1
+java.runtime.version=1.8.0_25-b17
+user.dir=/home/janca/Desktop/haunted-houses/PA165-HAUNTED-HOUSES/HauntedHauses/HauntedHauses-dao
+os.name=Linux
 os.arch=amd64
-os.version=6.3
+os.version=3.13.0-39-generic
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
