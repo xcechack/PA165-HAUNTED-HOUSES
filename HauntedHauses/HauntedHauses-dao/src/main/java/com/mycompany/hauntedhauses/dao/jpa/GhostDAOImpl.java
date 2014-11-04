@@ -6,7 +6,7 @@
 package com.mycompany.hauntedhauses.dao.jpa;
 
 import com.mycompany.hauntedhauses.dao.GhostDAO;
-import com.mycompany.hauntedhauses.service.Ghost;
+import com.mycompany.hauntedhauses.entity.Ghost;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
