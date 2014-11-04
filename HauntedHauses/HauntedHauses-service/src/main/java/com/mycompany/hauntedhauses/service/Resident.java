@@ -1,4 +1,4 @@
-package com.mycompany.hauntedhauses.entity;
+package com.mycompany.hauntedhauses.service;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
