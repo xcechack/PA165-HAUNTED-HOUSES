@@ -5,7 +5,7 @@
  */
 package com.mycompany.hauntedhauses.dao;
 
-import com.mycompany.hauntedhauses.service.House;
+import com.mycompany.hauntedhauses.entity.House;
 import java.util.List;
 
 /**

@@ -5,7 +5,7 @@
  */
 package com.mycompany.hauntedhauses.dao;
 
-import com.mycompany.hauntedhauses.service.Power;
+import com.mycompany.hauntedhauses.entity.Power;
 import java.util.List;
 
 /**
