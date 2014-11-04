@@ -12,7 +12,7 @@
     <name>HauntedHauses</name>
     
     <modules>
-        <module>../HauntedHauses/HauntedHauses-service</module>
         <module>../HauntedHauses/HauntedHauses-dao</module>
+        <module>../HauntedHauses/HauntedHauses-service</module>
     </modules>
 </project>
