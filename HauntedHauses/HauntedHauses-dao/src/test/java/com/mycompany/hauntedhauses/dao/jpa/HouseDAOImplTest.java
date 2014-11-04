@@ -3,7 +3,7 @@ package com.mycompany.hauntedhauses.dao.jpa;
 import com.mycompany.hauntedhauses.entity.Ghost;
 import com.mycompany.hauntedhauses.entity.House;
 import com.mycompany.hauntedhauses.entity.Resident;
-import com.mycompany.hauntedhauses.entity.field.Address;
+import com.mycompany.hauntedhauses.service.field.Address;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
