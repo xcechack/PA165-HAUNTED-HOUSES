@@ -1,7 +1,7 @@
 package com.mycompany.hauntedhauses.dao.jpa;
 
 import com.mycompany.hauntedhauses.dao.ResidentDAO;
-import com.mycompany.hauntedhauses.entity.Resident;
+import com.mycompany.hauntedhauses.service.Resident;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

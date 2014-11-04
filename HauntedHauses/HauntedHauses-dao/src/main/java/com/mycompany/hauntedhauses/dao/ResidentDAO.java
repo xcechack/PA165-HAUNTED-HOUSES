@@ -1,6 +1,6 @@
 package com.mycompany.hauntedhauses.dao;
 
-import com.mycompany.hauntedhauses.entity.Resident;
+import com.mycompany.hauntedhauses.service.Resident;
 import java.util.List;
 
 /**

@@ -5,7 +5,7 @@
  */
 package com.mycompany.hauntedhauses.dao;
 
-import com.mycompany.hauntedhauses.entity.Ghost;
+import com.mycompany.hauntedhauses.service.Ghost;
 import java.util.List;
 
 /**

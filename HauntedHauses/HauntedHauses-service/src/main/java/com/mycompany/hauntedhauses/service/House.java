@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.hauntedhauses.entity;
+package com.mycompany.hauntedhauses.service;
 
-import com.mycompany.hauntedhauses.entity.field.Address;
+import com.mycompany.hauntedhauses.service.field.Address;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;

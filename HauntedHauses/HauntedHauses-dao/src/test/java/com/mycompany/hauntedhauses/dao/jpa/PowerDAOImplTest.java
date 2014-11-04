@@ -5,7 +5,7 @@
  */
 package com.mycompany.hauntedhauses.dao.jpa;
 
-import com.mycompany.hauntedhauses.entity.Power;
+import com.mycompany.hauntedhauses.service.Power;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -5,7 +5,7 @@
  */
 package com.mycompany.hauntedhauses.dao.jpa;
 
-import com.mycompany.hauntedhauses.entity.House;
+import com.mycompany.hauntedhauses.service.House;
 import com.mycompany.hauntedhauses.dao.HouseDAO;
 import java.util.List;
 import javax.persistence.EntityManager;

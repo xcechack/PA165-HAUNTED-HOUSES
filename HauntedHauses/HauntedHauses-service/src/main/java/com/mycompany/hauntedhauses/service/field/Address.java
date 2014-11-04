@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.hauntedhauses.entity.field;
+package com.mycompany.hauntedhauses.service.field;
 
 import javax.persistence.Embeddable;
 
