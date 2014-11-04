@@ -50,7 +50,7 @@ public class PowerManagerImpl implements PowerManager {
         return powerDTO;
     }
     
-    //methods from this point down are necessary in every service to proper mapping
+    //methods from this point down are necessary in every service for proper mapping
     @Inject
     public void setDozerBeanMapper(DozerBeanMapper dozerBeanMapper){
         this.dozerBeanMapper = dozerBeanMapper;
@@ -58,6 +58,14 @@ public class PowerManagerImpl implements PowerManager {
     
     public DozerBeanMapper getDozerBeanMapper(){
         return dozerBeanMapper;
+    }
+    
+    public void setPowerDAO(PowerDAO powerDAO){
+        this.powerDAO = powerDAO;
+    }
+    
+    public PowerDAO getPowerDAO(){
+        return powerDAO;
     }
         
     
