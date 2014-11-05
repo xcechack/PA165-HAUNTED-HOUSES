@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class ResidentDTO implements Serializable {
     
-    private long id;
+    private Long id;
     
     private String firstName;
     
@@ -25,11 +25,11 @@ public class ResidentDTO implements Serializable {
     private Integer age;
     
     
-    public long getId(){
+    public Long getId(){
         return id;
     }
    
-    public void setId(long id){
+    public void setId(Long id){
         this.id = id;
     }
     

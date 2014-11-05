@@ -17,21 +17,21 @@ public interface ResidentManager {
     /**
      * Adds a new resident into the database.
      *
-     * @param resident to be inserted to the database
+     * @param residentDTO to be inserted to the database
      */
     public void addResident(ResidentDTO residentDTO);
 
     /**
      * Updates given resident in the database.
      *
-     * @param resident to be updated
+     * @param residentDTO to be updated
      */
     public void updateResident(ResidentDTO residentDTO);
 
     /**
      * Deletes given resident from the database.
      *
-     * @param resident to be deleted
+     * @param residentDTO to be deleted
      */
     public void deleteResident(ResidentDTO residentDTO);
 
@@ -48,6 +48,6 @@ public interface ResidentManager {
      * @param id of resident
      * @return resident with the id from parame
      */
-    public ResidentDTO getResidentByID(long id);
+    public ResidentDTO getResidentByID(Long id);
     
 }
