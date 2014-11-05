@@ -5,10 +5,133 @@
  */
 package com.mycompany.hauntedhauses.service.services.jpa;
 
+import com.mycompany.hauntedhauses.dao.GhostDAO;
+import com.mycompany.hauntedhauses.entity.Ghost;
+import com.mycompany.hauntedhauses.service.dto.GhostDTO;
+import com.mycompany.hauntedhauses.service.services.GhostManager;
+import java.util.List;
+import javax.inject.Inject;
+import org.dozer.DozerBeanMapper;
+import org.springframework.dao.DataAccessException;
+
 /**
  *
- * @author
+ * @author Michal Zbranek
  */
-public class GhostManagerImpl {
+public class GhostManagerImpl implements GhostManager {
+    
+    GhostDAO ghostDAO;
+    DozerBeanMapper dozerBeanMapper;
+
+    @Override
+    public void addGhost(GhostDTO ghostDTO) {
+        
+        Ghost ghost;
+      
+        if (ghostDTO.getId() != null) {
+            throw new IllegalArgumentException("Ghost ID isn't null");
+        } else {
+            ghost = dozerBeanMapper.map(ghostDTO, Ghost.class);
+        }
+        try {
+            ghostDAO.addGhost(ghost);    
+        } catch (Exception ex){
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
+        }
+    }
+
+    @Override
+    public void updateGhost(GhostDTO ghostDTO) {
+        
+        Ghost ghost;
+        
+        if (ghostDTO.getId() == null) { 
+            throw new IllegalArgumentException("Ghost ID is null");
+        } else {
+            ghost = dozerBeanMapper.map(ghostDTO, Ghost.class);
+        }
+        try{
+            ghostDAO.updateGhost(ghost);
+        
+        } catch (Exception ex){
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
+        }
+    }
+
+    @Override
+    public void deleteGhost(GhostDTO ghostDTO) {
+        
+        Ghost ghost;
+        
+        if (ghostDTO == null) {
+            throw new IllegalArgumentException("Ghost ID is null.");
+        }  
+        else {
+            ghost = dozerBeanMapper.map(ghostDTO, Ghost.class);
+        }     
+        try {
+            ghostDAO.deleteGhost(ghost);
+        } catch (Exception ex){
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};                
+        }    
+    }
+
+    @Override
+    public List<GhostDTO> getAllGhosts() {
+        
+        List <GhostDTO> ghostsDTO = null;
+        List <Ghost> ghosts = null;
+        
+        try{
+            ghosts = ghostDAO.getAllGhosts();             
+        } catch (Exception ex){
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
+        }
+        if (ghosts != null) {
+            for (Ghost ghost : ghosts) {
+                GhostDTO ghostDTO = dozerBeanMapper.map(ghost, GhostDTO.class);
+                ghostsDTO.add(ghostDTO);
+            }
+        }
+        return ghostsDTO;
+    }
+
+    @Override
+    public GhostDTO getGhostByID(Long id) {
+        
+       Ghost ghost; 
+       GhostDTO ghostDTO;
+       
+        try {
+            if (id == null) {
+                throw new IllegalArgumentException("Ghost ID is null.");
+            }
+            else {
+                ghost = ghostDAO.getGhostByID(id);
+            }
+        } catch (Exception ex){
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};                
+        }
+        ghostDTO = dozerBeanMapper.map(ghost, GhostDTO.class); 
+        return ghostDTO;
+    }
+    
+    
+    @Inject
+    public void setDozerBeanMapper(DozerBeanMapper dozerBeanMapper){
+        this.dozerBeanMapper = dozerBeanMapper;
+    }
+    
+    public DozerBeanMapper getDozerBeanMapper(){
+        return dozerBeanMapper;
+    }
+    
+    public void setGhostDAO(GhostDAO ghostDAO){
+        this.ghostDAO = ghostDAO;
+    }
+    
+    public GhostDAO getGhostDAO(){
+        return ghostDAO;
+    }
     
 }
