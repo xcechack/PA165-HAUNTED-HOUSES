@@ -7,6 +7,7 @@ import com.mycompany.hauntedhauses.service.dto.PowerDTO;
 import com.mycompany.hauntedhauses.service.services.PowerManager;
 import java.util.List;
 import javax.inject.Inject;
+import org.springframework.dao.DataAccessException;
 
 /**
  *
@@ -19,34 +20,59 @@ public class PowerManagerImpl implements PowerManager {
     
     public void addPower(PowerDTO powerDTO) {
         Power power = null;
+        
+        try{
         if (powerDTO != null) power = dozerBeanMapper.map(powerDTO, Power.class);
-        //following command has to be in try-catch block - TO DO
-            powerDAO.addPower(power);    
+          powerDAO.addPower(power); 
+        } catch (Exception ex){
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
+        }
     }
 
     public void updatePower(PowerDTO powerDTO) {
         Power power = null;
+        
+        try{
         if (powerDTO != null) power = dozerBeanMapper.map(powerDTO, Power.class);
-        //following command has to be in try-catch block - TO DO
-            powerDAO.updatePower(power);
+          powerDAO.updatePower(power);
+        } catch (Exception ex){
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
+        }
     }
 
     public void deletePower(PowerDTO powerDTO) {
         Power power = null;
+        
         if (powerDTO != null) power = dozerBeanMapper.map(powerDTO, Power.class);
-        //following command has to be in try-catch block - TO DO
+        try{
             powerDAO.deletePower(power);
+        }catch(Exception ex){
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
+        }
     }
 
-    //empty method has to be filled - TO DO
     public List<PowerDTO> getAllPowers() {
-        return null;
+        List <PowerDTO> powersDTO = null;
+        List <Power> powers = null;
+        
+        try{
+            powers = powerDAO.getAllPowers();
+            if (powers != null) powersDTO = dozerBeanMapper.map(powers, List.class);
+        } catch (Exception ex){
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
+        }
+        return powersDTO;
     }
 
     public PowerDTO getPowerById(int id) {
         PowerDTO powerDTO = null;
-        Power power = powerDAO.getPowerByID(id);
-        if (power != null) powerDTO = dozerBeanMapper.map(power, PowerDTO.class);
+        
+        try{
+            Power power = powerDAO.getPowerByID(id);
+            if (power != null) powerDTO = dozerBeanMapper.map(power, PowerDTO.class);
+        } catch (Exception ex){
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
+        }
         return powerDTO;
     }
     
