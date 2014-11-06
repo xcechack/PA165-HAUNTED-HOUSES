@@ -17,6 +17,10 @@ public class ResidentManagerImpl implements ResidentManager {
    
     ResidentDAO residentDAO;
     DozerBeanMapper dozerBeanMapper;
+    
+    public ResidentManagerImpl(DozerBeanMapper dozerBeanMapper) {
+        this.dozerBeanMapper = dozerBeanMapper;
+    }
 
     @Override
     public void addResident(ResidentDTO residentDTO) {
@@ -29,7 +33,8 @@ public class ResidentManagerImpl implements ResidentManager {
             resident = dozerBeanMapper.map(residentDTO, Resident.class);
         }
         try {
-            residentDAO.addResident(resident);    
+            residentDAO.addResident(resident);   
+            residentDTO.setId(resident.getId());
         } catch (Exception ex){
             throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
         }
