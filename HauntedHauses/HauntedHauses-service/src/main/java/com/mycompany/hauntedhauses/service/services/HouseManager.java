@@ -5,10 +5,22 @@
  */
 package com.mycompany.hauntedhauses.service.services;
 
+import com.mycompany.hauntedhauses.service.dto.HouseDTO;
+import java.util.List;
+
 /**
  *
- * @author
+ * @author Gabriela Podolnikova
  */
 public interface HouseManager {
+   
+    public void addHouse(HouseDTO houseDTO);
     
+    public void deleteHouse(HouseDTO houseDTO);
+    
+    public void updateHouse(HouseDTO houseDTO);
+    
+    public List<HouseDTO> getAllHouses();
+    
+    public HouseDTO getHouseById(Long id);
 }

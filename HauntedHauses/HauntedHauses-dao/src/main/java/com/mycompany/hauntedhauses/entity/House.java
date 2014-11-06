@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 
 /**
  * Entity House is haunted by multiple ghost and can have multiple Residents.
- * @author Gabrila Podolnikova
+ * @author Gabriela Podolnikova
  */
 //@NamedQuery(name="getAllHouses",query="SELECT h FROM House h")
 @Entity
