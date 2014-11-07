@@ -26,12 +26,9 @@ public class ResidentManagerImpl implements ResidentManager {
     public void addResident(ResidentDTO residentDTO) {
         
         Resident resident;
-      
-        if (residentDTO.getId() != null) {
-            throw new IllegalArgumentException("Resident ID isn't null");
-        } else {
-            resident = dozerBeanMapper.map(residentDTO, Resident.class);
-        }
+
+        resident = dozerBeanMapper.map(residentDTO, Resident.class);
+        
         try {
             residentDAO.addResident(resident);   
             residentDTO.setId(resident.getId());
@@ -45,11 +42,8 @@ public class ResidentManagerImpl implements ResidentManager {
         
         Resident resident;
         
-        if (residentDTO.getId() == null) { 
-            throw new IllegalArgumentException("Resident ID is null");
-        } else {
-            resident = dozerBeanMapper.map(residentDTO, Resident.class);
-        }
+        resident = dozerBeanMapper.map(residentDTO, Resident.class);
+        
         try{
             residentDAO.updateResident(resident);
         
@@ -63,12 +57,7 @@ public class ResidentManagerImpl implements ResidentManager {
         
         Resident resident;
         
-        if (residentDTO == null) {
-            throw new IllegalArgumentException("Resident ID is null.");
-        }  
-        else {
-            resident = dozerBeanMapper.map(residentDTO, Resident.class);
-        }     
+        resident = dozerBeanMapper.map(residentDTO, Resident.class);   
         try {
             residentDAO.deleteResident(resident);
         } catch (Exception ex){
@@ -83,7 +72,9 @@ public class ResidentManagerImpl implements ResidentManager {
         List <Resident> residents = null;
         
         try{
-            residents = residentDAO.getAllResidents();             
+            
+        residents = residentDAO.getAllResidents();  
+        
         } catch (Exception ex){
             throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
         }
@@ -97,24 +88,23 @@ public class ResidentManagerImpl implements ResidentManager {
     }
 
     @Override
-    public ResidentDTO getResidentByID(Long id) {
+    public ResidentDTO getResidentByID(long id) {
         
        Resident resident; 
-       ResidentDTO residentDTO;
+       ResidentDTO residentDTO = null;
        
         try {
-            if (id == null) {
-                throw new IllegalArgumentException("Resident ID is null.");
-            }
-            else {
-                resident = residentDAO.getResidentByID(id);
+            resident = residentDAO.getResidentByID(id);               
+         
+            if (resident != null) {
+                residentDTO = dozerBeanMapper.map(resident, ResidentDTO.class); 
             }
         } catch (Exception ex){
-            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};                
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {}; 
         }
-        residentDTO = dozerBeanMapper.map(resident, ResidentDTO.class); 
         return residentDTO;
-    }
+    }        
+    
     
     
     @Inject

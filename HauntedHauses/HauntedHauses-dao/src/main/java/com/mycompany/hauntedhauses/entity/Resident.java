@@ -17,7 +17,7 @@ public class Resident {
     
     @Id
     @GeneratedValue//(strategy=GenerationType.AUTO)
-    private Long id;
+    private long id;
     
     @Column(nullable=false)
     private String firstName;
@@ -32,11 +32,11 @@ public class Resident {
     private Integer age;
     
     
-    public Long getId(){
+    public long getId(){
         return id;
     }
    
-    public void setId(Long id){
+    public void setId(long id){
         this.id = id;
     }
     
@@ -92,7 +92,7 @@ public class Resident {
         }
 
         Resident guest = (Resident) obj;
-        return id.equals(guest.id)
+        return id==(guest.id)
                 && (firstName == guest.firstName
                      || (firstName != null && firstName.equals(guest.getFirstName())))
                 && (lastName == guest.lastName

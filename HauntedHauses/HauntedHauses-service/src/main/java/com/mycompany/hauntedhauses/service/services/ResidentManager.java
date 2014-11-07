@@ -50,7 +50,7 @@ public interface ResidentManager {
      * @param id of resident
      * @return resident with the id from parame
      */
-    public ResidentDTO getResidentByID(Long id);
+    public ResidentDTO getResidentByID(long id);
     
     public void setResidentDAO(ResidentDAO residentDAO);
     public void setDozerBeanMapper(DozerBeanMapper dozerBeanMapper);
