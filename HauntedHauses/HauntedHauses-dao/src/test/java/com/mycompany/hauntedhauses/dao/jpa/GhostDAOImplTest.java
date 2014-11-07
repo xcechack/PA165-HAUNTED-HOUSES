@@ -5,12 +5,10 @@
  */
 package com.mycompany.hauntedhauses.dao.jpa;
 
-import com.mycompany.hauntedhauses.dao.GhostDAO;
 import com.mycompany.hauntedhauses.entity.Ghost;
 import com.mycompany.hauntedhauses.entity.House;
 import com.mycompany.hauntedhauses.entity.Power;
 import com.mycompany.hauntedhauses.service.field.Address;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,12 +22,16 @@ import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
+/*import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;*/
 
 /**
  *
  * @author Gabriela Podolnikova
  */
+/*@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:META-INF/applicationContext.xml")*/
+
 public class GhostDAOImplTest {
     
     //@PersistenceUnit

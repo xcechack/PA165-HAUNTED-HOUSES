@@ -7,17 +7,21 @@ package com.mycompany.hauntedhauses.dao.jpa;
 
 import com.mycompany.hauntedhauses.dao.GhostDAO;
 import com.mycompany.hauntedhauses.entity.Ghost;
+import org.springframework.stereotype.Repository;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author Janicka
  */
+@Repository
+@Transactional
 public class GhostDAOImpl implements GhostDAO{
     
     @Autowired
