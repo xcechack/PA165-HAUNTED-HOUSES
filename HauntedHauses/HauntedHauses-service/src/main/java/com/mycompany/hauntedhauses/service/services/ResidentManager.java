@@ -5,8 +5,10 @@
  */
 package com.mycompany.hauntedhauses.service.services;
 
+import com.mycompany.hauntedhauses.dao.ResidentDAO;
 import com.mycompany.hauntedhauses.service.dto.ResidentDTO;
 import java.util.List;
+import org.dozer.DozerBeanMapper;
 
 /**
  *
@@ -50,4 +52,6 @@ public interface ResidentManager {
      */
     public ResidentDTO getResidentByID(Long id);
     
+    public void setResidentDAO(ResidentDAO residentDAO);
+    public void setDozerBeanMapper(DozerBeanMapper dozerBeanMapper);
 }

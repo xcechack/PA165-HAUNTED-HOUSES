@@ -19,12 +19,16 @@ import static org.junit.Assert.*;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
  * @author Gabriela Podolnikova
  */
 public class HouseManagerImplTest {
+    
+    //ApplicationContext context = new ClassPathXmlApplicationContext("SpringXMLConfig.xml");
     
     @Mock
     private HouseDAO houseDAO;

@@ -5,8 +5,10 @@
  */
 package com.mycompany.hauntedhauses.service.services;
 
+import com.mycompany.hauntedhauses.dao.GhostDAO;
 import com.mycompany.hauntedhauses.service.dto.GhostDTO;
 import java.util.List;
+import org.dozer.DozerBeanMapper;
 
 /**
  *
@@ -48,5 +50,8 @@ public interface GhostManager {
      * @return ghost with the id from parameter
      */
     public GhostDTO getGhostByID(Long id);
+    
+    public void setGhostDAO(GhostDAO ghostDAO);
+    public void setDozerBeanMapper(DozerBeanMapper dozerBeanMapper);
     
 }

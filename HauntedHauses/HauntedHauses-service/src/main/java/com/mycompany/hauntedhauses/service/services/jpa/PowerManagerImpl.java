@@ -20,12 +20,15 @@ public class PowerManagerImpl implements PowerManager {
     
     public void addPower(PowerDTO powerDTO) {
         Power power = null;
-        
-        try{
-        if (powerDTO != null) power = dozerBeanMapper.map(powerDTO, Power.class);
-          powerDAO.addPower(power); 
-        } catch (Exception ex){
-            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};
+
+        try {
+            if (powerDTO != null) {
+                power = dozerBeanMapper.map(powerDTO, Power.class);
+            }
+            powerDAO.addPower(power);
+        } catch (Exception ex) {
+            throw new DataAccessException("Exception on persistence layer: " + ex.toString()) {
+            };
         }
     }
 

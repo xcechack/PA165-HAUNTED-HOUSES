@@ -5,8 +5,10 @@
  */
 package com.mycompany.hauntedhauses.service.services;
 
+import com.mycompany.hauntedhauses.dao.HouseDAO;
 import com.mycompany.hauntedhauses.service.dto.HouseDTO;
 import java.util.List;
+import org.dozer.DozerBeanMapper;
 
 /**
  *
@@ -23,4 +25,7 @@ public interface HouseManager {
     public List<HouseDTO> getAllHouses();
     
     public HouseDTO getHouseById(Long id);
+    
+    public void setHouseDAO(HouseDAO houseDAO);
+    public void setDozerBeanMapper(DozerBeanMapper dozerBeanMapper);
 }
