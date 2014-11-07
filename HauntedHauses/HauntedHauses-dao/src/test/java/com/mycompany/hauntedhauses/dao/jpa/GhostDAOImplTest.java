@@ -5,6 +5,7 @@
  */
 package com.mycompany.hauntedhauses.dao.jpa;
 
+import com.mycompany.hauntedhauses.dao.GhostDAO;
 import com.mycompany.hauntedhauses.entity.Ghost;
 import com.mycompany.hauntedhauses.entity.House;
 import com.mycompany.hauntedhauses.entity.Power;
@@ -22,6 +23,7 @@ import org.junit.Assert;
 import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -37,6 +39,8 @@ public class GhostDAOImplTest {
     private static House house;
     private static Power power;
     
+    @Autowired
+    private GhostDAOImpl ghostManager;
     
     @BeforeClass
     public static void setup() {
@@ -108,7 +112,7 @@ public class GhostDAOImplTest {
 
     @Test
     public void testAddGhost() {
-        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
+        ghostManager = new GhostDAOImpl(emf);
         ghostManager.deleteGhost(ghost1);
         ghostManager.addGhost(ghost1);
         Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
@@ -119,7 +123,7 @@ public class GhostDAOImplTest {
     
     @Test
     public void testUpdateGhost() {
-        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
+        ghostManager = new GhostDAOImpl(emf);
         ghost1.setName("Old woman");
         ghostManager.updateGhost(ghost1);
         Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
@@ -128,7 +132,7 @@ public class GhostDAOImplTest {
     
     @Test
     public void testDeleteGhost() {
-        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
+        ghostManager = new GhostDAOImpl(emf);
         ghostManager.deleteGhost(ghost1);
         Assert.assertNull(ghostManager.getGhostByID(ghost1.getId()));
         ghostManager.addGhost(ghost1);
@@ -136,14 +140,14 @@ public class GhostDAOImplTest {
     
     @Test
     public void testGetAllGhosts() {
-        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
+        ghostManager = new GhostDAOImpl(emf);
 	List<Ghost> ghosts = ghostManager.getAllGhosts();
 	Assert.assertEquals(1, ghosts.size());
     }
     
     @Test
     public void testGetGhostById() {
-        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
+        ghostManager = new GhostDAOImpl(emf);
         Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
         Assert.assertTrue(ghost1.equals(ghost2));
     }

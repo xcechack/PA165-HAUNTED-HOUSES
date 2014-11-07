@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -19,9 +20,18 @@ import javax.persistence.Query;
  */
 public class GhostDAOImpl implements GhostDAO{
     
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager manager;
+    @Autowired
+    EntityManager manager;
     
+    public EntityManager getEntityManager(){
+        return manager;
+    }
+    
+    public void setEntityManager(EntityManager entityManager){
+        this.manager = entityManager;
+    }
+    
+    private EntityManagerFactory entityManagerFactory;
     public GhostDAOImpl(EntityManagerFactory entityManagerFactory){
         this.entityManagerFactory = entityManagerFactory;
         manager = this.entityManagerFactory.createEntityManager();
