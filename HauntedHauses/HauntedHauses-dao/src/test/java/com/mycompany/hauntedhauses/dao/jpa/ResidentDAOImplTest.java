@@ -26,6 +26,7 @@ import org.junit.Test;
 public class ResidentDAOImplTest {
     
     private static EntityManagerFactory emf;
+
     private static EntityManager em;
     private static Resident resident;
     private static House house;
