@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class GhostDTO implements Serializable {
     
-    private Long id;
+    private long id;
 
     private String name;
     private Date scaryTimeStart;
@@ -28,11 +28,11 @@ public class GhostDTO implements Serializable {
 
     private List<PowerDTO> powers = new ArrayList<PowerDTO>();
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long newId) {
+    public void setId(long newId) {
         this.id = newId;
     }
 

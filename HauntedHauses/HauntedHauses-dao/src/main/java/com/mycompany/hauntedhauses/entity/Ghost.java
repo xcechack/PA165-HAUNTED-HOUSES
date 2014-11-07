@@ -24,7 +24,9 @@ public class Ghost {
     private long id = 0;
 
     private String name;
+    @Temporal(TemporalType.DATE)
     private Date scaryTimeStart;
+    @Temporal(TemporalType.DATE)
     private Date scaryTimeEnd;
     private String info;
 
