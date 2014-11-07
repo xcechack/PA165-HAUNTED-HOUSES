@@ -9,6 +9,7 @@ import com.mycompany.hauntedhauses.entity.Ghost;
 import com.mycompany.hauntedhauses.entity.House;
 import com.mycompany.hauntedhauses.entity.Power;
 import com.mycompany.hauntedhauses.service.field.Address;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,17 +22,12 @@ import org.junit.Assert;
 import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-/*import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;*/
+
 
 /**
  *
  * @author Gabriela Podolnikova
  */
-/*@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:META-INF/applicationContext.xml")*/
-
 public class GhostDAOImplTest {
     
     //@PersistenceUnit
@@ -41,8 +37,6 @@ public class GhostDAOImplTest {
     private static House house;
     private static Power power;
     
-    @Autowired
-    private GhostDAOImpl ghostManager;
     
     @BeforeClass
     public static void setup() {
@@ -117,7 +111,7 @@ public class GhostDAOImplTest {
 
     @Test
     public void testAddGhost() {
-        ghostManager = new GhostDAOImpl(emf);
+        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
         ghostManager.deleteGhost(ghost1);
         ghostManager.addGhost(ghost1);
         Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
@@ -128,7 +122,7 @@ public class GhostDAOImplTest {
     
     @Test
     public void testUpdateGhost() {
-        ghostManager = new GhostDAOImpl(emf);
+        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
         ghost1.setName("Old woman");
         ghostManager.updateGhost(ghost1);
         Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
@@ -137,7 +131,7 @@ public class GhostDAOImplTest {
     
     @Test
     public void testDeleteGhost() {
-        ghostManager = new GhostDAOImpl(emf);
+        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
         ghostManager.deleteGhost(ghost1);
         Assert.assertNull(ghostManager.getGhostByID(ghost1.getId()));
         ghostManager.addGhost(ghost1);
@@ -145,14 +139,14 @@ public class GhostDAOImplTest {
     
     @Test
     public void testGetAllGhosts() {
-        ghostManager = new GhostDAOImpl(emf);
+        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
 	List<Ghost> ghosts = ghostManager.getAllGhosts();
 	Assert.assertEquals(1, ghosts.size());
     }
     
     @Test
     public void testGetGhostById() {
-        ghostManager = new GhostDAOImpl(emf);
+        GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
         Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
         Assert.assertTrue(ghost1.equals(ghost2));
     }

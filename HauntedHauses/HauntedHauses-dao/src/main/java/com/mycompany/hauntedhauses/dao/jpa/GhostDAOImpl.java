@@ -7,35 +7,21 @@ package com.mycompany.hauntedhauses.dao.jpa;
 
 import com.mycompany.hauntedhauses.dao.GhostDAO;
 import com.mycompany.hauntedhauses.entity.Ghost;
-import org.springframework.stereotype.Repository;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author Janicka
  */
-@Repository
-@Transactional
 public class GhostDAOImpl implements GhostDAO{
     
-    @Autowired
-    EntityManager manager;
-    
-    public EntityManager getEntityManager(){
-        return manager;
-    }
-    
-    public void setEntityManager(EntityManager entityManager){
-        this.manager = entityManager;
-    }
-    
     private EntityManagerFactory entityManagerFactory;
+    private EntityManager manager;
+    
     public GhostDAOImpl(EntityManagerFactory entityManagerFactory){
         this.entityManagerFactory = entityManagerFactory;
         manager = this.entityManagerFactory.createEntityManager();
