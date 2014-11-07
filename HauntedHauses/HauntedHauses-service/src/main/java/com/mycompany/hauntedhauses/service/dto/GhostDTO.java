@@ -8,6 +8,7 @@ package com.mycompany.hauntedhauses.service.dto;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,8 +20,8 @@ public class GhostDTO implements Serializable {
     private Long id;
 
     private String name;
-    private Timestamp scaryTimeStart;
-    private Timestamp scaryTimeEnd;
+    private Date scaryTimeStart;
+    private Date scaryTimeEnd;
     private String info;
 
     private HouseDTO house;
@@ -43,22 +44,7 @@ public class GhostDTO implements Serializable {
         return name;
     }
 
-    public void setStartTime(Timestamp time) {
-        this.scaryTimeStart = time;
-    }
-
-    public Timestamp getStartTime() {
-        return scaryTimeStart;
-    }
-
-    public void setEndTime(Timestamp time) {
-        this.scaryTimeEnd = time;
-    }
-
-    public Timestamp getEndTime() {
-        return scaryTimeEnd;
-    }
-
+    
     public String getInfo() {
         return info;
     }
@@ -94,5 +80,33 @@ public class GhostDTO implements Serializable {
     public void setPowers(List<PowerDTO> powers) {
         this.powers = powers;
     }   
+
+    /**
+     * @return the scaryTimeStart
+     */
+    public Date getScaryTimeStart() {
+        return scaryTimeStart;
+    }
+
+    /**
+     * @param scaryTimeStart the scaryTimeStart to set
+     */
+    public void setScaryTimeStart(Date scaryTimeStart) {
+        this.scaryTimeStart = scaryTimeStart;
+    }
+
+    /**
+     * @return the scaryTimeEnd
+     */
+    public Date getScaryTimeEnd() {
+        return scaryTimeEnd;
+    }
+
+    /**
+     * @param scaryTimeEnd the scaryTimeEnd to set
+     */
+    public void setScaryTimeEnd(Date scaryTimeEnd) {
+        this.scaryTimeEnd = scaryTimeEnd;
+    }
     
 }

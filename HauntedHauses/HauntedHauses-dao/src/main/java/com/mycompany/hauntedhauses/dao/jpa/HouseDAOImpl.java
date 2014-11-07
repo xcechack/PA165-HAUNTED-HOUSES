@@ -12,27 +12,39 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
-
+import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 /**
  *
  * @author Gabriela Podolnikova
  */
 
+@Controller
+@Transactional
 public class HouseDAOImpl implements HouseDAO{
     
     //private EntityManagerFactory emf =
     //        Persistence.createEntityManagerFactory("HouseDB");
     //private EntityManager em = emf.createEntityManager();
     
+    @Autowired
+    EntityManager em;
     
-    private final EntityManagerFactory emf;
+    /*private final EntityManagerFactory emf;
 
     public HouseDAOImpl(EntityManagerFactory emf) {
         this.emf = emf;
+    }*/
+    public EntityManager getEntityManager() {
+        return em;
+    }
+
+    public void setEntityManager(EntityManager em) {
+        this.em = em;
     }
     
     public void addHouse(House house){
-        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(house);
@@ -47,7 +59,7 @@ public class HouseDAOImpl implements HouseDAO{
     }
     
     public void deleteHouse(House house) {
-        EntityManager em = emf.createEntityManager();
+        //EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             House toBeRemoved = em.merge(house);
@@ -63,7 +75,7 @@ public class HouseDAOImpl implements HouseDAO{
     }
     
     public void updateHouse(House house) {
-        EntityManager em = emf.createEntityManager();
+        //EntityManager em = emf.createEntityManager();
         /*House h;
         try {
             h = em.find(House.class, house.getId());
@@ -91,7 +103,7 @@ public class HouseDAOImpl implements HouseDAO{
     }
     
     public List<House> getAllHouses() {
-        EntityManager em = emf.createEntityManager();
+        //EntityManager em = emf.createEntityManager();
         //List<House> houses = em.createNamedQuery("getAllHouses",House.class).getResultList();
         Query query = em.createQuery("select h from House h");
         return query.getResultList();
@@ -99,7 +111,7 @@ public class HouseDAOImpl implements HouseDAO{
     }
     
     public House getHouseById(long id) {
-        EntityManager em = emf.createEntityManager();
+        //EntityManager em = emf.createEntityManager();
         House house;
         house = em.find(House.class, id);
         return house;

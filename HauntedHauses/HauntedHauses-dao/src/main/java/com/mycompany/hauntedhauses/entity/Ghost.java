@@ -8,6 +8,7 @@ package com.mycompany.hauntedhauses.entity;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
@@ -23,8 +24,8 @@ public class Ghost {
     private long id = 0;
 
     private String name;
-    private Timestamp scaryTimeStart;
-    private Timestamp scaryTimeEnd;
+    private Date scaryTimeStart;
+    private Date scaryTimeEnd;
     private String info;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -49,19 +50,19 @@ public class Ghost {
         return name;
     }
 
-    public void setStartTime(Timestamp time) {
+    public void setStartTime(Date time) {
         this.scaryTimeStart = time;
     }
 
-    public Timestamp getStartTime() {
+    public Date getStartTime() {
         return scaryTimeStart;
     }
 
-    public void setEndTime(Timestamp time) {
+    public void setEndTime(Date time) {
         this.scaryTimeEnd = time;
     }
 
-    public Timestamp getEndTime() {
+    public Date getEndTime() {
         return scaryTimeEnd;
     }
 

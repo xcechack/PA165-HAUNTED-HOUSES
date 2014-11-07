@@ -97,18 +97,13 @@ public class GhostManagerImpl implements GhostManager {
     }
 
     @Override
-    public GhostDTO getGhostByID(Long id) {
+    public GhostDTO getGhostByID(long id) {
         
        Ghost ghost; 
        GhostDTO ghostDTO;
-       
-        try {
-            if (id == null) {
-                throw new IllegalArgumentException("Ghost ID is null.");
-            }
-            else {
+       try {
                 ghost = ghostDAO.getGhostByID(id);
-            }
+
         } catch (Exception ex){
             throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};                
         }

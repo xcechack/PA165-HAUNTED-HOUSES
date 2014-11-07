@@ -24,7 +24,7 @@ public interface HouseManager {
     
     public List<HouseDTO> getAllHouses();
     
-    public HouseDTO getHouseById(Long id);
+    public HouseDTO getHouseById(long id);
     
     public void setHouseDAO(HouseDAO houseDAO);
     public void setDozerBeanMapper(DozerBeanMapper dozerBeanMapper);

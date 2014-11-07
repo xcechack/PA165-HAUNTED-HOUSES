@@ -53,8 +53,11 @@ public class GhostDAOImplTest {
         
         ghost1.setName("Old man");
         long timeL = System.currentTimeMillis();
-        Timestamp startTime = new Timestamp(timeL);
-        Timestamp endTime = new Timestamp(timeL+3600000);
+        //Timestamp startTime = new Timestamp(timeL);
+        //Timestamp endTime = new Timestamp(timeL+3600000);
+        
+        Date startTime = new Date(timeL);
+        Date endTime = new Date(timeL+3600000);
         ghost1.setStartTime(startTime);
         ghost1.setEndTime(endTime);
         ghost1.setInfo("Old man is haunting because he is lonely.");

@@ -26,13 +26,8 @@ public class HouseManagerImpl implements HouseManager {
     @Override
     public void addHouse(HouseDTO houseDTO) {
         
-        House house;
-      
-        if (houseDTO.getId() != null) {
-            throw new IllegalArgumentException("House ID isn't null");
-        } else {
-            house = dozerBeanMapper.map(houseDTO, House.class);
-        }
+        House house = dozerBeanMapper.map(houseDTO, House.class);
+
         try {
             houseDAO.addHouse(house);    
         } catch (Exception ex){
@@ -43,13 +38,8 @@ public class HouseManagerImpl implements HouseManager {
     @Override
     public void updateHouse(HouseDTO houseDTO) {
         
-        House house;
+        House house = dozerBeanMapper.map(houseDTO, House.class);
         
-        if (houseDTO.getId() == null) { 
-            throw new IllegalArgumentException("House ID is null");
-        } else {
-            house = dozerBeanMapper.map(houseDTO, House.class);
-        }
         try{
             houseDAO.updateHouse(house);
         
@@ -97,22 +87,20 @@ public class HouseManagerImpl implements HouseManager {
     }
 
     @Override
-    public HouseDTO getHouseById(Long id) {
+    public HouseDTO getHouseById(long id) {
         
        House house; 
-       HouseDTO houseDTO;
+       HouseDTO houseDTO = null;
        
         try {
-            if (id == null) {
-                throw new IllegalArgumentException("House ID is null.");
-            }
-            else {
-                house = houseDAO.getHouseById(id);
+            house = houseDAO.getHouseById(id);               
+         
+            if (house != null) {
+                houseDTO = dozerBeanMapper.map(house, HouseDTO.class); 
             }
         } catch (Exception ex){
-            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};                
+            throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {}; 
         }
-        houseDTO = dozerBeanMapper.map(house, HouseDTO.class); 
         return houseDTO;
     }
     

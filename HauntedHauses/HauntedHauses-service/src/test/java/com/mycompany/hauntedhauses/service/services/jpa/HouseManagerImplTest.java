@@ -17,6 +17,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.verify;
@@ -24,11 +25,15 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author Gabriela Podolnikova
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:/applicationcontext.xml"})
 public class HouseManagerImplTest {
     
     //ApplicationContext context = new ClassPathXmlApplicationContext("SpringXMLConfig.xml");
@@ -68,27 +73,39 @@ public class HouseManagerImplTest {
     
     @Test
     public void deleteHouse() {
-        /*HouseDTO houseDTO = new HouseDTO();
         
         houseManager.addHouse(houseDTO);
         Mockito.verify(houseDAO).addHouse(mapper.map(houseDTO, House.class));
         
         houseManager.deleteHouse(houseDTO);
-        Mockito.verify(houseDAO).deleteHouse(mapper.map(houseDTO, House.class));*/
+        Mockito.verify(houseDAO).deleteHouse(mapper.map(houseDTO, House.class));
     }
     
     @Test
     public void updateHouse() {
+        houseManager.addHouse(houseDTO);
         
+        // Now we have to change "powerDTO" somehow and then map "power" again
+        houseDTO.setId(10);
+        house = dozerBeanMapper.map(houseDTO, House.class);
+        houseManager.updateHouse(houseDTO);
+        verify(houseDAO).updateHouse(house);  
     }
     
     @Test
     public void getAllHouses() {
-        
+        houseManager.addHouse(houseDTO);
+        houseManager.getAllHouses();
+        verify(houseDAO).getAllHouses();
     }
     
     @Test
     public void getHouseById() {
-        
+        houseManager.addHouse(houseDTO);
+        houseDTO.setId(1);
+        house = dozerBeanMapper.map(houseDTO, House.class);
+        houseManager.updateHouse(houseDTO);
+        houseManager.getHouseById(1);
+        verify(houseDAO).getHouseById(1);
     }
 }
