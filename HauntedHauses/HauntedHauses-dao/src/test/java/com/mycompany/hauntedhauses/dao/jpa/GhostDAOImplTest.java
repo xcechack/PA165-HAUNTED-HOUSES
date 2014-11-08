@@ -65,8 +65,8 @@ public class GhostDAOImplTest {
         
         Date startTime = new Date(timeL);
         Date endTime = new Date(timeL+3600000);
-        ghost1.setStartTime(startTime);
-        ghost1.setEndTime(endTime);
+        ghost1.setScaryTimeStart(startTime);
+        ghost1.setScaryTimeEnd(endTime);
         ghost1.setInfo("Old man is haunting because he is lonely.");
         
         house = new House();

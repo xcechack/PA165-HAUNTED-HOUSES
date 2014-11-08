@@ -52,19 +52,19 @@ public class Ghost {
         return name;
     }
 
-    public void setStartTime(Date time) {
+    public void setScaryTimeStart(Date time) {
         this.scaryTimeStart = time;
     }
 
-    public Date getStartTime() {
+    public Date getScaryTimeStart() {
         return scaryTimeStart;
     }
 
-    public void setEndTime(Date time) {
+    public void setScaryTimeEnd(Date time) {
         this.scaryTimeEnd = time;
     }
 
-    public Date getEndTime() {
+    public Date getScaryTimeEnd() {
         return scaryTimeEnd;
     }
 

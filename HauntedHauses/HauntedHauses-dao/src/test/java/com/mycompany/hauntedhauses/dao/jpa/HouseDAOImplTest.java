@@ -64,8 +64,8 @@ public class HouseDAOImplTest {
         long timeL = System.currentTimeMillis();
         Timestamp startTime = new Timestamp(timeL);
         Timestamp endTime = new Timestamp(timeL+3600000);
-        ghost.setStartTime(startTime);
-        ghost.setEndTime(endTime);
+        ghost.setScaryTimeStart(startTime);
+        ghost.setScaryTimeEnd(endTime);
         ghost.setInfo("Old man is haunting because he is lonely.");
         em.persist(ghost);
         

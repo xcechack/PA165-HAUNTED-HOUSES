@@ -88,12 +88,12 @@ public class GhostManagerImpl implements GhostManager {
         return ghostsDTO;
     }
 
-        @Override
+    @Override
     public GhostDTO getGhostByID(long id) {
         
-       Ghost ghost; 
-
+       Ghost ghost;
        GhostDTO ghostDTO;
+       
        try {
                 ghost = ghostDAO.getGhostByID(id);
 
@@ -101,15 +101,8 @@ public class GhostManagerImpl implements GhostManager {
             throw new DataAccessException("Exception on persistence layer: "+ ex.toString()) {};                
         }
 
-
-
-
+       if (ghost == null) return null;
         ghostDTO = dozerBeanMapper.map(ghost, GhostDTO.class); 
-
-
-
-
-
         return ghostDTO;
     }
     
