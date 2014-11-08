@@ -75,7 +75,6 @@ public class HouseManagerImplTest {
     public void deleteHouse() {
         
         houseManager.addHouse(houseDTO);
-        Mockito.verify(houseDAO).addHouse(mapper.map(houseDTO, House.class));
         
         houseManager.deleteHouse(houseDTO);
         Mockito.verify(houseDAO).deleteHouse(mapper.map(houseDTO, House.class));

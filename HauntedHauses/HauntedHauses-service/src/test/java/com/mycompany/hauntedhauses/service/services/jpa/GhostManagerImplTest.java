@@ -9,30 +9,41 @@ import com.mycompany.hauntedhauses.dao.GhostDAO;
 import com.mycompany.hauntedhauses.entity.Ghost;
 import com.mycompany.hauntedhauses.service.dto.GhostDTO;
 import com.mycompany.hauntedhauses.service.services.GhostManager;
-import java.sql.Timestamp;
-import java.util.Date;
 import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.verify;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 /**
  *
  * @author Michal Zbranek
  */
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:/applicationcontext.xml"})
 public class GhostManagerImplTest {
-    /*private DozerBeanMapper dozerBeanMapper;
-    private GhostManager ghostManager; 
+    @Mock
+    private GhostDAO ghostDAO;
+    
+    private GhostManager ghostManager;
+    
+    @Autowired
     private GhostDTO ghostDTO;
+    
+    private DozerBeanMapper dozerBeanMapper;
+    
     private Ghost ghost;
     
-    @Mock
-    GhostDAO ghostDAO;
+    @Autowired
+    private Mapper mapper;
 
     @Before
     public void setUp() {
@@ -43,16 +54,6 @@ public class GhostManagerImplTest {
         ghostManager.setGhostDAO(ghostDAO);
         ghostManager.setDozerBeanMapper(dozerBeanMapper);
         
-        ghostDTO = new GhostDTO();
-        ghostDTO.setId(1);
-        ghostDTO.setName("Aether");
-        long timeL = System.currentTimeMillis();
-        Date startTime = new Date(timeL);
-        Date endTime = new Date(timeL+3600000);
-        ghostDTO.setScaryTimeStart(startTime);
-        ghostDTO.setScaryTimeEnd(endTime);
-        ghostDTO.setInfo("Weather based ghost");
-        
         ghost = dozerBeanMapper.map(ghostDTO, Ghost.class);
 
     }   
@@ -60,7 +61,6 @@ public class GhostManagerImplTest {
     @Test
     public void testCreateGhost() {               
         ghostManager.addGhost(ghostDTO);
-        Ghost ghost = dozerBeanMapper.map(ghostDTO, Ghost.class);
         Mockito.verify(ghostDAO).addGhost(ghost);
     }
     
@@ -68,7 +68,7 @@ public class GhostManagerImplTest {
     public void testDeleteGhost(){
         ghostManager.addGhost(ghostDTO);
         ghostManager.deleteGhost(ghostDTO);
-        verify(ghostDAO).deleteGhost(ghost);        
+        verify(ghostDAO).deleteGhost(mapper.map(ghostDTO, Ghost.class));        
     }
     
     @Test
@@ -90,9 +90,12 @@ public class GhostManagerImplTest {
     @Test
     public void getGhostByID(){
         ghostManager.addGhost(ghostDTO);
+        ghostDTO.setId(1);
+        ghost = dozerBeanMapper.map(ghostDTO, Ghost.class);
+        ghostManager.updateGhost(ghostDTO);
         ghostManager.getGhostByID(1);
         verify(ghostDAO).getGhostByID(1);
-    }*/
+    }
     
  
 }
