@@ -25,24 +25,24 @@ import org.springframework.stereotype.Controller;
 @Transactional
 public class GhostDAOImpl implements GhostDAO{
     
-    @Autowired
-    EntityManager manager;
+    /*@Autowired
+    EntityManager manager;*/
     
-    /*private EntityManagerFactory entityManagerFactory;
+    private EntityManagerFactory entityManagerFactory;
     private EntityManager manager;
     
     public GhostDAOImpl(EntityManagerFactory entityManagerFactory){
         this.entityManagerFactory = entityManagerFactory;
         manager = this.entityManagerFactory.createEntityManager();
-    }*/
+    }
     
-    public EntityManager getEntityManager() {
+    /*public EntityManager getEntityManager() {
         return manager;
     }
 
     public void setEntityManager(EntityManager manager) {
         this.manager = manager;
-    }
+    }*/
 
     public void addGhost(Ghost ghost) {
       

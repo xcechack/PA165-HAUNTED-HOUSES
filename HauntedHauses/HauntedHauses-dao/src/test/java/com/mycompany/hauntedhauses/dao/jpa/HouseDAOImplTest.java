@@ -29,9 +29,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  *
  * @author Markéta Kružliaková
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+/*@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/application" +
-        "Context.xml")
+        "Context.xml")*/
 public class HouseDAOImplTest {
     
     //@PersistenceUnit
@@ -42,7 +42,7 @@ public class HouseDAOImplTest {
     private static Resident resident;
     
     //@Autowired
-    HouseDAOImpl houseManager = new HouseDAOImpl();
+    //HouseDAOImpl houseManager = new HouseDAOImpl();
     
     
     @BeforeClass
@@ -109,6 +109,7 @@ public class HouseDAOImplTest {
     
     @AfterClass
     public static void tearDown() {
+        HouseDAOImpl houseManager = new HouseDAOImpl(emf);
         em = emf.createEntityManager();
         em.getTransaction().begin();
         Resident toBeRemoved = em.merge(resident);
@@ -123,7 +124,7 @@ public class HouseDAOImplTest {
 
     @Test
     public void testAddHouse() {
-       // HouseDAOImpl houseManager = new HouseDAOImpl(emf);
+        HouseDAOImpl houseManager = new HouseDAOImpl(emf);
        
         
         /*house = new House();
@@ -157,7 +158,7 @@ public class HouseDAOImplTest {
     
     @Test
     public void testUpdateHouse() {
-        //HouseDAOImpl houseManager = new HouseDAOImpl(emf);
+        HouseDAOImpl houseManager = new HouseDAOImpl(emf);
         house.setName("Cool House");
         houseManager.updateHouse(house);
         House house2 = houseManager.getHouseById(house.getId());
@@ -167,7 +168,7 @@ public class HouseDAOImplTest {
     
     @Test
     public void testDeleteHouse() {
-        //HouseDAOImpl houseManager = new HouseDAOImpl(emf);
+        HouseDAOImpl houseManager = new HouseDAOImpl(emf);
         houseManager.deleteHouse(house);
         Assert.assertNull(houseManager.getHouseById(house.getId()));
         houseManager.addHouse(house);
@@ -175,7 +176,7 @@ public class HouseDAOImplTest {
     
     @Test
     public void testGetAllHouses() {
-        //HouseDAOImpl houseManager = new HouseDAOImpl(emf);
+        HouseDAOImpl houseManager = new HouseDAOImpl(emf);
         houseManager.addHouse(house);
         List<House> houses = houseManager.getAllHouses();
         Assert.assertEquals(1, houses.size());
@@ -186,7 +187,7 @@ public class HouseDAOImplTest {
     
     @Test
     public void testGetHouseById() {
-        //HouseDAOImpl houseManager = new HouseDAOImpl(emf);
+        HouseDAOImpl houseManager = new HouseDAOImpl(emf);
         houseManager.addHouse(house);
         House house2 = houseManager.getHouseById(house.getId());
         Assert.assertTrue(house.equals(house2));

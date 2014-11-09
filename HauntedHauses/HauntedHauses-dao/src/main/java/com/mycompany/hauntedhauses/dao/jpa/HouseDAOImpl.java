@@ -10,6 +10,7 @@ import com.mycompany.hauntedhauses.dao.HouseDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -24,25 +25,25 @@ import org.springframework.stereotype.Controller;
 @Transactional
 public class HouseDAOImpl implements HouseDAO{
     
-    //private EntityManagerFactory emf =
-    //        Persistence.createEntityManagerFactory("HouseDB");
-    //private EntityManager em = emf.createEntityManager();
+    private EntityManagerFactory emf;
+    private EntityManager em;
     
-    @Autowired
-    EntityManager em;
+    /*@Autowired
+    EntityManager em;*/
     
-    /*private final EntityManagerFactory emf;
+    //private final EntityManagerFactory emf;
 
     public HouseDAOImpl(EntityManagerFactory emf) {
         this.emf = emf;
-    }*/
-    public EntityManager getEntityManager() {
+        em = this.emf.createEntityManager();
+    }
+    /*public EntityManager getEntityManager() {
         return em;
     }
 
     public void setEntityManager(EntityManager em) {
         this.em = em;
-    }
+    }*/
     
     public void addHouse(House house){
         try {
@@ -51,10 +52,6 @@ public class HouseDAOImpl implements HouseDAO{
             em.getTransaction().commit();
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em!=null) {
-                em.close();
-            }
         }
     }
     
@@ -67,10 +64,6 @@ public class HouseDAOImpl implements HouseDAO{
             em.getTransaction().commit();
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-             if (em!=null) {
-                em.close();
-            }
         }
     }
     
@@ -93,10 +86,6 @@ public class HouseDAOImpl implements HouseDAO{
             em.getTransaction().commit();
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em!=null) {
-                em.close();
-            }
         }
             
         
