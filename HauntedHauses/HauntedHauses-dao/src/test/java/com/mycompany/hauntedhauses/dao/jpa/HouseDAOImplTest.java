@@ -17,13 +17,21 @@ import org.junit.Assert;
 import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 /**
  *
  * @author Markéta Kružliaková
  */
+/*@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:/application" +
+        "Context.xml")*/
 public class HouseDAOImplTest {
     
     //@PersistenceUnit
@@ -33,9 +41,14 @@ public class HouseDAOImplTest {
     private static House house;
     private static Resident resident;
     
+    //@Autowired
+    //HouseDAOImpl houseManager = new HouseDAOImpl();
+    
     
     @BeforeClass
     public static void setup() {
+        //ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContext.xml"});
+        
         try {
             emf = Persistence.createEntityManagerFactory("GhostDB");
         } catch (Exception e) {
@@ -51,8 +64,8 @@ public class HouseDAOImplTest {
         long timeL = System.currentTimeMillis();
         Timestamp startTime = new Timestamp(timeL);
         Timestamp endTime = new Timestamp(timeL+3600000);
-        ghost.setStartTime(startTime);
-        ghost.setEndTime(endTime);
+        ghost.setScaryTimeStart(startTime);
+        ghost.setScaryTimeEnd(endTime);
         ghost.setInfo("Old man is haunting because he is lonely.");
         em.persist(ghost);
         
@@ -96,6 +109,7 @@ public class HouseDAOImplTest {
     
     @AfterClass
     public static void tearDown() {
+        HouseDAOImpl houseManager = new HouseDAOImpl(emf);
         em = emf.createEntityManager();
         em.getTransaction().begin();
         Resident toBeRemoved = em.merge(resident);
@@ -111,6 +125,8 @@ public class HouseDAOImplTest {
     @Test
     public void testAddHouse() {
         HouseDAOImpl houseManager = new HouseDAOImpl(emf);
+       
+        
         /*house = new House();
         house.setName("House name");
         Address address = new Address();

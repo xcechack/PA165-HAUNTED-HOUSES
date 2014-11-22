@@ -17,7 +17,7 @@ import java.util.Set;
  */
 public class HouseDTO implements Serializable {
     
-    private Long id;
+    private long id;
     
     private String name;
     
@@ -34,14 +34,14 @@ public class HouseDTO implements Serializable {
     /**
      * @return the id
      */
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

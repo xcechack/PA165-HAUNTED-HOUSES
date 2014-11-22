@@ -8,9 +8,8 @@ package com.mycompany.hauntedhauses.dao.jpa;
 import com.mycompany.hauntedhauses.entity.Ghost;
 import com.mycompany.hauntedhauses.entity.House;
 import com.mycompany.hauntedhauses.entity.Power;
+import com.mycompany.hauntedhauses.entity.Resident;
 import com.mycompany.hauntedhauses.service.field.Address;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,12 +21,18 @@ import org.junit.Assert;
 import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 /**
  *
  * @author Gabriela Podolnikova
  */
+/*@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:/application" +
+        "Context.xml")*/
 public class GhostDAOImplTest {
     
     //@PersistenceUnit
@@ -36,7 +41,6 @@ public class GhostDAOImplTest {
     private static Ghost ghost1;
     private static House house;
     private static Power power;
-    
     
     @BeforeClass
     public static void setup() {
@@ -53,10 +57,13 @@ public class GhostDAOImplTest {
         
         ghost1.setName("Old man");
         long timeL = System.currentTimeMillis();
-        Timestamp startTime = new Timestamp(timeL);
-        Timestamp endTime = new Timestamp(timeL+3600000);
-        ghost1.setStartTime(startTime);
-        ghost1.setEndTime(endTime);
+        //Timestamp startTime = new Timestamp(timeL);
+        //Timestamp endTime = new Timestamp(timeL+3600000);
+        
+        Date startTime = new Date(timeL);
+        Date endTime = new Date(timeL+3600000);
+        ghost1.setScaryTimeStart(startTime);
+        ghost1.setScaryTimeEnd(endTime);
         ghost1.setInfo("Old man is haunting because he is lonely.");
         
         house = new House();
@@ -104,6 +111,7 @@ public class GhostDAOImplTest {
         em.remove(toBeRemovedPower);
         ghostManager.deleteGhost(ghost1);
         em.getTransaction().commit();
+        em.close();
     }
 
     @Test
@@ -112,8 +120,6 @@ public class GhostDAOImplTest {
         ghostManager.deleteGhost(ghost1);
         ghostManager.addGhost(ghost1);
         Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
-        System.out.println("Ghost 1: " + ghost1.toString());
-        System.out.println("Ghost 2: " + ghost2.toString());
         Assert.assertTrue(ghost1.equals(ghost2));
     }
     
@@ -124,6 +130,7 @@ public class GhostDAOImplTest {
         ghostManager.updateGhost(ghost1);
         Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
         Assert.assertTrue(ghost1.equals(ghost2));
+        ghostManager.deleteGhost(ghost1);
     }
     
     @Test
@@ -144,8 +151,10 @@ public class GhostDAOImplTest {
     @Test
     public void testGetGhostById() {
         GhostDAOImpl ghostManager = new GhostDAOImpl(emf);
+        ghostManager.addGhost(ghost1);
         Ghost ghost2 = ghostManager.getGhostByID(ghost1.getId());
         Assert.assertTrue(ghost1.equals(ghost2));
+        ghostManager.addGhost(ghost1);
     }
 
 }

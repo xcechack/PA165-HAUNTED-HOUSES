@@ -49,7 +49,7 @@ public interface GhostManager {
      * @param id of ghost
      * @return ghost with the id from parameter
      */
-    public GhostDTO getGhostByID(Long id);
+    public GhostDTO getGhostByID(long id);
     
     public void setGhostDAO(GhostDAO ghostDAO);
     public void setDozerBeanMapper(DozerBeanMapper dozerBeanMapper);

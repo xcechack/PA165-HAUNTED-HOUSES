@@ -10,11 +10,16 @@
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 ">
 
-    <bean id="house" class="com.mycompany.hauntedhauses.entity">
+    <bean id="house" class="com.mycompany.hauntedhauses.service.dto.HouseDTO">
+        <property name="id" value="1"/>
         <property name="name" value="Nazev domu"/>
         <property name="address" ref="address1"/>
-        <property name="date"/>
-        <property name="history"/>
+        <property name="hauntedFrom">
+            <bean factory-bean="dateFormat" factory-method="parse">
+		<constructor-arg value="2010-01-31" />
+            </bean>
+        </property>
+        <property name="history" value="Historie domu"/>
         <property name="ghosts">
             <list>
                 <ref bean="ghost"/>
@@ -27,21 +32,27 @@
         </property>
     </bean>
     
-    <bean id="address1" class="com.mycompany.hauntedhauses.entity.service.field">
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd" />
+    </bean>
+    
+    <bean id="address1" class="com.mycompany.hauntedhauses.service.dto.field.Address">
         <property name="street" value="Ruzova"/>
         <property name="houseNumber" value="23"/>
         <property name="city" value="Brno"/>
         <property name="postalCode" value="62000"/>
     </bean>
          
-    <bean id="resident" class="com.mycompany.hauntedhauses.entity">
+    <bean id="resident" class="com.mycompany.hauntedhauses.service.dto.ResidentDTO">
+        <property name="id" value="1"/>
         <property name="firstName" value="Pepa"/>
         <property name="lastName" value="Vocasek"/>
         <property name="house" ref="house"/>
         <property name="age" value="#{T (java.lang.Math).random() * 100.0}" />
     </bean>
     
-    <bean id="power" class="com.mycompany.hauntedhauses.entity">
+    <bean id="power" class="com.mycompany.hauntedhauses.service.dto.PowerDTO">
+        <property name="id" value="1"/>
         <property name="name" value="neviditelnost"/>
         <property name="description" value="neni videt"/>
         <property name="ghosts">
@@ -51,10 +62,30 @@
         </property>
     </bean>
     
-    <bean id="ghost" class="com.mycompany.hauntedhauses.entity">
+    <bean id="ghost" class="com.mycompany.hauntedhauses.service.dto.GhostDTO">
+        <property name="id" value="1"/>
         <property name="name" value="Old man"/>
-        <property name="scaryTimeStart" value=""/>
-        <property name="scaryTimeEnd" value=""/>
+        <property name="info" value="Info"/>
+        <property name="scaryTimeStart">
+            <bean factory-bean="dateFormat" factory-method="parse">
+		<constructor-arg value="2010-01-29" />
+            </bean>
+        </property>
+        <property name="scaryTimeEnd">
+            <bean factory-bean="dateFormat" factory-method="parse">
+		<constructor-arg value="2010-01-30" />
+            </bean>
+        </property>
+    </bean>
+    
+    <bean id="mapper" class="org.dozer.DozerBeanMapper">
+        <property name="mappingFiles">
+            <list>
+                <!--value>dozer-global-configuration.xml</value-->			   
+                <value>dozer-bean-mappings.xml</value>
+                <!--value>more-dozer-bean-mappings.xml</value-->
+            </list>
+        </property>
     </bean>
     
 </beans>
