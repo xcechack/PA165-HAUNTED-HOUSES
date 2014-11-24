@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.hauntedhouses.service.services;
 import cz.muni.fi.pa165.hauntedhouses.dao.ResidentDAO;
 import cz.muni.fi.pa165.hauntedhouses.service.dto.ResidentDTO;
 import java.util.List;
-import org.dozer.DozerBeanMapper;
 
 /**
  *
