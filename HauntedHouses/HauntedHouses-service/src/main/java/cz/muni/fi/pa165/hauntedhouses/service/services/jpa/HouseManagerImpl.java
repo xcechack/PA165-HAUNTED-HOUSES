@@ -1,0 +1,76 @@
+package cz.muni.fi.pa165.hauntedhouses.service.services.jpa;
+
+import cz.muni.fi.pa165.hauntedhouses.dao.HouseDAO;
+import cz.muni.fi.pa165.hauntedhouses.entity.House;
+import cz.muni.fi.pa165.hauntedhouses.service.dto.HouseDTO;
+import cz.muni.fi.pa165.hauntedhouses.service.services.HouseManager;
+import java.util.List;
+import org.dozer.DozerBeanMapper;
+
+/**
+ *
+ * @author Gabriela Podolnikova
+ */
+public class HouseManagerImpl implements HouseManager {
+    HouseDAO houseDAO;
+    DozerBeanMapper dozerBeanMapper;
+    
+    public HouseManagerImpl(){
+        dozerBeanMapper = new DozerBeanMapper();
+    }
+
+    @Override
+    public void addHouse(HouseDTO houseDTO) {
+        House house = null;
+        if(houseDTO != null){
+            house = dozerBeanMapper.map(houseDTO, House.class);
+        }
+        houseDAO.addHouse(house);    
+    }
+
+    @Override
+    public void updateHouse(HouseDTO houseDTO) {
+        House house = null;
+        if (houseDTO != null){
+            house = dozerBeanMapper.map(houseDTO, House.class);
+        }
+        houseDAO.updateHouse(house);
+    }
+
+    @Override
+    public void deleteHouse(HouseDTO houseDTO) {
+    House house = null;
+        if (houseDTO != null) {
+            house = dozerBeanMapper.map(houseDTO, House.class);
+        }  
+        houseDAO.deleteHouse(house);
+    }
+
+    @Override
+    public List<HouseDTO> getAllHouses() {
+        List <HouseDTO> housesDTO = null;
+        List <House> houses = houseDAO.getAllHouses();             
+        if (houses != null) {
+            housesDTO = dozerBeanMapper.map(houses, List.class);
+        }
+        return housesDTO;
+    }
+
+    @Override
+    public HouseDTO getHouseById(Long id) {
+        HouseDTO houseDTO = null;
+        House house = houseDAO.getHouseById(id);               
+        if (house != null) {
+            houseDTO = dozerBeanMapper.map(house, HouseDTO.class); 
+        }
+        return houseDTO;
+    }
+    
+    public void setHouseDAO(HouseDAO houseDAO){
+        this.houseDAO = houseDAO;
+    }
+    
+    public HouseDAO getHouseDAO(){
+        return houseDAO;
+    }
+}
