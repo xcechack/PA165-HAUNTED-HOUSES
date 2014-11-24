@@ -6,7 +6,7 @@
         <artifactId>HauntedHouses</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.mycompany</groupId>
+    <groupId>cz.muni.fi.pa165</groupId>
     <artifactId>HauntedHouses-dao</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
