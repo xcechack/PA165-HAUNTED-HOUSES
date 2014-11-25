@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" time="3.839" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" time="5.12" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/home/janca/jdk1.8.0_25/jre/lib/amd64"/>
@@ -60,9 +60,9 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" name="testAddResident" time="3.467"/>
-  <testcase classname="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" name="testUpdateResident" time="0.101"/>
+  <testcase classname="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" name="testAddResident" time="4.653"/>
+  <testcase classname="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" name="testUpdateResident" time="0.077"/>
   <testcase classname="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" name="testGetAllResidents" time="0.082"/>
-  <testcase classname="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" name="testDeleteResident" time="0.065"/>
-  <testcase classname="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" name="testGetResidentById" time="0.032"/>
+  <testcase classname="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" name="testDeleteResident" time="0.1"/>
+  <testcase classname="cz.muni.fi.pa165.hauntedhouses.ResidentDAOImplTest" name="testGetResidentById" time="0.053"/>
 </testsuite>
