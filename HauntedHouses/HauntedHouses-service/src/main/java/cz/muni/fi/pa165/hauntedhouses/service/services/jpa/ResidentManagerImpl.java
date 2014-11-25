@@ -15,8 +15,8 @@ public class ResidentManagerImpl implements ResidentManager {
     ResidentDAO residentDAO;
     DozerBeanMapper dozerBeanMapper;
     
-    public ResidentManagerImpl(DozerBeanMapper dozerBeanMapper) {
-        this.dozerBeanMapper = dozerBeanMapper;
+    public ResidentManagerImpl() {
+        this.dozerBeanMapper = new DozerBeanMapper();
     }
 
     @Override
