@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.hauntedhouses.dao.jpa;
 
 import cz.muni.fi.pa165.hauntedhouses.dao.PowerDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.Power;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,12 @@ public class PowerDAOImpl implements PowerDAO{
 
     @Override
     public void addPower(Power power) {
+        if (power == null) {
+            throw new IllegalArgumentException("power is null");
+        }
+        if (power.getId() != null) {
+            throw new IllegalArgumentException("power id is already set");
+        }
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(power);
@@ -38,6 +45,9 @@ public class PowerDAOImpl implements PowerDAO{
     
     @Override
     public void updatePower(Power power) {
+        if (power.getId() == null) {
+            throw new IllegalArgumentException("Power id is null!");
+        }
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(power);
@@ -64,7 +74,12 @@ public class PowerDAOImpl implements PowerDAO{
     @Override
     public List<Power> getAllPowers() {
         Query query = entityManager.createQuery("SELECT p FROM Power p");
-        return query.getResultList();
+        if(query==null){
+            return new ArrayList<>();
+        }
+        else{
+            return query.getResultList();
+        }
         
     }
 

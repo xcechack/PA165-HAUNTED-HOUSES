@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.hauntedhouses.dao.jpa;
 
 import cz.muni.fi.pa165.hauntedhouses.dao.GhostDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.Ghost;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,7 +28,12 @@ public class GhostDAOImpl implements GhostDAO{
 
     @Override
     public void addGhost(Ghost ghost) {
-      
+        if (ghost == null) {
+            throw new IllegalArgumentException("ghost is null");
+        }
+        if (ghost.getId() != null) {
+            throw new IllegalArgumentException("ghost id is already set");
+        }
        try {
            entityManager.getTransaction().begin();
            entityManager.persist(ghost);
@@ -40,6 +46,9 @@ public class GhostDAOImpl implements GhostDAO{
 
     @Override
     public void updateGhost(Ghost ghost) {
+        if (ghost.getId() == null) {
+            throw new IllegalArgumentException("Ghost id is null!");
+        }
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(ghost);
@@ -68,7 +77,12 @@ public class GhostDAOImpl implements GhostDAO{
     @Override
     public List<Ghost> getAllGhosts() {
         Query query = entityManager.createQuery("SELECT g FROM Ghost g");
-        return query.getResultList();
+        if(query==null){
+            return new ArrayList<>();
+        }
+        else{
+            return query.getResultList();
+        }
     }
 
     @Override

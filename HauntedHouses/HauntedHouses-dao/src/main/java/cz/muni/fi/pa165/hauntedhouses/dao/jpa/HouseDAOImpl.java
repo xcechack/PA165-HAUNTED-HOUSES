@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.hauntedhouses.dao.jpa;
 
 import cz.muni.fi.pa165.hauntedhouses.entity.House;
 import cz.muni.fi.pa165.hauntedhouses.dao.HouseDAO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,6 +29,12 @@ public class HouseDAOImpl implements HouseDAO{
   
     @Override
     public void addHouse(House house){
+        if (house == null) {
+            throw new IllegalArgumentException("house is null");
+        }
+        if (house.getId() != null) {
+            throw new IllegalArgumentException("house id is already set");
+        }
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(house);
@@ -53,7 +60,9 @@ public class HouseDAOImpl implements HouseDAO{
     
     @Override
     public void updateHouse(House house) {
-
+        if (house.getId() == null) {
+            throw new IllegalArgumentException("House id is null!");
+        }
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(house);
@@ -66,7 +75,12 @@ public class HouseDAOImpl implements HouseDAO{
     @Override
     public List<House> getAllHouses() {
         Query query = entityManager.createQuery("select h from House h");
-        return query.getResultList();
+        if(query==null){
+            return new ArrayList<>();
+        }
+        else{
+            return query.getResultList();
+        }
     }
     
     @Override

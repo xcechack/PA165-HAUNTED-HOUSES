@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.hauntedhouses.dao.jpa;
 
 import cz.muni.fi.pa165.hauntedhouses.dao.ResidentDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.Resident;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,6 +30,12 @@ public class ResidentDAOImpl implements ResidentDAO {
 
     @Override
     public void addResident(Resident resident) {
+        if (resident == null) {
+            throw new IllegalArgumentException("resident is null");
+        }
+        if (resident.getId() != null) {
+            throw new IllegalArgumentException("resident id is already set");
+        }
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(resident);
@@ -40,6 +47,9 @@ public class ResidentDAOImpl implements ResidentDAO {
     
     @Override
     public void updateResident(Resident resident) {
+        if (resident.getId() == null) {
+            throw new IllegalArgumentException("Resident id is null!");
+        }
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(resident);
@@ -67,7 +77,12 @@ public class ResidentDAOImpl implements ResidentDAO {
     @Override
     public List<Resident> getAllResidents() {
         Query query = entityManager.createQuery("SELECT r FROM Resident r");
-        return query.getResultList();
+        if(query==null){
+            return new ArrayList<>();
+        }
+        else{
+            return query.getResultList();
+        }
     }
 
     @Override
