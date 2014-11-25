@@ -63,16 +63,17 @@ public class PowerManagerTest {
     }
     
     @Test
-    public void getAllPowers(){
+    public void testGetAllPowers(){
         powerManager.addPower(powerDTO);
         powerManager.getAllPowers();
         verify(powerDAO).getAllPowers();
     }
     
     @Test
-    public void getPowerById(){
+    public void testGetPowerById(){
         powerManager.addPower(powerDTO);
         powerManager.getPowerById(1l);
         verify(powerDAO).getPowerById(1l);
+        powerManager.deletePower(powerDTO);
     }
 }

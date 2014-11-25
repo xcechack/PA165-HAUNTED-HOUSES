@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.hauntedhouses.service;
 
 import cz.muni.fi.pa165.hauntedhouses.dao.HouseDAO;
@@ -68,16 +63,17 @@ public class HouseManagerTest {
     }
     
     @Test
-    public void getAllHouses(){
+    public void testGetAllHouses(){
         houseManager.addHouse(houseDTO);
         houseManager.getAllHouses();
         verify(houseDAO).getAllHouses();
     }
     
     @Test
-    public void getHouseById(){
+    public void testGetHouseById(){
         houseManager.addHouse(houseDTO);
         houseManager.getHouseById(1l);
         verify(houseDAO).getHouseById(1l);
+        houseManager.deleteHouse(houseDTO);
     }
 }
