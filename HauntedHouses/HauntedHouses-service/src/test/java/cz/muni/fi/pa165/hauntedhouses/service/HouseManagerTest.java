@@ -63,16 +63,17 @@ public class HouseManagerTest {
     }
     
     @Test
-    public void getAllHouses(){
+    public void testGetAllHouses(){
         houseManager.addHouse(houseDTO);
         houseManager.getAllHouses();
         verify(houseDAO).getAllHouses();
     }
     
     @Test
-    public void getHouseById(){
+    public void testGetHouseById(){
         houseManager.addHouse(houseDTO);
         houseManager.getHouseById(1l);
         verify(houseDAO).getHouseById(1l);
+        houseManager.deleteHouse(houseDTO);
     }
 }
