@@ -4,21 +4,29 @@ import cz.muni.fi.pa165.hauntedhouses.dao.GhostDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.Ghost;
 import cz.muni.fi.pa165.hauntedhouses.service.dto.GhostDTO;
 import cz.muni.fi.pa165.hauntedhouses.service.services.GhostManager;
-import cz.muni.fi.pa165.hauntedhouses.service.services.jpa.GhostManagerImpl;
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author Gabriela Podolnikova
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:/META-INF/applicationContext.xml"})
 public class GhostManagerTest {
+    @Autowired
     private DozerBeanMapper dozerBeanMapper;
+    @Autowired
     private GhostManager ghostManager; 
+    @Autowired
     private GhostDTO ghostDTO;
     private Ghost ghost;
     
@@ -28,12 +36,6 @@ public class GhostManagerTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        ghostManager = new GhostManagerImpl();
-        dozerBeanMapper = new DozerBeanMapper();
-        ghostDTO = new GhostDTO();
-        ghostDTO.setId(1l);
-        ghostDTO.setInfo("some info");
-        ghostDTO.setName("some name");
         ghostManager.setGhostDAO(ghostDAO);
         ghost = dozerBeanMapper.map(ghostDTO, Ghost.class);
     }
@@ -63,7 +65,7 @@ public class GhostManagerTest {
     }
     
     @Test
-    public void getAllGhosts(){
+    public void testGetAllGhosts(){
         ghostManager.addGhost(ghostDTO);
         ghostManager.getAllGhosts();
         verify(ghostDAO).getAllGhosts();
@@ -71,7 +73,7 @@ public class GhostManagerTest {
     }
     
     @Test
-    public void getHouseById(){
+    public void testGetGhostById(){
         ghostManager.addGhost(ghostDTO);
         ghostManager.getGhostById(1l);
         verify(ghostDAO).getGhostById(1l);

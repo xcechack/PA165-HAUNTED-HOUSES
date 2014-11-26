@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.hauntedhouses.service.dto.GhostDTO;
 import cz.muni.fi.pa165.hauntedhouses.service.services.GhostManager;
 import java.util.List;
 import org.dozer.DozerBeanMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -13,12 +14,9 @@ import org.dozer.DozerBeanMapper;
  */
 public class GhostManagerImpl implements GhostManager {
     GhostDAO ghostDAO;
+    @Autowired
     DozerBeanMapper dozerBeanMapper;
-    
-    public GhostManagerImpl(){
-        dozerBeanMapper = new DozerBeanMapper();
-    }
-    
+        
     @Override
     public void addGhost(GhostDTO ghostDTO) {
         Ghost ghost;

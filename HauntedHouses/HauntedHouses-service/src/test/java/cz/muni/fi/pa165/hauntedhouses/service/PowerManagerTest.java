@@ -4,21 +4,29 @@ import cz.muni.fi.pa165.hauntedhouses.dao.PowerDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.Power;
 import cz.muni.fi.pa165.hauntedhouses.service.dto.PowerDTO;
 import cz.muni.fi.pa165.hauntedhouses.service.services.PowerManager;
-import cz.muni.fi.pa165.hauntedhouses.service.services.jpa.PowerManagerImpl;
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author Jana Cechackova
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:/META-INF/applicationContext.xml"})
 public class PowerManagerTest {
+    @Autowired
     private DozerBeanMapper dozerBeanMapper;
-    private PowerManager powerManager; 
+    @Autowired
+    private PowerManager powerManager;
+    @Autowired
     private PowerDTO powerDTO;
     private Power power;
     
@@ -28,12 +36,6 @@ public class PowerManagerTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        powerManager = new PowerManagerImpl();
-        dozerBeanMapper = new DozerBeanMapper();
-        powerDTO = new PowerDTO();
-        powerDTO.setId(1l);
-        powerDTO.setDescription("some description");
-        powerDTO.setName("some name");
         powerManager.setPowerDAO(powerDAO);
         power = dozerBeanMapper.map(powerDTO, Power.class);
     }

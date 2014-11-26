@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.hauntedhouses.service.dto.ResidentDTO;
 import cz.muni.fi.pa165.hauntedhouses.service.services.ResidentManager;
 import java.util.List;
 import org.dozer.DozerBeanMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -13,12 +14,9 @@ import org.dozer.DozerBeanMapper;
  */
 public class ResidentManagerImpl implements ResidentManager {
     ResidentDAO residentDAO;
+    @Autowired
     DozerBeanMapper dozerBeanMapper;
     
-    public ResidentManagerImpl() {
-        this.dozerBeanMapper = new DozerBeanMapper();
-    }
-
     @Override
     public void addResident(ResidentDTO residentDTO) {
         Resident resident = null;

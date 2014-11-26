@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.hauntedhouses.service.dto.HouseDTO;
 import cz.muni.fi.pa165.hauntedhouses.service.services.HouseManager;
 import java.util.List;
 import org.dozer.DozerBeanMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -13,12 +14,9 @@ import org.dozer.DozerBeanMapper;
  */
 public class HouseManagerImpl implements HouseManager {
     HouseDAO houseDAO;
+    @Autowired
     DozerBeanMapper dozerBeanMapper;
     
-    public HouseManagerImpl(){
-        dozerBeanMapper = new DozerBeanMapper();
-    }
-
     @Override
     public void addHouse(HouseDTO houseDTO) {
         House house = null;

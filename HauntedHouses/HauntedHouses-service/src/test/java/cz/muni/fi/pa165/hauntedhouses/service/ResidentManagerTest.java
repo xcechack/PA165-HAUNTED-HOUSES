@@ -8,17 +8,26 @@ import cz.muni.fi.pa165.hauntedhouses.service.services.jpa.ResidentManagerImpl;
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author Gabriela Podolnikova
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:/META-INF/applicationContext.xml"})
 public class ResidentManagerTest {
+    @Autowired
     private DozerBeanMapper dozerBeanMapper;
+    @Autowired
     private ResidentManager residentManager; 
+    @Autowired
     private ResidentDTO residentDTO;
     private Resident resident;
     
@@ -28,13 +37,6 @@ public class ResidentManagerTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        residentManager = new ResidentManagerImpl();
-        dozerBeanMapper = new DozerBeanMapper();
-        residentDTO = new ResidentDTO();
-        residentDTO.setId(1l);
-        residentDTO.setAge(25);
-        residentDTO.setFirstName("Petr");
-        residentDTO.setLastName("Potloukal");
         residentManager.setResidentDAO(residentDAO);
         resident = dozerBeanMapper.map(residentDTO, Resident.class);
     }
@@ -71,7 +73,7 @@ public class ResidentManagerTest {
     }
     
     @Test
-    public void testGetPowerById(){
+    public void testGetResidentById(){
         residentManager.addResident(residentDTO);
         residentManager.getResidentById(1l);
         verify(residentDAO).getResidentById(1l);

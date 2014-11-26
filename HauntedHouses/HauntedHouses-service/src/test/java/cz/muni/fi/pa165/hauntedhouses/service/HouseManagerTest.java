@@ -4,21 +4,29 @@ import cz.muni.fi.pa165.hauntedhouses.dao.HouseDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.House;
 import cz.muni.fi.pa165.hauntedhouses.service.dto.HouseDTO;
 import cz.muni.fi.pa165.hauntedhouses.service.services.HouseManager;
-import cz.muni.fi.pa165.hauntedhouses.service.services.jpa.HouseManagerImpl;
 import org.dozer.DozerBeanMapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author Gabriela Podolnikova
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:/META-INF/applicationContext.xml"})
 public class HouseManagerTest {
+    @Autowired
     private DozerBeanMapper dozerBeanMapper;
+    @Autowired
     private HouseManager houseManager; 
+    @Autowired
     private HouseDTO houseDTO;
     private House house;
     
@@ -28,12 +36,6 @@ public class HouseManagerTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        houseManager = new HouseManagerImpl();
-        dozerBeanMapper = new DozerBeanMapper();
-        houseDTO = new HouseDTO();
-        houseDTO.setId(1l);
-        houseDTO.setHistory("some history");
-        houseDTO.setName("some name");
         houseManager.setHouseDAO(houseDAO);
         house = dozerBeanMapper.map(houseDTO, House.class);
     }

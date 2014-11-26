@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.hauntedhouses.service.dto.PowerDTO;
 import cz.muni.fi.pa165.hauntedhouses.service.services.PowerManager;
 import org.dozer.DozerBeanMapper;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -13,12 +14,9 @@ import java.util.List;
  */
 public class PowerManagerImpl implements PowerManager {
     PowerDAO powerDAO;
+    @Autowired
     DozerBeanMapper dozerBeanMapper;
-    
-    public PowerManagerImpl(){
-        dozerBeanMapper = new DozerBeanMapper();
-    }
-    
+        
     @Override
     public void addPower(PowerDTO powerDTO) {
         Power power = null;
