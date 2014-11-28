@@ -1,106 +1,74 @@
 package cz.muni.fi.pa165.hauntedhouses;
 
-import cz.muni.fi.pa165.hauntedhouses.dao.jpa.GhostDAOImpl;
+import cz.muni.fi.pa165.hauntedhouses.dao.GhostDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.Ghost;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.transaction.Transactional;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertNull;
-import org.junit.After;
 import org.junit.Assert;
-import static org.junit.Assert.fail;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author Gabriela Podolnikova
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:/META-INF/applicationContext.xml"})
 public class GhostDAOImplTest {
+
+    @Autowired
+    public Ghost ghost;
     
-    private static EntityManagerFactory emf;
-    private static EntityManager em;
-    public static Ghost ghost;
-    public static GhostDAOImpl ghostManager;
-    
-    @Before
-    public void setUp() {
-        try {
-            emf = Persistence.createEntityManagerFactory("HauntedHousesDB");
-        } catch (Exception e) {
-            fail("Could not initialize Persistence.");
-        }
-        em = emf.createEntityManager();
-        
-        ghost = new Ghost();
-        ghost.setName("Bubak");
-        
-        try {
-            em.getTransaction().begin();
-            em.persist(ghost);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            fail("Could not commit Persistence.");
-        }
-        
-        ghostManager = new GhostDAOImpl();
-        ghostManager.setEntityManager(em);
-    }
-    
-    @After
-    public void tearDown() {
-    List<Ghost> ghosts = ghostManager.getAllGhosts();
-        for (Ghost g : ghosts) {
-            ghostManager.deleteGhost(g);
-        }
-        if (em.isOpen()) {
-            em.close();
-        }
-    }
-    
+    @Autowired
+    public GhostDAO ghostManager;
+   
     @Test
     @Transactional
     public void testAddGhost() {
-        Ghost ghost1 = new Ghost();
-        ghost1.setName("Strasidlo");
-        
-        assertNull("ID must be null.", ghost1.getId());
-        ghostManager.addGhost(ghost1);
-        assertNotNull("ID can not be null.", ghost1.getId());
+        int size = ghostManager.getAllGhosts().size();
+        ghostManager.addGhost(ghost);
+        Assert.assertTrue("Size should be +1 now.", ghostManager.getAllGhosts().size() == size+1);
+        ghostManager.deleteGhost(ghost);
     }
     
     @Test
     @Transactional
     public void testUpdateGhost() {
-        ghost.setName("Duch");
+        ghostManager.addGhost(ghost);
+        ghost.setName("differentname");
         ghostManager.updateGhost(ghost);
         Ghost ghost1 = ghostManager.getGhostById(ghost.getId());
         Assert.assertTrue(ghost.equals(ghost1));
+        ghostManager.deleteGhost(ghost);
     }
     
     @Test
     @Transactional
     public void testDeleteGhost() {
-        assertNotNull("ID can not be null.", ghost.getId());
+        int size = ghostManager.getAllGhosts().size();
+        ghostManager.addGhost(ghost);
+        Assert.assertTrue("Size should be +1 now.", ghostManager.getAllGhosts().size()==size+1);
         ghostManager.deleteGhost(ghost);
-        Assert.assertNull("ID must be null after removing.", ghostManager.getGhostById(ghost.getId()));
+        Assert.assertTrue("Size should be back to original number now.", ghostManager.getAllGhosts().size()==size);
     }
     
     @Test
     @Transactional
     public void testGetAllGhosts() {
-	List<Ghost> ghosts = ghostManager.getAllGhosts();
-	Assert.assertEquals(1, ghosts.size());
+        ghostManager.addGhost(ghost);
+	Assert.assertEquals(1, ghostManager.getAllGhosts().size());
+        ghostManager.deleteGhost(ghost);
     }
     
     @Test
     @Transactional
     public void testGetGhostById() {
+        ghostManager.addGhost(ghost);
         Ghost ghost1 = ghostManager.getGhostById(ghost.getId());
         Assert.assertTrue(ghost.equals(ghost1));
+        ghostManager.deleteGhost(ghost);
     }
     
 }
