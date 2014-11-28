@@ -8,7 +8,8 @@
     <modules>
         <module>HauntedHouses-dao</module>
         <module>HauntedHouses-service</module>
-    </modules>
+    <module>HauntedHouses-web</module>
+  </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

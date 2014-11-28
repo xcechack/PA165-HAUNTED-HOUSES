@@ -14,7 +14,7 @@ public class DAOBase {
     private EntityManager entityManager;
     
     public EntityManager getEntityManager() {
-//        if (entityManager==null) create();
+        if (entityManager==null) create();
         return entityManager;
     } 
      
