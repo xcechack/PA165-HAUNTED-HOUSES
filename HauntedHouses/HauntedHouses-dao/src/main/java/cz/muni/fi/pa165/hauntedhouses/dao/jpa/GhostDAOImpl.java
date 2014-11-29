@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -15,14 +16,13 @@ import javax.persistence.Query;
 public class GhostDAOImpl extends DAOBase implements GhostDAO{   
     
     @Override
+    @Transactional
     public void addGhost(Ghost ghost) {
         if (ghost == null) {
             throw new IllegalArgumentException("ghost is null");
         }
        try {
-           getEntityManager().getTransaction().begin();
-           getEntityManager().persist(ghost);
-           getEntityManager().getTransaction().commit();     
+           getEntityManager().persist(ghost);     
        }
        catch(Exception e){
            throw new PersistenceException("Transaction failed.\n" + e.getMessage(), e);   
@@ -30,14 +30,13 @@ public class GhostDAOImpl extends DAOBase implements GhostDAO{
     }
 
     @Override
+    @Transactional
     public void updateGhost(Ghost ghost) {
         if (ghost.getId() == null) {
             throw new IllegalArgumentException("Ghost id is null!");
         }
         try {
-            getEntityManager().getTransaction().begin();
             getEntityManager().merge(ghost);
-            getEntityManager().getTransaction().commit();
         }
         catch (Exception e){
             throw new PersistenceException("Transaction failed.\n" + e.getMessage(),e);
@@ -45,13 +44,12 @@ public class GhostDAOImpl extends DAOBase implements GhostDAO{
     }
 
     @Override
+    @Transactional
     public void deleteGhost(Ghost ghost) {
         try {
-            getEntityManager().getTransaction().begin();
             Ghost toBeRemoved = getEntityManager().merge(ghost); 
             if (toBeRemoved != null) {
                 getEntityManager().remove(toBeRemoved);
-                getEntityManager().getTransaction().commit();
             }
         }
         catch(Exception e){
@@ -60,6 +58,7 @@ public class GhostDAOImpl extends DAOBase implements GhostDAO{
     }
 
     @Override
+    @Transactional
     public List<Ghost> getAllGhosts() {
         Query query = getEntityManager().createQuery("SELECT g FROM Ghost g");
         if(query==null){
@@ -71,6 +70,7 @@ public class GhostDAOImpl extends DAOBase implements GhostDAO{
     }
 
     @Override
+    @Transactional
     public Ghost getGhostById(Long id) {
         return getEntityManager().find(Ghost.class, id);       
     }

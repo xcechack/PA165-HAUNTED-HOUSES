@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.hauntedhouses;
 
 import cz.muni.fi.pa165.hauntedhouses.dao.GhostDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.Ghost;
-import javax.transaction.Transactional;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +24,6 @@ public class GhostDAOImplTest {
     public GhostDAO ghostManager;
    
     @Test
-    @Transactional
     public void testAddGhost() {
         int size = ghostManager.getAllGhosts().size();
         ghostManager.addGhost(ghost);
@@ -34,7 +32,6 @@ public class GhostDAOImplTest {
     }
     
     @Test
-    @Transactional
     public void testUpdateGhost() {
         ghostManager.addGhost(ghost);
         ghost.setName("differentname");
@@ -45,7 +42,6 @@ public class GhostDAOImplTest {
     }
     
     @Test
-    @Transactional
     public void testDeleteGhost() {
         int size = ghostManager.getAllGhosts().size();
         ghostManager.addGhost(ghost);
@@ -55,7 +51,6 @@ public class GhostDAOImplTest {
     }
     
     @Test
-    @Transactional
     public void testGetAllGhosts() {
         ghostManager.addGhost(ghost);
 	Assert.assertEquals(1, ghostManager.getAllGhosts().size());
@@ -63,7 +58,6 @@ public class GhostDAOImplTest {
     }
     
     @Test
-    @Transactional
     public void testGetGhostById() {
         ghostManager.addGhost(ghost);
         Ghost ghost1 = ghostManager.getGhostById(ghost.getId());

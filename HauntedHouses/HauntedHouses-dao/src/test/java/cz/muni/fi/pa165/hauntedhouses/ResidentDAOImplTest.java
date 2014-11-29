@@ -1,10 +1,7 @@
 package cz.muni.fi.pa165.hauntedhouses;
 
-import cz.muni.fi.pa165.hauntedhouses.dao.PowerDAO;
 import cz.muni.fi.pa165.hauntedhouses.dao.ResidentDAO;
-import cz.muni.fi.pa165.hauntedhouses.entity.Power;
 import cz.muni.fi.pa165.hauntedhouses.entity.Resident;
-import javax.transaction.Transactional;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +24,6 @@ public class ResidentDAOImplTest {
     public ResidentDAO residentManager;
    
     @Test
-    @Transactional
     public void testAddResident() {
         int size = residentManager.getAllResidents().size();
         residentManager.addResident(resident);
