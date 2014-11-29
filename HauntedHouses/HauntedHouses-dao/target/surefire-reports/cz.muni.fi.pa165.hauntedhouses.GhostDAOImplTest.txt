@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: cz.muni.fi.pa165.hauntedhouses.GhostDAOImplTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.204 sec
-=======
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.453 sec
->>>>>>> f32e51ec92762b3c8e167adb2c949e0f7fdb2931
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.704 sec

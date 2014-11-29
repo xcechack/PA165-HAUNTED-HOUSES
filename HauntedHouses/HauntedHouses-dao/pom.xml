@@ -42,14 +42,6 @@
     </repositories>
     
   <dependencies>
-      
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-beans</artifactId>
-        <version>4.0.6.RELEASE</version>
-        <type>jar</type>
-    </dependency>
-       
     <dependency>
 	<groupId>junit</groupId>
 	<artifactId>junit</artifactId>
@@ -111,26 +103,42 @@
     </dependency>
     
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>4.1.1.RELEASE</version>
-      <type>jar</type>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <version>4.1.1.RELEASE</version>
-      <type>jar</type>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>4.0.6.RELEASE</version>
-      <scope>test</scope>
-      <type>jar</type>
-    </dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-aspects</artifactId>
+	<version>4.1.2.RELEASE</version>
+        </dependency>
+       <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-aop</artifactId>
+	<version>4.1.2.RELEASE</version>
+       </dependency>
+       <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-core</artifactId>
+	<version>4.1.2.RELEASE</version>
+       </dependency>
+       <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-context</artifactId>
+	<version>4.1.2.RELEASE</version>
+        </dependency>
+        <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-beans</artifactId>
+	<version>4.1.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.1.1.RELEASE</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>tck-utils-api</artifactId>
+            <version>0.9.1</version>
+        </dependency>
     
   </dependencies>
    

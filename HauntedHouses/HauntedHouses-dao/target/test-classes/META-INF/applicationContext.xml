@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+  <context:component-scan base-package="cz.muni.fi.pa165.hauntedhouses.dao" />
+
+  <bean id="ghost" class="cz.muni.fi.pa165.hauntedhouses.entity.Ghost">
+      <property name="name" value="ghost1" />
+  </bean>
+  
+  <bean id="house" class="cz.muni.fi.pa165.hauntedhouses.entity.House">
+      <property name="name" value="house1" />
+      <property name="history" value="somehistory"/>
+  </bean>
+  
+  <bean id="resident" class="cz.muni.fi.pa165.hauntedhouses.entity.Resident">
+      <property name="firstName" value="resident1" />
+      <property name="lastName" value="resident1" />
+  </bean>
+
+  <bean id="power" class="cz.muni.fi.pa165.hauntedhouses.entity.Power">
+      <property name="name" value="power1" />
+  </bean>
+  
+  <bean id="ghostManager" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.GhostDAOImpl"/>
+  <bean id="houseManager" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.HouseDAOImpl"/>
+  <bean id="residentManager" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.ResidentDAOImpl"/>
+  <bean id="powerManager" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.PowerDAOImpl"/>
+  
+      
+</beans> 
+
