@@ -1,10 +1,7 @@
 package cz.muni.fi.pa165.hauntedhouses;
 
-import cz.muni.fi.pa165.hauntedhouses.dao.GhostDAO;
 import cz.muni.fi.pa165.hauntedhouses.dao.HouseDAO;
-import cz.muni.fi.pa165.hauntedhouses.entity.Ghost;
 import cz.muni.fi.pa165.hauntedhouses.entity.House;
-import javax.transaction.Transactional;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +24,6 @@ public class HouseDAOImplTest {
     public HouseDAO houseManager;
    
     @Test
-    @Transactional
     public void testAddHouse() {
         int size = houseManager.getAllHouses().size();
         houseManager.addHouse(house);
@@ -36,7 +32,6 @@ public class HouseDAOImplTest {
     }
     
     @Test
-    @Transactional
     public void testUpdateHouse() {
         houseManager.addHouse(house);
         house.setName("differentname");
@@ -47,7 +42,6 @@ public class HouseDAOImplTest {
     }
     
     @Test
-    @Transactional
     public void testDeleteHouse() {
         int size = houseManager.getAllHouses().size();
         houseManager.addHouse(house);
@@ -57,7 +51,6 @@ public class HouseDAOImplTest {
     }
     
     @Test
-    @Transactional
     public void testGetAllHouses() {
         houseManager.addHouse(house);
 	Assert.assertEquals(1, houseManager.getAllHouses().size());
@@ -65,7 +58,6 @@ public class HouseDAOImplTest {
     }
     
     @Test
-    @Transactional
     public void testGetHouseById() {
         houseManager.addHouse(house);
         House house1 = houseManager.getHouseById(house.getId());

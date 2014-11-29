@@ -25,7 +25,6 @@ public class PowerDAOImplTest {
     public PowerDAO powerManager;
    
     @Test
-    @Transactional
     public void testAddPower() {
         int size = powerManager.getAllPowers().size();
         powerManager.addPower(power);
