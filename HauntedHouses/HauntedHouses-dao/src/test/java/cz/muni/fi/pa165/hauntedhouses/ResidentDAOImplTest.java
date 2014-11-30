@@ -30,5 +30,29 @@ public class ResidentDAOImplTest {
         Assert.assertTrue("Size should be +1 now.", residentManager.getAllResidents().size() == size+1);
         residentManager.deleteResident(resident);
     }
+    
+    @Test
+    public void testDeleteResident() {
+        int size = residentManager.getAllResidents().size();
+        residentManager.addResident(resident);
+        Assert.assertTrue("Size should be +1 now.", residentManager.getAllResidents().size()==size+1);
+        residentManager.deleteResident(resident);
+        Assert.assertTrue("Size should be back to original number now.", residentManager.getAllResidents().size()==size);
+    }
+    
+    @Test
+    public void testGetAllResident() {
+        residentManager.addResident(resident);
+	Assert.assertEquals(1, residentManager.getAllResidents().size());
+        residentManager.deleteResident(resident);
+    }
+    
+    @Test
+    public void testGetResidentById() {
+        residentManager.addResident(resident);
+        Resident resident1 = residentManager.getResidentById(resident.getId());
+        Assert.assertTrue(resident.equals(resident1));
+        residentManager.deleteResident(resident);
+    }
         
 }

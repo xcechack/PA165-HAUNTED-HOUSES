@@ -5,10 +5,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<fmt:message var="title" key="general.bookingManager"/>
+<fmt:message var="title" key="power.title"/>
 <my:layout title="${title}">
 <jsp:attribute name="body">
-     <my:a href="/resident/list"><fmt:message key="resident.list"/></my:a>
-         zatím nefunguje-je potřeba dodělat controller
+
+  <p>Power</p>
+
 </jsp:attribute>
 </my:layout>
