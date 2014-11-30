@@ -10,15 +10,8 @@
            http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
   <context:component-scan base-package="cz.muni.fi.pa165.hauntedhouses.service" />
+  <import resource="classpath:/META-INF/applicationContext-service.xml"/> 
 
-  <bean id="dozerBeanMapper" class="org.dozer.DozerBeanMapper"/>
-  
-  <bean id="ghostManager" class="cz.muni.fi.pa165.hauntedhouses.service.services.jpa.GhostManagerImpl"/>
-  <bean id="houseManager" class="cz.muni.fi.pa165.hauntedhouses.service.services.jpa.HouseManagerImpl"/>
-  <bean id="powerManager" class="cz.muni.fi.pa165.hauntedhouses.service.services.jpa.PowerManagerImpl"/>
-  <bean id="residentManager" class="cz.muni.fi.pa165.hauntedhouses.service.services.jpa.ResidentManagerImpl"/>
-  
-  
   <bean id="ghostDTO" class="cz.muni.fi.pa165.hauntedhouses.service.dto.GhostDTO">
       <property name="id" value="1" />
       <property name="name" value="ghost1" />

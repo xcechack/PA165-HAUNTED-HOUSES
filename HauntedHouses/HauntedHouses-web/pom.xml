@@ -10,28 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>HauntedHouses-web</artifactId>
-    <packaging>war</packaging>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-framework-bom</artifactId>
-                <version>4.1.1.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.test.skip>true</maven.test.skip>
-        <tomcat.version>7.0.33</tomcat.version>
-        <jetty.version>9.0.6.v20130930</jetty.version>
-    </properties>
-
+    <packaging>war</packaging>       
+   
     <dependencies>
         <dependency>
             <groupId>cz.muni.fi.pa165</groupId>
@@ -47,6 +27,26 @@
         </dependency>
 
         <!-- servlet, JSP, JSTL -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>4.1.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>4.1.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.1.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.1.0.Final</version>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -99,6 +99,53 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>4.1.1.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+        </dependency>
+        <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-aspects</artifactId>
+	<version>4.1.1.RELEASE</version>
+        </dependency>
+       <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-aop</artifactId>
+	<version>4.1.1.RELEASE</version>
+       </dependency>
+       <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-core</artifactId>
+	<version>4.1.1.RELEASE</version>
+       </dependency>
+       <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-context</artifactId>
+	<version>4.1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-beans</artifactId>
+	<version>4.1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>tck-utils-api</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
 
 
         <!-- Jackson JSON processor - needed for Ajax  -->
@@ -107,8 +154,17 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.4.3</version>
         </dependency>
+        
 
     </dependencies>
+   
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.test.skip>true</maven.test.skip>
+        <tomcat.version>7.0.33</tomcat.version>
+        <jetty.version>9.0.6.v20130930</jetty.version>
+    </properties>
 
 
     <build>

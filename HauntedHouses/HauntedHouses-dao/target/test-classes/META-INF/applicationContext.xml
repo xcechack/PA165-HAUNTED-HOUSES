@@ -13,6 +13,7 @@
            http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
   <context:component-scan base-package="cz.muni.fi.pa165.hauntedhouses" />
+  <import resource="classpath:/META-INF/applicationContext-dao.xml"/> 
   
 
   <bean id="ghost" class="cz.muni.fi.pa165.hauntedhouses.entity.Ghost">
@@ -32,30 +33,6 @@
   <bean id="power" class="cz.muni.fi.pa165.hauntedhouses.entity.Power">
       <property name="name" value="power1" />
   </bean>
-  
-  <bean id="ghostManager" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.GhostDAOImpl"/>
-  <bean id="houseManager" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.HouseDAOImpl"/>
-  <bean id="residentManager" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.ResidentDAOImpl"/>
-  <bean id="powerManager" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.PowerDAOImpl"/>
-  
-  <tx:annotation-driven transaction-manager="transactionManager"/>
-  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="HauntedHousesDB"/>
-    </bean>
-    
-  <tx:annotation-driven/>
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
-    </bean>
-    
-  <!--
-  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driverClassName}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-    </bean>
-  -->
-            
+
 </beans> 
 
