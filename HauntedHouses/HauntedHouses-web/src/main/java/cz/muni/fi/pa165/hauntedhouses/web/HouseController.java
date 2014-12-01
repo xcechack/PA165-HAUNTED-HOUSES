@@ -41,6 +41,12 @@ public class HouseController {
     @Autowired
     MessageSource messageSource;
 
+    @ModelAttribute("house")
+    public HouseDTO getHouse() {
+        log.debug("allHouses()");
+        return new HouseDTO();
+    }
+    
     @ModelAttribute("houses")
     public List<HouseDTO> allHouses() {
         log.debug("allGhosts()");
@@ -50,7 +56,7 @@ public class HouseController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         log.debug("list()");
-        model.addAttribute("ghost", new HouseDTO());
+        model.addAttribute("ghost", houseManager.getAllHouses());
         return "house/list";
     }
     
@@ -75,7 +81,7 @@ public class HouseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute HouseDTO house, BindingResult bindingResult, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Locale locale) {
+    public String update(@Valid @ModelAttribute("house") HouseDTO house, BindingResult bindingResult, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Locale locale) {
         log.debug("update(locale={}, house={})", locale, house);
         if (bindingResult.hasErrors()) {
             log.debug("binding errors");
@@ -85,14 +91,11 @@ public class HouseController {
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 log.debug("FieldError: {}", fe);
             }
+            return house.getId()==null?"house/list":"house/edit";
         }
-        else if (house.getId() == null) {
-//            try{
+        if (house.getId() == null) {
                 houseManager.addHouse(house);
                 redirectAttributes.addFlashAttribute("message",messageSource.getMessage("house.add.message", new Object[]{house.getName(), house.getHistory()}, locale));
-//            }catch(Exception ex){
-//                    redirectAttributes.addFlashAttribute("message", messageSource.getMessage("ghost.add.error.message", null, locale));
-//            }
             
         } else {
             houseManager.updateHouse(house);

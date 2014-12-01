@@ -15,11 +15,7 @@
             <tr>
                 <th>id</th>
                 <th><fmt:message key="house.name"/></th>
-                <th><fmt:message key="house.address"/></th>
-                <th><fmt:message key="house.hauntedFrom"/></th>
                 <th><fmt:message key="house.history"/></th>
-                <th><fmt:message key="house.ghosts"/></th>
-                <th><fmt:message key="house.residents"/></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -27,11 +23,7 @@
                 <tr>
                     <td>${house.id}</td>
                     <td><c:out value="${house.name}"/></td>
-                    <td><c:out value="${house.address}"/></td>
-                    <td><c:out value="${house.hauntedFrom}"/></td>
                     <td><c:out value="${house.history}"/></td>
-                    <td><c:out value="${house.ghosts}"/></td>
-                    <td><c:out value="${house.residents}"/></td>
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}/house/update/${house.id}">
                             <input type="submit" value="<fmt:message key='house.list.edit'/>">
@@ -50,7 +42,7 @@
 <form:form method="post" action="${pageContext.request.contextPath}/house/update" modelAttribute="house">
     <fieldset><legend><fmt:message key="house.list.newhouse"/></legend>
     <%@include file="form.jsp"%>
-    <input type="submit" value="<fmt:message key='house.list.createHouse'/>">
+    <input type="submit" value="<fmt:message key='house.list.createhouse'/>">
     </fieldset>
 </form:form>
 </jsp:attribute>
