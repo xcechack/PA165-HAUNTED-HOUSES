@@ -81,12 +81,12 @@ public class GhostController {
             }
         }
         else if (ghost.getId() == null) {
-            try{
+//            try{
                 ghostManager.addGhost(ghost);
                 redirectAttributes.addFlashAttribute("message",messageSource.getMessage("ghost.add.message", new Object[]{ghost.getName(), ghost.getInfo()}, locale));
-            }catch(Exception ex){
-                    redirectAttributes.addFlashAttribute("message", messageSource.getMessage("ghost.add.error.message", null, locale));
-            }
+//            }catch(Exception ex){
+//                    redirectAttributes.addFlashAttribute("message", messageSource.getMessage("ghost.add.error.message", null, locale));
+//            }
             
         } else {
             ghostManager.updateGhost(ghost);
