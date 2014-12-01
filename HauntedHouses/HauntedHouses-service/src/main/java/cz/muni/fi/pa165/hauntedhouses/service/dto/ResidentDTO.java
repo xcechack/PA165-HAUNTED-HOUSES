@@ -17,7 +17,7 @@ public class ResidentDTO implements Serializable {
 
     private HouseDTO house;
     
-    private Integer age;
+    private int age;
     
     
     public Long getId(){
@@ -58,6 +58,5 @@ public class ResidentDTO implements Serializable {
    
     public void setHouse(HouseDTO house){
         this.house = house;
-    }
-    
+    }  
 }

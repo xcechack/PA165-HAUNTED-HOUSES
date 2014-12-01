@@ -8,5 +8,42 @@
 <fmt:message var="title" key="resident.list.title"/>
 <my:layout title="${title}">
  <jsp:attribute name="body">
-     </jsp:attribute>
+
+        <p><fmt:message key="resident.list.allresidents"/></p>
+
+        <table class="basic">
+            <tr>
+                <th><fmt:message key="resident.id"/></th>
+                <th><fmt:message key="resident.firstName"/></th>
+                <th><fmt:message key="resident.lastName"/></th>
+                <th><fmt:message key="resident.age"/></th>
+            </tr>
+            <c:forEach items="${residents}" var="resident">
+                <tr>
+                    <td><c:out value="${resident.id}"/></td>
+                    <td><c:out value="${resident.firstName}"/></td>
+                    <td><c:out value="${resident.lastName}"/></td>
+                    <td><c:out value="${resident.age}"/></td>
+                    <td>
+                        <form method="get" action="${pageContext.request.contextPath}/resident/update/${resident.id}">
+                            <input type="submit" value="<fmt:message key='resident.list.edit'/>">
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="${pageContext.request.contextPath}/resident/delete/${resident.id}">
+                            <input type="submit" value="<fmt:message key='resident.list.delete'/>">
+                        </form>
+                    </td>
+
+                </tr>
+            </c:forEach>
+        </table>
+
+<form:form method="post" action="${pageContext.request.contextPath}/resident/update" modelAttribute="resident">
+    <fieldset><legend><fmt:message key="resident.list.newresident"/></legend>
+    <%@include file="form.jsp"%>
+    <input type="submit" value="<fmt:message key='resident.list.createsident'/>">
+    </fieldset>
+</form:form>
+</jsp:attribute>
 </my:layout>
