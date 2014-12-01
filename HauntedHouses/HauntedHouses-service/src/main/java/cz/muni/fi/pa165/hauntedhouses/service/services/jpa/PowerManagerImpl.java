@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.hauntedhouses.dao.PowerDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.Power;
 import cz.muni.fi.pa165.hauntedhouses.service.dto.PowerDTO;
 import cz.muni.fi.pa165.hauntedhouses.service.services.PowerManager;
+import java.util.ArrayList;
 import org.dozer.DozerBeanMapper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Jana Cechackova
  */
 public class PowerManagerImpl implements PowerManager {
+    
+    @Autowired
     PowerDAO powerDAO;
+    
     @Autowired
     DozerBeanMapper dozerBeanMapper;
         
@@ -48,9 +52,9 @@ public class PowerManagerImpl implements PowerManager {
     public List<PowerDTO> getAllPowers() {
         List <PowerDTO> powersDTO = null;
         List <Power> powers = powerDAO.getAllPowers();
-        if (powers != null) {
+        if (powers.size() != 0) {
             powersDTO = dozerBeanMapper.map(powers, List.class);
-        }
+        } else powersDTO = new ArrayList<PowerDTO>();
         return powersDTO;
     }
 

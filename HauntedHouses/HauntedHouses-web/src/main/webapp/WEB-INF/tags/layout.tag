@@ -19,10 +19,10 @@
 <div id="navigation">
     <ul>
         <li><a href="${pageContext.request.contextPath}/"><f:message key="menu.index"/></a></li>
-        <li><a href="${pageContext.request.contextPath}/ghost.jsp"><f:message key="menu.ghosts"/></a></li>
-        <li><a href="${pageContext.request.contextPath}/house.jsp"><f:message key="menu.houses"/></a></li>
-        <li><a href="${pageContext.request.contextPath}/power.jsp"><f:message key="menu.powers"/></a></li>
-        <li><a href="${pageContext.request.contextPath}/resident.jsp"><f:message key="menu.residents"/></a></li>
+        <li><a href="${pageContext.request.contextPath}/ghost/list"><f:message key="menu.ghosts"/></a></li>
+        <li><a href="${pageContext.request.contextPath}/house/list"><f:message key="menu.houses"/></a></li>
+        <li><a href="${pageContext.request.contextPath}/power/list"><f:message key="menu.powers"/></a></li>
+        <li><a href="${pageContext.request.contextPath}/resident/list"><f:message key="menu.residents"/></a></li>
     </ul>
 </div>
 <div id="content">

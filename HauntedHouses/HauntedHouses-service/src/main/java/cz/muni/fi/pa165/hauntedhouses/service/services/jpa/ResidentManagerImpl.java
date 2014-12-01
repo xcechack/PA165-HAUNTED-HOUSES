@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Markéta Kružliaková
  */
 public class ResidentManagerImpl implements ResidentManager {
+    @Autowired
     ResidentDAO residentDAO;
     @Autowired
     DozerBeanMapper dozerBeanMapper;

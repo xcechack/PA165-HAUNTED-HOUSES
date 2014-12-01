@@ -23,7 +23,7 @@ public class GhostDTO implements Serializable {
 
     private HouseDTO house;
 
-    private List<PowerDTO> powers = new ArrayList<PowerDTO>();
+    private PowerDTO power;
     
 
     public Long getId() {
@@ -74,12 +74,12 @@ public class GhostDTO implements Serializable {
         this.house = house;
     }
 
-    public List<PowerDTO> getPowers() {
-        return powers;
+    public PowerDTO getPower() {
+        return power;
     }
 
-    public void setPowers(List<PowerDTO> powers) {
-        this.powers = powers;
+    public void setPower(PowerDTO power) {
+        this.power = power;
     }   
     
 }
