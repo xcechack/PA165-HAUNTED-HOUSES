@@ -9,7 +9,7 @@
 <my:layout title="${title}">
 <jsp:attribute name="body">
 
-  <p>Power</p>
+  <p>Ghost</p>
 
 </jsp:attribute>
 </my:layout>

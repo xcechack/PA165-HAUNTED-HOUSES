@@ -14,8 +14,16 @@
 
   <context:component-scan base-package="cz.muni.fi.pa165.hauntedhouses" />  
   <import resource="classpath:/META-INF/applicationContext-service.xml"/> 
-  <import resource="classpath:/META-INF/applicationContext-dao.xml"/>  
   
+  <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="defaultEncoding" value="UTF-8"/>
+                <property name="basenames">
+                    <list>
+                        <value>Texts</value>
+                    </list>
+                </property>
+  </bean>
   
             
 </beans> 

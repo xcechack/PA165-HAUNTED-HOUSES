@@ -58,12 +58,9 @@ public class PowerDAOImpl extends DAOBase implements PowerDAO{
     @Transactional
     public List<Power> getAllPowers() {
         Query query = getEntityManager().createQuery("SELECT p FROM Power p");
-        if(query==null){
-            return new ArrayList<>();
-        }
-        else{
-            return query.getResultList();
-        }
+        List<Power> allPowers = query.getResultList();
+        if (allPowers==null) allPowers = new ArrayList<Power>();        
+        return allPowers;
         
     }
 

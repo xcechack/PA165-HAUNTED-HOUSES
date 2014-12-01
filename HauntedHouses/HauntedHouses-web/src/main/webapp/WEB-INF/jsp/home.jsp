@@ -10,5 +10,6 @@
 <jsp:attribute name="body">
      <my:a href="/resident/list"><fmt:message key="resident.list"/></my:a>
          zatím nefunguje-je potřeba dodělat controller
+     <my:a href="/power/list"><fmt:message key="power.list"/></my:a>
 </jsp:attribute>
 </my:layout>

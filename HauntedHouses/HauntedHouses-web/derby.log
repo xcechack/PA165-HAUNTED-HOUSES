@@ -1,19 +1,19 @@
 ----------------------------------------------------------------
-Sun Nov 30 20:32:01 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-0230-3517-00001bb12c10 
-on database directory memory:C:\Users\Market\Documents\GitHub\PA165-HAUNTED-HOUSES\HauntedHouses\HauntedHouses-web\HauntedHousesDB with class loader WebappClassLoader
+Mon Dec 01 02:44:13 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-0384-f7dd-0000133cbe08 
+on database directory memory:/home/janca/Downloads/michal/HauntedHouses/HauntedHouses-web/HauntedHousesDB with class loader WebappClassLoader
   context: /HauntedHouses-web
   delegate: false
   repositories:
 ----------> Parent Classloader:
-ClassRealm[plugin>org.apache.tomcat.maven:tomcat7-maven-plugin:2.2, parent: sun.misc.Launcher$AppClassLoader@5c647e05]
+ClassRealm[plugin>org.apache.tomcat.maven:tomcat7-maven-plugin:2.2, parent: sun.misc.Launcher$AppClassLoader@29578426]
  
-Loaded from file:/C:/Users/Market/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+Loaded from file:/home/janca/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_20-b26
-user.dir=c:\Users\Market\Documents\GitHub\PA165-HAUNTED-HOUSES\HauntedHouses\HauntedHouses-web
-os.name=Windows 8.1
+java.runtime.version=1.7.0_72-b14
+user.dir=/home/janca/Downloads/michal/HauntedHouses/HauntedHouses-web
+os.name=Linux
 os.arch=amd64
-os.version=6.3
+os.version=3.13.0-40-generic
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

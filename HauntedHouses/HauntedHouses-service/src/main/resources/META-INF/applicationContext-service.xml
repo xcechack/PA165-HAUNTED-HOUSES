@@ -10,6 +10,7 @@
            http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
   <context:component-scan base-package="cz.muni.fi.pa165.hauntedhouses.service" />
+  <import resource="classpath:/META-INF/applicationContext-dao.xml"/> 
 
   <bean id="dozerBeanMapper" class="org.dozer.DozerBeanMapper"/>
   
@@ -17,6 +18,8 @@
   <bean id="houseManager" class="cz.muni.fi.pa165.hauntedhouses.service.services.jpa.HouseManagerImpl"/>
   <bean id="powerManager" class="cz.muni.fi.pa165.hauntedhouses.service.services.jpa.PowerManagerImpl"/>
   <bean id="residentManager" class="cz.muni.fi.pa165.hauntedhouses.service.services.jpa.ResidentManagerImpl"/>
+  
+  <bean id="powerDAO" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.PowerDAOImpl"/>
   
       
 </beans> 
