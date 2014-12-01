@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.hauntedhouses.web;
 
 import cz.muni.fi.pa165.hauntedhouses.service.dto.PowerDTO;
 import cz.muni.fi.pa165.hauntedhouses.service.services.PowerManager;
-import cz.muni.fi.pa165.hauntedhouses.service.services.jpa.PowerManagerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +14,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;

@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Jana Cechackova
  */
 public class PowerManagerImpl implements PowerManager {
+    
     @Autowired
     PowerDAO powerDAO;
+    
     @Autowired
     DozerBeanMapper dozerBeanMapper;
         

@@ -20,6 +20,9 @@
   <bean id="residentManager" class="cz.muni.fi.pa165.hauntedhouses.service.services.jpa.ResidentManagerImpl"/>
   
   <bean id="powerDAO" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.PowerDAOImpl"/>
+  <bean id="houseDAO" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.HouseDAOImpl"/>
+  <bean id="ghostDAO" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.GhostDAOImpl"/>
+  <bean id="residentDAO" class="cz.muni.fi.pa165.hauntedhouses.dao.jpa.ResidentDAOImpl"/>
   
       
 </beans> 

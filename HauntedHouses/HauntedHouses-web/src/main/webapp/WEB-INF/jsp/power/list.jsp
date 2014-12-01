@@ -13,15 +13,13 @@
 
         <table class="basic">
             <tr>
-                <th>id</th>
+                <th><fmt:message key="power.id"/></th>
                 <th><fmt:message key="power.name"/></th>
                 <th><fmt:message key="power.description"/></th>
-                <th></th>
-                <th></th>
             </tr>
             <c:forEach items="${powers}" var="power">
                 <tr>
-                    <td>${power.id}</td>
+                    <td><c:out value="${power.id}"/></td>
                     <td><c:out value="${power.name}"/></td>
                     <td><c:out value="${power.description}"/></td>
                     <td>

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Michal Zbranek
  */
 public class GhostManagerImpl implements GhostManager {
+    @Autowired
     GhostDAO ghostDAO;
     @Autowired
     DozerBeanMapper dozerBeanMapper;

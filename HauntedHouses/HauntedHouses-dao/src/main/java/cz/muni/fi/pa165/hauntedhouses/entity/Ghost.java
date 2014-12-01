@@ -2,8 +2,6 @@ package cz.muni.fi.pa165.hauntedhouses.entity;
 
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -30,8 +28,8 @@ public class Ghost {
     @ManyToOne
     private House house;
 
-    @ManyToMany(mappedBy = "ghosts", fetch = FetchType.LAZY)
-    private List<Power> powers = new ArrayList<>();
+    @ManyToOne
+    private Power power;
 
     public Long getId() {
         return id;
@@ -81,12 +79,12 @@ public class Ghost {
         this.house = house;
     }
 
-    public List<Power> getPowers() {
-        return powers;
+    public Power getPower() {
+        return power;
     }
 
-    public void setPowers(List<Power> powers) {
-        this.powers = powers;
+    public void setPower(Power power) {
+        this.power = power;
     }   
 
     @Override

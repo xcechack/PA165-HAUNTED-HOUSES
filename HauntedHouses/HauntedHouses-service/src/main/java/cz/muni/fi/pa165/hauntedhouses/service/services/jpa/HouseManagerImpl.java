@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Gabriela Podolnikova
  */
 public class HouseManagerImpl implements HouseManager {
+    @Autowired
     HouseDAO houseDAO;
     @Autowired
     DozerBeanMapper dozerBeanMapper;
