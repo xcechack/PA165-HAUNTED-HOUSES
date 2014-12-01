@@ -22,7 +22,7 @@ public class GhostManagerImpl implements GhostManager {
     public void addGhost(GhostDTO ghostDTO) {
         Ghost ghost;
         ghost = dozerBeanMapper.map(ghostDTO, Ghost.class);
-        ghostDAO.addGhost(ghost);
+            ghostDAO.addGhost(ghost);
         ghostDTO.setId(ghost.getId());
     }
 
