@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Mon Dec 01 22:09:33 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-07af-da7c-000006ac5540 
+Mon Dec 01 22:46:05 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-07d1-4f6f-0000068b1400 
 on database directory memory:C:\Users\Market\Documents\GitHub\PA165-HAUNTED-HOUSES\HauntedHouses\HauntedHouses-dao\HauntedHousesDB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
 Loaded from file:/C:/Users/Market/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation

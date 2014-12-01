@@ -42,7 +42,7 @@
 <form:form method="post" action="${pageContext.request.contextPath}/resident/update" modelAttribute="resident">
     <fieldset><legend><fmt:message key="resident.list.newresident"/></legend>
     <%@include file="form.jsp"%>
-    <input type="submit" value="<fmt:message key='resident.list.createsident'/>">
+    <input type="submit" value="<fmt:message key='resident.list.createresident'/>">
     </fieldset>
 </form:form>
 </jsp:attribute>
