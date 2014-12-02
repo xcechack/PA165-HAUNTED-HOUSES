@@ -8,23 +8,16 @@
 <fmt:message var="title" key="ghost.list.title"/>
 <my:layout title="${title}">
  <jsp:attribute name="body">
-
-        <p><fmt:message key="ghost.list.allghosts"/></p>
-
         <table class="basic">
             <tr>
                 <th><fmt:message key="ghost.id"/></th>
                 <th><fmt:message key="ghost.name"/></th>
-                <th><fmt:message key="ghost.house.name"/></th>
-                <th><fmt:message key="ghost.power.name"/></th>
                 <th><fmt:message key="ghost.info"/></th>
             </tr>
             <c:forEach items="${ghosts}" var="ghost">
                 <tr>
                     <td><c:out value="${ghost.id}"/></td>
                     <td><c:out value="${ghost.name}"/></td>
-                    <td><c:out value="${ghost.house.name}"/></td>
-                    <td><c:out value="${ghost.power.name}"/></td>
                     <td><c:out value="${ghost.info}"/></td>
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}/ghost/update/${ghost.id}">

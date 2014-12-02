@@ -27,7 +27,7 @@ import org.springframework.dao.DataAccessException;
 @RequestMapping("/ghost")
 public class GhostController {
 
-    final static Logger log = LoggerFactory.getLogger(PowerController.class);
+    final static Logger log = LoggerFactory.getLogger(GhostController.class);
 
     @Autowired
     private GhostManager ghostManager; //musi mit stejne jmeno jako v appcontext!!
@@ -63,9 +63,9 @@ public class GhostController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable long id, Model model) {
         GhostDTO ghost = ghostManager.getGhostById(id);
-        model.addAttribute("power", ghost);
+        model.addAttribute("ghost", ghost);
         log.debug("update_form(model={})", model);
-        return "power/edit";
+        return "ghost/edit";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -81,12 +81,12 @@ public class GhostController {
             }
         }
         else if (ghost.getId() == null) {
-//            try{
+            try{
                 ghostManager.addGhost(ghost);
                 redirectAttributes.addFlashAttribute("message",messageSource.getMessage("ghost.add.message", new Object[]{ghost.getName(), ghost.getInfo()}, locale));
-//            }catch(Exception ex){
-//                    redirectAttributes.addFlashAttribute("message", messageSource.getMessage("ghost.add.error.message", null, locale));
-//            }
+            }catch(Exception ex){
+                    redirectAttributes.addFlashAttribute("message", messageSource.getMessage("ghost.add.errormessage", null, locale));
+            }
             
         } else {
             ghostManager.updateGhost(ghost);

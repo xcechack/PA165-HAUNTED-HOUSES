@@ -9,8 +9,6 @@
 <my:layout title="${title}">
  <jsp:attribute name="body">
 
-        <p><fmt:message key="resident.list.allresidents"/></p>
-
         <table class="basic">
             <tr>
                 <th><fmt:message key="resident.id"/></th>

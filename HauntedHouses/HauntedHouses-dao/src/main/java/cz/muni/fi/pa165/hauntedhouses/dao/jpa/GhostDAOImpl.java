@@ -61,11 +61,12 @@ public class GhostDAOImpl extends DAOBase implements GhostDAO{
     @Transactional
     public List<Ghost> getAllGhosts() {
         Query query = getEntityManager().createQuery("SELECT g FROM Ghost g");
-        if(query==null){
-            return new ArrayList<>();
+        List<Ghost> result;
+        if((result = query.getResultList())==null){
+            return new ArrayList<Ghost>();
         }
         else{
-            return query.getResultList();
+            return result;
         }
     }
 

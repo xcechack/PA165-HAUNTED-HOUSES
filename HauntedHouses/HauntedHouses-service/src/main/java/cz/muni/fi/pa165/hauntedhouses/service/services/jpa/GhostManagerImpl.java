@@ -45,12 +45,7 @@ public class GhostManagerImpl implements GhostManager {
         List <GhostDTO> ghostsDTO = null;
         List <Ghost> ghosts = null;
         ghosts = ghostDAO.getAllGhosts();             
-        if (ghosts != null) {
-            for (Ghost ghost : ghosts) {
-                GhostDTO ghostDTO = dozerBeanMapper.map(ghost, GhostDTO.class);
-                ghostsDTO.add(ghostDTO);
-            }
-        }
+        ghostsDTO = dozerBeanMapper.map(ghosts, List.class);
         return ghostsDTO;
     }
 

@@ -8,20 +8,15 @@
 <fmt:message var="title" key="house.list.title"/>
 <my:layout title="${title}">
  <jsp:attribute name="body">
-    
-        <p><fmt:message key="house.list.allhouses"/></p>
-
         <table class="basic">
             <tr>
-                <th>id</th>
+                <th><fmt:message key="house.id"/></th>
                 <th><fmt:message key="house.name"/></th>
                 <th><fmt:message key="house.history"/></th>
-                <th></th>
-                <th></th>
             </tr>
             <c:forEach items="${houses}" var="house">
                 <tr>
-                    <td>${house.id}</td>
+                    <td><c:out value="${house.id}"/></td>
                     <td><c:out value="${house.name}"/></td>
                     <td><c:out value="${house.history}"/></td>
                     <td>

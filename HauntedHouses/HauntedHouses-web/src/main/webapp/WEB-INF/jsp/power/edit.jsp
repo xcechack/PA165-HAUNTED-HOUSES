@@ -5,14 +5,14 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<fmt:message var="title" key="ghost.edit.title"/>
+<fmt:message var="title" key="power.edit.title"/>
 <my:layout title="${title}">
  <jsp:attribute name="body">
-<form:form method="post" action="${pageContext.request.contextPath}/ghost/update" modelAttribute="ghost">
+<form:form method="post" action="${pageContext.request.contextPath}/power/update" modelAttribute="power">
     <form:hidden path="id"/>
-    <fieldset><legend><fmt:message key="ghost.edit.edit"/></legend>
+    <fieldset><legend><fmt:message key="power.edit.edit"/></legend>
         <%@include file="form.jsp"%>
-        <input type="submit" value="<fmt:message key='ghost.edit.save'/>">
+        <input type="submit" value="<fmt:message key='power.edit.save'/>">
     </fieldset>
 </form:form>
 </jsp:attribute>

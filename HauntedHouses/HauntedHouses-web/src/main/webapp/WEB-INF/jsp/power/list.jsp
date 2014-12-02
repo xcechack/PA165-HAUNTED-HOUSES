@@ -9,8 +9,6 @@
 <my:layout title="${title}">
  <jsp:attribute name="body">
 
-        <p><fmt:message key="power.list.allpowers"/></p>
-
         <table class="basic">
             <tr>
                 <th><fmt:message key="power.id"/></th>

@@ -3,6 +3,11 @@
     border: 1px solid darkgreen;
     padding: 1em;
 }
+.errormessage {
+    background-color: lightcoral;
+    border: 1px solid darkred;
+    padding: 1em;
+}
 
 span.error {
     background-color: yellow;
@@ -15,35 +20,39 @@ input.error {
 }
 
 body {
-    font-family: Helvetica, sans-serif;
-    background-color: azure;
+     color: white;
+     text-align: center;
+     font-family: Helvetica, sans-serif;
+     background-image: url("http://www.flash-screen.com/free-wallpaper/uploads/200903/imgs/1236066780.jpg");
+     background-repeat: no-repeat;
+     background-size: 100%;
+     background-color: black;
 }
 
 h1 {
+    color: white;
     text-align: center;
-    text-decoration: underline;
-    text-shadow: aquamarine;
+    text-shadow: white;
     text-transform: capitalize;
 }
 
 table.basic {
     border-collapse: collapse;
+    background-color: black;
     margin: 10px;
 }
 
 table.basic th, table.basic td {
-    border: solid 1px black;
+    border: solid 1px;
     padding: 4px;
 }
 
 /*  http://www.alistapart.com/articles/taminglists/ */
 #navigation {
     width: 120px;
-    border-right: 1px solid #000;
+    border: none;
     padding: 0 0 1em 0;
     margin-bottom: 1em;
-    background-color: #90bade;
-    color: #333;
 }
 
 #navigation ul {
@@ -54,17 +63,15 @@ table.basic th, table.basic td {
 }
 
 #navigation li {
-    border-bottom: 1px solid #90bade;
+    border: none;
     margin: 0;
 }
 
 #navigation li a {
+    color:cyan;
     display: block;
-    padding: 5px 5px 5px 0.5em;
-    border-left: 10px solid #1958b7;
-    border-right: 10px solid #508fc4;
-    background-color: #2175bc;
-    color: #fff;
+    padding: 15px 15px 15px 1em;
+    border: none;
     text-decoration: none;
     width: 100%;
 }
@@ -74,10 +81,8 @@ html>body #navigation li a {
 }
 
 #navigation li a:hover {
-    border-left: 10px solid #1c64d1;
-    border-right: 10px solid #5ba3e0;
-    background-color: #2586d7;
-    color: #fff;
+    border: none;
+    color: white;
 }
 
 /*  http://realworldstyle.com/2col.html */
