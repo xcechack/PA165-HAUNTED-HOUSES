@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Tue Dec 02 04:39:42 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-0915-0cb2-0000033282e8 
+Mon Dec 08 12:51:22 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-29bd-55cb-00000234b1d8 
 on database directory memory:/home/janca/Desktop/Haunted Houses/HH-WEB/new/PA165-HAUNTED-HOUSES/HauntedHouses/HauntedHouses-web/HauntedHousesDB with class loader WebappClassLoader
   context: /pa165
   delegate: false

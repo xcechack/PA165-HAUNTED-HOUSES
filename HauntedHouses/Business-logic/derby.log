@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Dec 10 01:25:35 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-3196-358e-0000048c15d0 
+on database directory memory:/home/janca/Desktop/Haunted Houses/HH-WEB/new/PA165-HAUNTED-HOUSES/HauntedHouses/Business-logic/HauntedHousesDB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/home/janca/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_25-b17
+user.dir=/home/janca/Desktop/Haunted Houses/HH-WEB/new/PA165-HAUNTED-HOUSES/HauntedHouses/Business-logic
+os.name=Linux
+os.arch=amd64
+os.version=3.13.0-40-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

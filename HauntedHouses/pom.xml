@@ -6,10 +6,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>HauntedHouses-dao</module>
-        <module>HauntedHouses-service</module>
     <module>HauntedHouses-web</module>
-  </modules>
+        <module>API</module>
+        <module>Business-logic</module>
+    </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
