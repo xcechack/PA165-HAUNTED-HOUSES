@@ -48,10 +48,8 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public List<HouseDTO> getAllHouses() {
         List <HouseDTO> housesDTO = null;
-        List <House> houses = houseDAO.getAllHouses();             
-        if (houses != null) {
-            housesDTO = dozerBeanMapper.map(houses, List.class);
-        }
+        List <House> houses = houseDAO.getAllHouses();           
+        housesDTO = dozerBeanMapper.map(houses, List.class);
         return housesDTO;
     }
 
@@ -65,11 +63,4 @@ public class HouseServiceImpl implements HouseService {
         return houseDTO;
     }
     
-    public void setHouseDAO(HouseDAO houseDAO){
-        this.houseDAO = houseDAO;
-    }
-    
-    public HouseDAO getHouseDAO(){
-        return houseDAO;
-    }
 }

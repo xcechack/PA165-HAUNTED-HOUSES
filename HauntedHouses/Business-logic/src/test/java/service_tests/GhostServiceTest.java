@@ -12,10 +12,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 
 /**
  *
@@ -23,13 +23,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/META-INF/applicationContext.xml"})
-public class GhostManagerTest {
+public class GhostServiceTest {
     @Mock
     GhostDAO ghostDAO;
     @Autowired
     private DozerBeanMapper dozerBeanMapper;
     @Autowired
-    private GhostService ghostManager; 
+    private GhostService ghostService; 
     @Autowired
     private GhostDTO ghostDTO;
     private Ghost ghost;
@@ -39,46 +39,47 @@ public class GhostManagerTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
+        ReflectionTestUtils.setField(ghostService, "ghostDAO", ghostDAO);
         ghost = dozerBeanMapper.map(ghostDTO, Ghost.class);
     }
     
     @Test
     public void testAddGhost(){
-        ghostManager.addGhost(ghostDTO);
-//        verify(ghostDAO).addGhost(ghost);
-        ghostManager.deleteGhost(ghostDTO);
+        ghostService.addGhost(ghostDTO);
+        verify(ghostDAO).addGhost(ghost);
+        ghostService.deleteGhost(ghostDTO);
     }
     
     @Test
     public void testUpdateGhost(){
-        ghostManager.addGhost(ghostDTO);
+        ghostService.addGhost(ghostDTO);
         ghostDTO.setId(2l);
         ghost = dozerBeanMapper.map(ghostDTO, Ghost.class);
-        ghostManager.updateGhost(ghostDTO);
-//        verify(ghostDAO).updateGhost(ghost);
-        ghostManager.deleteGhost(ghostDTO);
+        ghostService.updateGhost(ghostDTO);
+        verify(ghostDAO).updateGhost(ghost);
+        ghostService.deleteGhost(ghostDTO);
     }
     
     @Test
     public void testDeleteGhost(){
-        ghostManager.addGhost(ghostDTO);
-        ghostManager.deleteGhost(ghostDTO);
-//        verify(ghostDAO).deleteGhost(ghost);        
+        ghostService.addGhost(ghostDTO);
+        ghostService.deleteGhost(ghostDTO);
+        verify(ghostDAO).deleteGhost(ghost);        
     }
     
     @Test
     public void testGetAllGhosts(){
-        ghostManager.addGhost(ghostDTO);
-        ghostManager.getAllGhosts();
-//        verify(ghostDAO).getAllGhosts();
-        ghostManager.deleteGhost(ghostDTO);
+        ghostService.addGhost(ghostDTO);
+        ghostService.getAllGhosts();
+        verify(ghostDAO).getAllGhosts();
+        ghostService.deleteGhost(ghostDTO);
     }
     
     @Test
     public void testGetGhostById(){
-        ghostManager.addGhost(ghostDTO);
-        ghostManager.getGhostById(1l);
-////        verify(ghostDAO).getGhostById(1l);
-        ghostManager.deleteGhost(ghostDTO);
+        ghostService.addGhost(ghostDTO);
+        ghostService.getGhostById(1l);
+        verify(ghostDAO).getGhostById(1l);
+        ghostService.deleteGhost(ghostDTO);
     }
 }

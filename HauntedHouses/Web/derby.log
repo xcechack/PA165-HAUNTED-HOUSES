@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Mon Dec 08 12:51:22 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-29bd-55cb-00000234b1d8 
-on database directory memory:/home/janca/Desktop/Haunted Houses/HH-WEB/new/PA165-HAUNTED-HOUSES/HauntedHouses/HauntedHouses-web/HauntedHousesDB with class loader WebappClassLoader
+Sat Dec 13 14:29:49 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-43d7-4481-0000027b3fe8 
+on database directory memory:/home/janca/Desktop/Haunted Houses/HH-WEB/new/PA165-HAUNTED-HOUSES/HauntedHouses/Web/HauntedHousesDB with class loader WebappClassLoader
   context: /pa165
   delegate: false
   repositories:
@@ -11,7 +11,7 @@ ClassRealm[plugin>org.apache.tomcat.maven:tomcat7-maven-plugin:2.2, parent: sun.
 Loaded from file:/home/janca/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_72-b14
-user.dir=/home/janca/Desktop/Haunted Houses/HH-WEB/new/PA165-HAUNTED-HOUSES/HauntedHouses/HauntedHouses-web
+user.dir=/home/janca/Desktop/Haunted Houses/HH-WEB/new/PA165-HAUNTED-HOUSES/HauntedHouses/Web
 os.name=Linux
 os.arch=amd64
 os.version=3.13.0-40-generic

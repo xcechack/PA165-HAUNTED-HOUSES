@@ -49,9 +49,7 @@ public class ResidentServiceImpl implements ResidentService {
     public List<ResidentDTO> getAllResidents() {
         List <ResidentDTO> residentsDTO = null;
         List <Resident> residents = residentDAO.getAllResidents();  
-        if (residents != null) {
-                residentsDTO = dozerBeanMapper.map(residents, List.class);
-        }
+        residentsDTO = dozerBeanMapper.map(residents, List.class);
         return residentsDTO;
     }
 

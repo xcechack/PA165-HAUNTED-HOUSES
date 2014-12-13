@@ -1,9 +1,7 @@
 package cz.muni.fi.pa165.hauntedhouses.web;
 
-
-import cz.muni.fi.pa165.hauntedhouses.entity.Resident;
 import cz.muni.fi.pa165.hauntedhouses.service.dto.ResidentDTO;
-import cz.muni.fi.pa165.hauntedhouses.service.services.ResidentManager;
+import cz.muni.fi.pa165.hauntedhouses.service.services.ResidentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -31,7 +28,7 @@ public class ResidentController {
     final static Logger log = LoggerFactory.getLogger(ResidentController.class);
 
     @Autowired
-    private ResidentManager residentManager; //musi mit stejne jmeno jako v appcontext!!
+    private ResidentService residentService; //musi mit stejne jmeno jako v appcontext!!
 
     @Autowired
     private MessageSource messageSource;
@@ -45,15 +42,15 @@ public class ResidentController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         log.debug("list()");
-        model.addAttribute("residents", residentManager.getAllResidents());
+        model.addAttribute("residents", residentService.getAllResidents());
         return "resident/list";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, RedirectAttributes redirectAttributes, Locale locale, UriComponentsBuilder uriBuilder) {
         log.debug("delete({})", id);
-        ResidentDTO resident = residentManager.getResidentById(id);
-        residentManager.deleteResident(resident);
+        ResidentDTO resident = residentService.getResidentById(id);
+        residentService.deleteResident(resident);
         redirectAttributes.addFlashAttribute(
                 "message",
                 messageSource.getMessage("resident.delete.message", new Object[]{resident.getFirstName(), resident.getLastName()}, locale)
@@ -63,7 +60,7 @@ public class ResidentController {
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable long id, Model model) {
-        ResidentDTO resident = residentManager.getResidentById(id);
+        ResidentDTO resident = residentService.getResidentById(id);
         model.addAttribute("resident", resident);
         log.debug("update_form(model={})", model);
         return "resident/edit";
@@ -86,13 +83,13 @@ public class ResidentController {
             return resident.getId()==null?"resident/list":"resident/edit";
         }
         if (resident.getId() == null) {
-            residentManager.addResident(resident);
+            residentService.addResident(resident);
             redirectAttributes.addFlashAttribute(
                     "message",
                     messageSource.getMessage("resident.add.message", new Object[]{resident.getFirstName(), resident.getLastName()}, locale)
             );
         } else {
-            residentManager.updateResident(resident);
+            residentService.updateResident(resident);
             redirectAttributes.addFlashAttribute(
                     "message",
                     messageSource.getMessage("resident.updated.message", new Object[]{resident.getFirstName(), resident.getLastName()}, locale)

@@ -61,11 +61,12 @@ public class ResidentDAOImpl extends DAOBase implements ResidentDAO {
     @Transactional
     public List<Resident> getAllResidents() {
         Query query = getEntityManager().createQuery("SELECT r FROM Resident r");
-        if(query==null){
+        List<Resident> allResidents = query.getResultList();
+        if(allResidents==null){
             return new ArrayList<>();
         }
         else{
-            return query.getResultList();
+            return allResidents;
         }
     }
 

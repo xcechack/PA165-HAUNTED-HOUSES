@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.hauntedhouses.dao.PowerDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.Power;
 import cz.muni.fi.pa165.hauntedhouses.service.dto.PowerDTO;
 import cz.muni.fi.pa165.hauntedhouses.service.services.PowerService;
-import java.util.ArrayList;
 import org.dozer.DozerBeanMapper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +51,7 @@ public class PowerServiceImpl implements PowerService {
     public List<PowerDTO> getAllPowers() {
         List <PowerDTO> powersDTO = null;
         List <Power> powers = powerDAO.getAllPowers();
-        if (powers.size() != 0) {
-            powersDTO = dozerBeanMapper.map(powers, List.class);
-        } else powersDTO = new ArrayList<PowerDTO>();
+        powersDTO = dozerBeanMapper.map(powers, List.class);
         return powersDTO;
     }
 

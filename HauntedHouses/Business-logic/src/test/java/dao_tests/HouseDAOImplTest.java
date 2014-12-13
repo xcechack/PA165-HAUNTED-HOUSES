@@ -1,4 +1,4 @@
-package unit_tests;
+package dao_tests;
 
 import cz.muni.fi.pa165.hauntedhouses.dao.HouseDAO;
 import cz.muni.fi.pa165.hauntedhouses.entity.House;

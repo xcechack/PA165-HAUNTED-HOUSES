@@ -59,12 +59,13 @@ public class HouseDAOImpl extends DAOBase implements HouseDAO{
     @Override
     @Transactional
     public List<House> getAllHouses() {
-        Query query = getEntityManager().createQuery("select h from House h");
-        if(query==null){
+        Query query = getEntityManager().createQuery("SELECT r FROM House r");
+        List<House> allHouses = query.getResultList();
+        if(allHouses==null){
             return new ArrayList<>();
         }
         else{
-            return query.getResultList();
+            return allHouses;
         }
     }
     

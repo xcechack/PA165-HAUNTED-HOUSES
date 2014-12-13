@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.hauntedhouses.web;
 
 import cz.muni.fi.pa165.hauntedhouses.service.dto.PowerDTO;
-import cz.muni.fi.pa165.hauntedhouses.service.services.PowerManager;
+import cz.muni.fi.pa165.hauntedhouses.service.services.PowerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class PowerController {
     final static Logger log = LoggerFactory.getLogger(PowerController.class);
 
     @Autowired
-    private PowerManager powerManager; //musi mit stejne jmeno jako v appcontext!!
+    private PowerService powerService; //musi mit stejne jmeno jako v appcontext!!
 
     @Autowired
     private MessageSource messageSource;
@@ -37,7 +37,7 @@ public class PowerController {
     @ModelAttribute("powers")
     public List<PowerDTO> allPower() {
         log.debug("allPowers()");
-        return powerManager.getAllPowers();
+        return powerService.getAllPowers();
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -50,8 +50,8 @@ public class PowerController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, RedirectAttributes redirectAttributes, Locale locale, UriComponentsBuilder uriBuilder) {
         log.debug("delete({})", id);
-        PowerDTO power = powerManager.getPowerById(id);
-        powerManager.deletePower(power);
+        PowerDTO power = powerService.getPowerById(id);
+        powerService.deletePower(power);
         redirectAttributes.addFlashAttribute(
                 "message",
                 messageSource.getMessage("power.delete.message", new Object[]{power.getName(), power.getDescription()}, locale)
@@ -61,7 +61,7 @@ public class PowerController {
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable long id, Model model) {
-        PowerDTO power = powerManager.getPowerById(id);
+        PowerDTO power = powerService.getPowerById(id);
         model.addAttribute("power", power);
         log.debug("update_form(model={})", model);
         return "power/edit";
@@ -81,13 +81,13 @@ public class PowerController {
             return power.getId()==null?"power/list":"power/edit";
         }
         if (power.getId() == null) {
-            powerManager.addPower(power);
+            powerService.addPower(power);
             redirectAttributes.addFlashAttribute(
                     "message",
                     messageSource.getMessage("power.add.message", new Object[]{power.getName(), power.getDescription()}, locale)
             );
         } else {
-            powerManager.updatePower(power);
+            powerService.updatePower(power);
             redirectAttributes.addFlashAttribute(
                     "message",
                     messageSource.getMessage("power.updated.message", new Object[]{power.getName(), power.getDescription()}, locale)
